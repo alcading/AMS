@@ -48,6 +48,7 @@ public abstract class BaseEastGrhqckfhzmxjl implements java.io.Serializable {
 	private String zy;
 	private String cbmbz;
 	private String jyjdbz;
+	private String errmsg;
 
 	// Constructors
 
@@ -349,7 +350,13 @@ public abstract class BaseEastGrhqckfhzmxjl implements java.io.Serializable {
 	public void setJyjdbz(String jyjdbz) {
 		this.jyjdbz = jyjdbz;
 	}
+	public String getErrmsg() {
+		return errmsg;
+	}
 
+	public void setErrmsg(String errmsg) {
+		this.errmsg = errmsg;
+	}
 	
 
 }
