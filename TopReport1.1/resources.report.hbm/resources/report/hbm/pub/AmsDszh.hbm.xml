@@ -236,6 +236,11 @@
 				column="RESERVE5"
 				type="string"
 			/>
+			<property
+				name="jlrq"
+				column="JLRQ"
+				type="string"
+			/>
 			
 	</class>	
 </hibernate-mapping>
