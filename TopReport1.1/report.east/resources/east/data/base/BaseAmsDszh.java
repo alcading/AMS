@@ -65,6 +65,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String reserve4;
 	private String reserve5;
 	private String jlrq;
+	private String ismodify;
 
 	// Constructors
 
@@ -84,7 +85,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 			String kdqr, String zhjz, String xkrq, String kzt, String zhlx, String ylzhzh, String ylzhjgbm, String khrq,
 			String xhrq, String zhzt, String bz, String sfjrbzk, String sfshbzk, String hsjg, String wfhsyy,
 			String czff, String xxlx, String khqd, String remarks, String jlzt, String reserve1, String reserve2,
-			String reserve3, String reserve4, String reserve5,String jlrq) {
+			String reserve3, String reserve4, String reserve5,String jlrq,String ismodify) {
 		this.id = id;
 		this.ckrsfzjzl = ckrsfzjzl;
 		this.ckrsfzjhm = ckrsfzjhm;
@@ -131,6 +132,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 		this.reserve4 = reserve4;
 		this.reserve5 = reserve5;
 		this.jlrq = jlrq;
+		this.ismodify = ismodify;
 	}
 
 	public AmsDszhId getId() {
@@ -508,7 +510,13 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	public void setJlrq(String jlrq) {
 		this.jlrq = jlrq;
 	}
-	
-	
+
+	public String getIsmodify() {
+		return ismodify;
+	}
+
+	public void setIsmodify(String ismodify) {
+		this.ismodify = ismodify;
+	}
 
 }

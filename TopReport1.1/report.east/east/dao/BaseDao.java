@@ -18,10 +18,13 @@ import java.util.Map;
 import org.directwebremoting.annotations.Auth;
 
 import com.huateng.ebank.framework.exceptions.CommonException;
+import com.huateng.ebank.framework.util.DataFormat;
 import com.huateng.ebank.framework.util.DateUtil;
+import com.huateng.report.imports.common.FileImportUtil;
 
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
+import resources.east.data.pub.AmsDszh;
 import east.utils.tools.DBUtil;
 import east.utils.tools.ToolUtils;
 import east.vo.DefautValueVO;
@@ -439,6 +442,131 @@ public class BaseDao {
 			System.out.println("还原cpwj_bak到cpwj错误！错误信息："+e.getMessage());
 			throw e;
 		}
+	}
+	
+	/**
+	 * 查询对私账户信息   /cx add in 2018/1/5
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsDszh> queryDszh(String ckrxm, String ckrsfzjhm, String zh, String xxlx, String jlrq) throws Exception{
+		
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsDszh> list = new ArrayList<AmsDszh>();
+		//Map<String, String> map = null;
+		try {
+
+			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY from AMS_DSZH where 1=1";
+			if(ckrxm!=null&&!"".equals(ckrxm)) {
+				sql += "and ckrxm like '%"+ckrxm+"%'";
+			}
+			if(ckrsfzjhm!=null && !"".equals(ckrsfzjhm)) {
+				sql += "and ckrsfzjhm='"+ckrsfzjhm+"'";
+			}
+			if(zh != null && !"".equals(zh)) {
+				sql += "and zh = '"+zh+"'";
+			}
+			if(xxlx != null && !"".equals(xxlx)) {
+				sql += "and xxlx = '"+xxlx+"'";
+			}
+			if(jlrq != null && !"".equals(jlrq)) {
+				jlrq = FileImportUtil.getWorkDate(jlrq);
+				sql += "and jlrq='"+jlrq+"'";
+			}
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+			
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if(rs!=null){
+				
+				while(rs.next()){
+					//map = new HashMap<String, String>();
+					AmsDszh ad = new AmsDszh();
+					ad.setXxlx(rs.getString("XXLX"));
+					ad.setCkrxm(rs.getString("CKRXM"));
+					ad.setCkrsfzjzl(rs.getString("CKRSFZJZL"));
+					ad.setCkrsfzjhm(rs.getString("CKRSFZJHM"));
+					ad.setJrjgbm(rs.getString("JRJGBM"));
+					ad.setZh(rs.getString("ZH"));
+					ad.setZhzl(rs.getString("ZHZL"));
+					ad.setBz(rs.getString("BZ"));
+					ad.setZhzt(rs.getString("ZHZT"));
+					ad.setJlrq(rs.getString("JLRQ"));
+					ad.setIsmodify(rs.getString("ISMODIFY"));
+					
+					list.add(ad);
+					
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally{
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+		
+	}
+	
+	
+	/**
+	 * 对私账户查询修改/ cx add in 2018/1/5
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsDszh> queryDszhUpdate(String ckrsfzjzl, String ckrsfzjhm) throws Exception{
+		
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsDszh> list = new ArrayList<AmsDszh>();
+		//Map<String, String> map = null;
+		try {
+			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY from AMS_DSZH where 1=1";
+			if(ckrsfzjzl!=null && !"".equals(ckrsfzjzl)) {
+				sql += "and ckrsfzjzl='"+ckrsfzjzl+"'";
+			}
+			if(ckrsfzjhm!=null && !"".equals(ckrsfzjhm)) {
+				sql += "and ckrsfzjhm='"+ckrsfzjhm+"'";
+			}
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+			
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if(rs!=null){
+				
+				while(rs.next()){
+					//map = new HashMap<String, String>();
+					AmsDszh ad = new AmsDszh();
+					ad.setXxlx(rs.getString("XXLX"));
+					ad.setCkrxm(rs.getString("CKRXM"));
+					ad.setCkrsfzjzl(rs.getString("CKRSFZJZL"));
+					ad.setCkrsfzjhm(rs.getString("CKRSFZJHM"));
+					ad.setJrjgbm(rs.getString("JRJGBM"));
+					ad.setZh(rs.getString("ZH"));
+					ad.setZhzl(rs.getString("ZHZL"));
+					ad.setBz(rs.getString("BZ"));
+					ad.setZhzt(rs.getString("ZHZT"));
+					ad.setJlrq(rs.getString("JLRQ"));
+					ad.setIsmodify(rs.getString("ISMODIFY"));
+					
+					list.add(ad);
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally{
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+		
 	}
 	
 }

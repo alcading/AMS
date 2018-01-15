@@ -4,6 +4,11 @@
 	<Query id="analyseDataEntry" path="/fpages/dataaudit/xml/AnalyseDataEntry.xml" />
 	<!-- 数据分析手工执行 -->
 	<Query id="analyseDataManual" path="/fpages/dataaudit/xml/AnalyseDataManual.xml" />
+	
+	<!-- 对私账户数据查询 -->
+	<Query id="DszhQuery" path="/fpages/dataaudit/xml/DszhQuery.xml"></Query>
+	<Query id="DszhQueryUpdate" path="/fpages/management/xml/DszhQueryUpdate.xml"></Query>
+	
 	<!-- 数据分析详细 -->
 	<Query id="dataDetailEntry" path="/fpages/dataaudit/xml/DataDetailEntry.xml" />
 	<!-- 数据分析执行 -->
