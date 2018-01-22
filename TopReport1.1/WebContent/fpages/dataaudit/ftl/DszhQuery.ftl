@@ -26,7 +26,6 @@ function btMod_onClick(){
 	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
 	var ckrsfzjhm = DszhQuery_dataset.getValue("ckrsfzjhm");
 	
-	
 	showUpdate(ckrsfzjzl,ckrsfzjhm);
 }
 

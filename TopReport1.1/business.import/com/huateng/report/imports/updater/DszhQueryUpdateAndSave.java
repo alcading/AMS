@@ -39,7 +39,7 @@ public class DszhQueryUpdateAndSave extends BaseUpdate {
 					.getUpdateResultBeanByID("DszhQueryUpdate");
 
 
-			List updateList = new ArrayList();
+			List<AmsDszh> updateList = new ArrayList<AmsDszh>();
 			List delList = new ArrayList();
 			List insertList = new ArrayList();
 
@@ -68,7 +68,6 @@ public class DszhQueryUpdateAndSave extends BaseUpdate {
 					System.out.println(Id.getCkrsfzjzl());
 					
 					updateList.add(amsDszh);
-					
 					
 					break;
 				default:
