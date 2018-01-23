@@ -527,7 +527,7 @@ public class BaseDao {
 		List<AmsDszh> list = new ArrayList<AmsDszh>();
 		//Map<String, String> map = null;
 		try {
-			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY from AMS_DSZH where 1=1";
+			String sql = "select * from AMS_DSZH where 1=1";
 			if(ckrsfzjzl!=null && !"".equals(ckrsfzjzl)) {
 				sql += "and ckrsfzjzl='"+ckrsfzjzl+"'";
 			}
@@ -545,15 +545,46 @@ public class BaseDao {
 				while(rs.next()){
 					//map = new HashMap<String, String>();
 					AmsDszh ad = new AmsDszh();
-					ad.setXxlx(rs.getString("XXLX"));
 					ad.setCkrxm(rs.getString("CKRXM"));
 					ad.setCkrsfzjzl(rs.getString("CKRSFZJZL"));
 					ad.setCkrsfzjhm(rs.getString("CKRSFZJHM"));
+					ad.setSfzjdqr(rs.getString("SFZJDQR"));
+					ad.setDqdm(rs.getString("DQDM"));
+					ad.setCkrlb(rs.getString("CKRLB"));
+					ad.setCkrgjdq(rs.getString("CKRGJDQ"));
+					ad.setCkrxb(rs.getString("CKRXB"));
+					ad.setCkryb(rs.getString("CKRYB"));
+					ad.setCkrdz(rs.getString("CKRDZ"));
+					ad.setCkrdh(rs.getString("CKRDH"));
+					ad.setDlrmc(rs.getString("DLRMC"));
+					ad.setDlrsfzjzl(rs.getString("DLRSFZJZL"));
+					ad.setDlrsfzjhm(rs.getString("DLRSFZJHM"));
+					ad.setDlrgjdq(rs.getString("DLRGJDQ"));
+					ad.setDlrdh(rs.getString("DLRDH"));
 					ad.setJrjgbm(rs.getString("JRJGBM"));
 					ad.setZh(rs.getString("ZH"));
 					ad.setZhzl(rs.getString("ZHZL"));
-					ad.setBz(rs.getString("BZ"));
+					ad.setKh(rs.getString("KH"));
+					ad.setKdqr(rs.getString("KDQR"));
+					ad.setZhjz(rs.getString("ZHJZ"));
+					ad.setXkrq(rs.getString("XKRQ"));
+					ad.setKzt(rs.getString("KZT"));
+					ad.setZhlx(rs.getString("ZHLX"));
+					ad.setYlzhzh(rs.getString("YLZHZH"));
+					ad.setYlzhjgbm(rs.getString("YLZHJGBM"));
+					ad.setKhrq(rs.getString("KHRQ"));
+					ad.setXhrq(rs.getString("XHRQ"));
 					ad.setZhzt(rs.getString("ZHZT"));
+					ad.setBz(rs.getString("BZ"));
+					ad.setSfjrbzk(rs.getString("SFJRBZK"));
+					ad.setSfshbzk(rs.getString("SFSHBZK"));
+					ad.setHsjg(rs.getString("HSJG"));
+					ad.setWfhsyy(rs.getString("WFHSYY"));
+					ad.setCzff(rs.getString("CZFF"));
+					ad.setXxlx(rs.getString("XXLX"));
+					ad.setKhqd(rs.getString("KHQD"));
+					ad.setRemarks(rs.getString("REMARKS"));
+					ad.setJlzt(rs.getString("JLZT"));
 					ad.setJlrq(rs.getString("JLRQ"));
 					ad.setIsmodify(rs.getString("ISMODIFY"));
 					

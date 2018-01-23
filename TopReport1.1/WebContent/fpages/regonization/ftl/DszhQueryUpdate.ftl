@@ -4,7 +4,7 @@
 	<table align="left">
 		<tr valign="top">
 			<td valign="top">
-				<@CommonQueryMacro.Group id ="group1" label="对私账户查询修改" fieldStr="xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq,ismodify" colNm=4/>
+				<@CommonQueryMacro.Group id ="group1" label="对私账户查询修改" fieldStr="ckrxm,ckrsfzjzl,ckrsfzjhm,sfzjdqr,dqdm,ckrlb,ckrgjdq,ckrxb,ckryb,ckrdz,ckrdh,dlrmc,dlrsfzjzl,dlrsfzjhm,dlrgjdq,dlrdh,jrjgbm,zh,zhzl,kh,kdqr,zhjz,xkrq,kzt,zhlx,ylzhzh,ylzhjgbm,khrq,xhrq,zhzt,bz,sfjrbzk,sfshbzk,hsjg,wfhsyy,czff,xxlx,khqd,remarks,jlzt,jlrq,ismodify" colNm=6/>
 			</td>
 		</tr>
 		<tr>
