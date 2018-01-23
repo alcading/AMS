@@ -18,7 +18,11 @@
 	<bean id="RepFileErrOperation"
 		class="com.huateng.report.imports.operation.RepFileErrOperation">
 	</bean>
-
+	
+	<!-- 对私账户查询修改保存 -->
+	<bean id="DszhQueryUpdateOperation"
+		class="com.huateng.report.imports.operation.DszhQueryUpdateOperation">
+	</bean>
 
 
 

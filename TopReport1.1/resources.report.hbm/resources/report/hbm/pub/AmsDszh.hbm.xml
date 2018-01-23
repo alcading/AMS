@@ -241,6 +241,11 @@
 				column="JLRQ"
 				type="string"
 			/>
+			<property
+				name="ismodify"
+				column="ISMODIFY"
+				type="string"
+			/>
 			
 	</class>	
 </hibernate-mapping>

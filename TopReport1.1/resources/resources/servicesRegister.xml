@@ -136,4 +136,9 @@
 	<bean id="com.huateng.service.pub.TlrLoginLogService"
 		 class="com.huateng.service.pub.TlrLoginLogService">
 	</bean>
+	
+	<!-- 对私账户查询修改保存 -->
+	<bean id="com.huateng.report.imports.service.DszhQueryService"
+		 class="com.huateng.report.imports.service.DszhQueryService">
+	</bean>
 </beans>
