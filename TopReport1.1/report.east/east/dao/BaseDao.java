@@ -25,6 +25,7 @@ import com.huateng.report.imports.common.FileImportUtil;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 import resources.east.data.pub.AmsDszh;
+import resources.east.data.pub.AmsFjmzh;
 import east.utils.tools.DBUtil;
 import east.utils.tools.ToolUtils;
 import east.vo.DefautValueVO;
@@ -443,6 +444,69 @@ public class BaseDao {
 			throw e;
 		}
 	}
+	/**
+	 * 查询非居民 账户信息   /cx add in 2018/1/5
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsFjmzh> queryFjmzh(String ind_name,String accountnumber,String ind_idtype,String ind_idnumber)throws Exception{
+		
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsFjmzh> list = new ArrayList<AmsFjmzh>();
+		//Map<String, String> map = null;
+		try {
+
+		String sql = "select ACCOUNTNUMBER, CLOSEDACCOUNT, DUEDILIGENCEIND, SELFCERTIFICATION, ACCOUNTBALANCE, ACCOUNTHOLDERTYPE, OPENINGFINAME, PAYMENT, IND_NAME, IND_IDTYPE, IND_IDNUMBER from AMS_FJMZH where 1=1";
+			if(ind_idtype!=null&&!"".equals(ind_idtype)) {
+				sql += "and ind_idtype like '%"+ind_idtype+"%'";
+			}
+			if(ind_idnumber!=null && !"".equals(ind_idnumber)) {
+				sql += "and ind_idnumber='"+ind_idnumber+"'";
+			}
+			if(ind_name != null && !"".equals(ind_name)) {
+				sql += "and ind_name = '"+ind_name+"'";
+			}
+			if(accountnumber != null && !"".equals(accountnumber)) {
+				sql += "and accountnumber = '"+accountnumber+"'";
+			}
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+			
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if(rs!=null){
+				
+				while(rs.next()){
+					//map = new HashMap<String, String>();
+					AmsFjmzh ad = new AmsFjmzh();
+					ad.setAccountnumber(rs.getString("ACCOUNTNUMBER"));
+					ad.setClosedaccount(rs.getString("CLOSEDACCOUNT"));
+					ad.setDuediligenceind(rs.getString("DUEDILIGENCEIND"));
+					ad.setSelfcertification(rs.getString("SELFCERTIFICATION"));
+					ad.setAccountbalance(rs.getBigDecimal("ACCOUNTBALANCE"));
+					ad.setAccountholdertype(rs.getString("ACCOUNTHOLDERTYPE"));
+					ad.setOpeningfiname(rs.getString("OPENINGFINAME"));
+					ad.setPayment(rs.getBigDecimal("PAYMENT"));
+					ad.setInd_name(rs.getString("IND_NAME"));
+					ad.setInd_idtype(rs.getString("IND_IDTYPE"));
+					ad.setInd_idnumber(rs.getString("IND_IDNUMBER"));
+					
+					list.add(ad);
+					
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally{
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+		
+	}
 	
 	/**
 	 * 查询对私账户信息   /cx add in 2018/1/5
@@ -587,6 +651,83 @@ public class BaseDao {
 					ad.setJlzt(rs.getString("JLZT"));
 					ad.setJlrq(rs.getString("JLRQ"));
 					ad.setIsmodify(rs.getString("ISMODIFY"));
+					
+					list.add(ad);
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally{
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+		
+	}
+	/**
+	 * 非居民账户查询修改/ cx add in 2018/1/25
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsFjmzh> queryFjmzhUpdate(String ind_idtype, String ind_idnumber) throws Exception{
+		
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsFjmzh> list = new ArrayList<AmsFjmzh>();
+		//Map<String, String> map = null;
+		try {
+			String sql = "select * from AMS_FJMZH where 1=1";
+			if(ind_idtype!=null && !"".equals(ind_idtype)) {
+				sql += "and ind_idtype='"+ind_idtype+"'";
+			}
+			if(ind_idnumber!=null && !"".equals(ind_idnumber)) {
+				sql += "and ind_idnumber='"+ind_idnumber+"'";
+			}
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+			
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if(rs!=null){
+				
+				while(rs.next()){
+					//map = new HashMap<String, String>();
+					AmsFjmzh ad = new AmsFjmzh();
+					ad.setAccountnumber(rs.getString("ACCOUNTNUMBER"));
+					ad.setClosedaccount(rs.getString("CLOSEDACCOUNT"));
+					ad.setDuediligenceind(rs.getString("DUEDILIGENCEIND"));
+					ad.setSelfcertification(rs.getString("SELFCERTIFICATION"));
+					ad.setAccountbalance(rs.getBigDecimal("ACCOUNTBALANCE"));
+					ad.setAccountholdertype(rs.getString("ACCOUNTHOLDERTYPE"));
+					ad.setOpeningfiname(rs.getString("OPENINGFINAME"));
+					ad.setPayment(rs.getBigDecimal("PAYMENT"));
+					ad.setInd_name(rs.getString("IND_NAME"));
+					ad.setInd_gender(rs.getString("IND_GENDER"));
+					ad.setInd_address(rs.getString("IND_ADDRESS"));
+					ad.setInd_phoneno(rs.getString("IND_PHONENO"));
+					ad.setInd_idtype(rs.getString("IND_IDTYPE"));
+					ad.setInd_idnumber(rs.getString("IND_IDNUMBER"));
+					ad.setInd_rescountrycode(rs.getString("IND_RESCOUNTRYCODE"));
+					ad.setInd_tin(rs.getString("IND_TIN"));
+					ad.setInd_explanation(rs.getString("IND_EXPLANATION"));
+					ad.setInd_nationality(rs.getString("IND_NATIONALITY"));
+					ad.setInd_birthinfo(rs.getDate("IND_BIRTHINFO"));
+					ad.setOrg_name(rs.getString("ORG_NAME"));
+					ad.setOrg_address(rs.getString("ORG_ADDRESS"));
+					ad.setOrg_phoneno(rs.getString("ORG_PHONENO"));
+					ad.setOrg_rescountrycode(rs.getString("ORG_RESCOUNTRYCODE"));
+					ad.setOrg_tin(rs.getString("ORG_TIN"));
+					ad.setOrg_explanation(rs.getString("ORG_EXPLANATION"));
+					ad.setCon_name(rs.getString("CON_NAME"));
+					ad.setCon_ctrlgpersontype(rs.getString("CON_CTRLGPERSONTYPE"));
+					ad.setCon_nationality(rs.getString("CON_NATIONALITY"));
+					ad.setCon_address(rs.getString("CON_ADDRESS"));
+					ad.setCon_rescountrycode(rs.getString("CON_RESCOUNTRYCODE"));
+					ad.setCon_tin(rs.getString("CON_TIN"));
+					ad.setCon_explanation(rs.getString("CON_EXPLANATION"));
+					ad.setCon_birthinfo(rs.getDate("CON_BIRTHINFO"));
 					
 					list.add(ad);
 				}

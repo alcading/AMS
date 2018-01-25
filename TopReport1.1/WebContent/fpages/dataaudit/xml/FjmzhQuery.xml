@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="非居民账户查询" navigate="非居民账户查询" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.FjmzhQueryGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示  -->
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->
+		<Field id="select" desc="选择" edittype="checkbox" datatype="boolean" xpath="/select" />
+		<Field id="id" desc="ID" edittype="text" datatype="string" xpath="/id" />
+		<Field id="accountnumber" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/accountnumber" />
+		<Field id="closedaccount" desc="账户是否注销" edittype="select" translated="DATA_DIC.300008" datatype="string" size="20" require="false" xpath="/closedaccount" />
+		<Field id="duediligenceind" desc="是否新开客户" edittype="select" translated="DATA_DIC.300009" datatype="string" size="20" require="false" xpath="/duediligenceind" />
+		<Field id="selfcertification" desc="是否取得自证声明 " edittype="select" translated="DATA_DIC.300010" datatype="string" size="20" require="false" xpath="/selfcertification" />
+		<Field id="accountbalance" desc="账户余额" edittype="text" datatype="string" size="20" require="false" xpath="/accountbalance" />
+		<Field id="accountholdertype" desc="账户持有人类别" edittype="select" translated="DATA_DIC.300011" datatype="string" size="20" require="false" xpath="/accountholdertype" />
+		<Field id="openingfiname" desc="开户银行金融机构编码" edittype="text" datatype="string" size="20" require="false" xpath="/openingfiname" />
+		<Field id="payment" desc="账户收入" edittype="text" datatype="string" size="20" require="false" xpath="/payment" />
+		<Field id="ind_name" desc="姓名" edittype="text" datatype="string" size="20" require="false" xpath="/ind_name" />
+		<Field id="ind_idtype" desc="身份证件类型" edittype="select" translated="DATA_DIC.300012" datatype="string" size="20" require="false" xpath="/ind_idtype" readonly="false" />
+		<Field id="ind_idnumber" desc="身份证件号码" edittype="text" datatype="string" size="20" require="false" xpath="/ind_idnumber" readonly="false" />
+		
+	</Fields>
+
+	<Parameters></Parameters>
+	<Where>
+		<TextBox id="ind_name" desc="姓名" datatype="string" index="1" size="20"/>
+		<TextBox id="accountnumber" desc="账号" datatype="string" index="2" size="20"/>
+		<Option id="ind_idtype"  default="" desc="身份证件类型" type="string" size="20" tip="" method="None" index="3" translated="DATA_DIC.300012"/>
+		<TextBox id="ind_idnumber" desc="身份证件号码" datatype="string" index="4" size="20"/>
+	</Where>
+
+	<Operations>
+	
+		<Button id="btMod" name="btMod" desc="修改" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-add"/>
+	</Operations>
+	
+	
+
+	<Script></Script>
+
+</CommQry>

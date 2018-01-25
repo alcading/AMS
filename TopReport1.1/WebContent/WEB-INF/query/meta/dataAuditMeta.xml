@@ -8,6 +8,9 @@
 	<!-- 对私账户数据查询 -->
 	<Query id="DszhQuery" path="/fpages/dataaudit/xml/DszhQuery.xml"></Query>
 	<Query id="DszhQueryUpdate" path="/fpages/management/xml/DszhQueryUpdate.xml"></Query>
+	<!-- 非居民账户数据查询 -->
+	<Query id="FjmzhQuery" path="/fpages/dataaudit/xml/FjmzhQuery.xml"></Query>
+	<Query id="FjmzhQueryUpdate" path="/fpages/management/xml/FjmzhQueryUpdate.xml"></Query>
 	
 	<!-- 数据分析详细 -->
 	<Query id="dataDetailEntry" path="/fpages/dataaudit/xml/DataDetailEntry.xml" />
