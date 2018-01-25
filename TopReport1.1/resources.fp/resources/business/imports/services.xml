@@ -24,7 +24,10 @@
 		class="com.huateng.report.imports.operation.DszhQueryUpdateOperation">
 	</bean>
 
-
+<!-- 非居民账户查询修改保存 -->
+	<bean id="FjmzhQueryUpdateOperation"
+		class="com.huateng.report.imports.operation.FjmzhQueryUpdateOperation">
+	</bean>
 
 		<!-- TT file -->
 	<bean id="BUF_TT_FEEDBACK" class="com.huateng.service.message.BufferImpl">
