@@ -26,12 +26,13 @@ function btMod_onClick(){
 	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
 	var ckrsfzjhm = DszhQuery_dataset.getValue("ckrsfzjhm");
 	
-	showUpdate(ckrsfzjzl,ckrsfzjhm);
+	var zh = DszhQuery_dataset.getValue("zh");
+	showUpdate(zh);
 }
 
-function showUpdate(ckrsfzjzl,ckrsfzjhm){
+function showUpdate(zh){
 
-	showWin("对私账户查询修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?ckrsfzjzl="+ckrsfzjzl+"&ckrsfzjhm="+ckrsfzjhm,null,null,window);
+	showWin("对私账户查询修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,null,window);
 }
 </script>
 </@CommonQueryMacro.page>

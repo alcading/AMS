@@ -9,18 +9,13 @@
 		table="AMS_DSZH"
 	>
 		<meta attribute="sync-DAO">false</meta>
-		<composite-id name="id" class="AmsDszhId">
-			<key-property
-				name="ckrsfzjzl"
-				column="CKRSFZJZL"
+		
+			<id
+				name="zh"
+				column="ZH"
 				type="string"
 			/>
-			<key-property
-				name="ckrsfzjhm"
-				column="CKRSFZJHM"
-				type="string"
-			/>
-		</composite-id>
+		
 			<property
 				name="ckrxm"
 				column="CKRXM"
@@ -94,11 +89,6 @@
 			<property
 				name="jrjgbm"
 				column="JRJGBM"
-				type="string"
-			/>
-			<property
-				name="zh"
-				column="ZH"
 				type="string"
 			/>
 			<property
