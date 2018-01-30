@@ -60,24 +60,13 @@ public class DszhQueryService {
 			
 		}
 		//删除
-		/*
+		
 		for(Iterator it = delList.iterator();it.hasNext();)
 		{
-			BiImportFileConfig newwrd = (BiImportFileConfig) it.next();
-			String importidFileid=newwrd.getId();
-//			List delimportList=rootDAO.queryByCondition("importFileId='"+importidFileid+"'", "BiImportFieldConfig");
-			List delimportList=rootDAO.queryByCondition("from BiImportFieldConfig b where b.importFileId = '"+importidFileid+"'");
-			List delxmlList=rootDAO.queryByCondition("from BiImportXmlConfig b where b.guid ='"+importidFileid+"'");
-			for(int i=0;i<delimportList.size();i++){
-				BiImportFieldConfig delimport=(BiImportFieldConfig)delimportList.get(i);
-				rootDAO.delete(delimport);
-			}	
-			for(int i=0;i<delxmlList.size();i++){
-				BiImportXmlConfig delxml=(BiImportXmlConfig)delxmlList.get(i);
-				rootDAO.delete(delxml);
-			}	
+			newwrd = (AmsDszh) it.next();
+			
 			rootDAO.delete(newwrd);
 		}
-		*/
+		
 	}
 }

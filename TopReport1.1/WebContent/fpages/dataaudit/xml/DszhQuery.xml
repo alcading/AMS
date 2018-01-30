@@ -48,6 +48,8 @@
 	
 		<Button id="btMod" name="btMod" desc="修改" 
 				operation="" url="#" show="" group="" txn=""  icon="icon-add"/>
+		<Button id="btDel" name="btDel" desc="删除" 
+				operation="asysubmit" url="/fpages/dataaudit/ftl/DszhQuery.ftl" updateClass="com.huateng.report.imports.updater.DszhQueryDelete" show="" group="" txn=""  icon="icon-remove"/>
 	</Operations>
 	
 	
