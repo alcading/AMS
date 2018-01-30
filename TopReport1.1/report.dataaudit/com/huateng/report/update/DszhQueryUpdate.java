@@ -20,10 +20,9 @@ public class DszhQueryUpdate extends BaseGetter {
 		try {
 			Map para=this.getCommQueryServletRequest().getParameterMap();
 			
-			String ckrsfzjzl = (String)para.get("ckrsfzjzl");
-			String ckrsfzjhm = (String)para.get("ckrsfzjhm");
+			String zh = (String)para.get("zh");
 			
-			List<AmsDszh> list = BaseDao.queryDszhUpdate(ckrsfzjzl, ckrsfzjhm);
+			List<AmsDszh> list = BaseDao.queryDszhUpdate(zh);
 			
 			System.out.println(list);
 			

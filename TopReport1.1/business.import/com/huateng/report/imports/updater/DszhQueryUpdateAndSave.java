@@ -56,16 +56,9 @@ public class DszhQueryUpdateAndSave extends BaseUpdate {
 					delList.add(amsDszh);
 					break;
 				case UpdateResultBean.MODIFY:
-					String ckrsfzjzl = amsDszh.getCkrsfzjzl();
-					String ckrsfzjhm = amsDszh.getCkrsfzjhm();
-					AmsDszhId Id = new AmsDszhId();
-					Id.setCkrsfzjzl(ckrsfzjzl);
-					Id.setCkrsfzjhm(ckrsfzjhm);
+					String zh = amsDszh.getZh();
 					
-					amsDszh.setId(Id);
-					
-					System.out.println(Id.getCkrsfzjhm());
-					System.out.println(Id.getCkrsfzjzl());
+					amsDszh.setZh(zh);
 					
 					updateList.add(amsDszh);
 					

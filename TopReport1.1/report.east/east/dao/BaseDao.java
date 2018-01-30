@@ -582,7 +582,7 @@ public class BaseDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<AmsDszh> queryDszhUpdate(String ckrsfzjzl, String ckrsfzjhm) throws Exception{
+	public static List<AmsDszh> queryDszhUpdate(String zh) throws Exception{
 		
 		Connection conn = DBUtil.getConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -592,11 +592,8 @@ public class BaseDao {
 		//Map<String, String> map = null;
 		try {
 			String sql = "select * from AMS_DSZH where 1=1";
-			if(ckrsfzjzl!=null && !"".equals(ckrsfzjzl)) {
-				sql += "and ckrsfzjzl='"+ckrsfzjzl+"'";
-			}
-			if(ckrsfzjhm!=null && !"".equals(ckrsfzjhm)) {
-				sql += "and ckrsfzjhm='"+ckrsfzjhm+"'";
+			if(zh!=null && !"".equals(zh)) {
+				sql += "and zh='"+zh+"'";
 			}
 			pstmt = conn.prepareStatement(sql);
 			int paramNum = pstmt.getParameterMetaData().getParameterCount();
