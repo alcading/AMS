@@ -668,7 +668,7 @@ public class BaseDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<AmsFjmzh> queryFjmzhUpdate(String ind_idtype, String ind_idnumber) throws Exception{
+	public static List<AmsFjmzh> queryFjmzhUpdate(String accountnumber) throws Exception{
 		
 		Connection conn = DBUtil.getConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -678,11 +678,8 @@ public class BaseDao {
 		//Map<String, String> map = null;
 		try {
 			String sql = "select * from AMS_FJMZH where 1=1";
-			if(ind_idtype!=null && !"".equals(ind_idtype)) {
-				sql += "and ind_idtype='"+ind_idtype+"'";
-			}
-			if(ind_idnumber!=null && !"".equals(ind_idnumber)) {
-				sql += "and ind_idnumber='"+ind_idnumber+"'";
+			if(accountnumber!=null && !"".equals(accountnumber)) {
+				sql += "and accountnumber='"+accountnumber+"'";
 			}
 			pstmt = conn.prepareStatement(sql);
 			int paramNum = pstmt.getParameterMetaData().getParameterCount();

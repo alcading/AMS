@@ -59,16 +59,16 @@ public class FjmzhQueryUpdateAndSave extends BaseUpdate {
 					delList.add(amsFjmzh);
 					break;
 				case UpdateResultBean.MODIFY:
-					String ind_idtype = amsFjmzh.getInd_idtype();
-					String ind_idnumber = amsFjmzh.getInd_idnumber();
-					AmsFjmzhId Id = new AmsFjmzhId();
-					Id.setInd_idtype(ind_idtype);
-					Id.setInd_idnumber(ind_idnumber);
-					
-					amsFjmzh.setId(Id);
-					
-					System.out.println(Id.getInd_idtype());
-					System.out.println(Id.getInd_idnumber());
+//					String ind_idtype = amsFjmzh.getInd_idtype();
+//					String ind_idnumber = amsFjmzh.getInd_idnumber();
+//					AmsFjmzhId Id = new AmsFjmzhId();
+//					Id.setInd_idtype(ind_idtype);
+//					Id.setInd_idnumber(ind_idnumber);
+//					
+//					amsFjmzh.setId(Id);
+//					
+//					System.out.println(Id.getInd_idtype());
+//					System.out.println(Id.getInd_idnumber());
 					
 					updateList.add(amsFjmzh);
 					

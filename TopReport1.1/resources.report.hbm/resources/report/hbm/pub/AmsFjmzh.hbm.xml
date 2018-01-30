@@ -9,7 +9,7 @@
 		table="AMS_FJMZH"
 	>
 		<meta attribute="sync-DAO">false</meta>
-		<composite-id name="id" class="AmsFjmzhId">
+		<!-- <composite-id name="id" class="AmsFjmzhId">
 			<key-property
 				name="ind_idtype"
 				column="IND_IDTYPE"
@@ -20,10 +20,21 @@
 				column="IND_IDNUMBER"
 				type="string"
 			/>
-		</composite-id>
+		</composite-id> -->
+		    <id
+			name="accountnumber"
+			type="string"
+			column="ACCOUNTNUMBER"
+		>
+		   </id>
+		    <property
+				name="ind_idtype"
+				column="IND_IDTYPE"
+				type="string"
+			/>
 			<property
-				name="accountnumber"
-				column="ACCOUNTNUMBER"
+				name="ind_idnumber"
+				column="IND_IDNUMBER"
 				type="string"
 			/>
 			<property
