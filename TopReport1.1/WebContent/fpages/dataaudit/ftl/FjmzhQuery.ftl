@@ -10,7 +10,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-"  fieldStr="select[40],accountnumber,closedaccount,duediligenceind,selfcertification,accountbalance,accountholdertype,openingfiname,payment,ind_name,ind_idtype,ind_idnumber"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-"  fieldStr="select,accountnumber,closedaccount,duediligenceind,selfcertification,accountbalance,accountholdertype,openingfiname,payment"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -23,15 +23,13 @@
 
 <script language="javascript"> 
 function btMod_onClick(){
-	var ind_idtype = FjmzhQuery_dataset.getValue("ind_idtype");
-	var ind_idnumber = FjmzhQuery_dataset.getValue("ind_idnumber");
-	
-	showUpdate(ind_idtype,ind_idnumber);
+	var accountnumber = FjmzhQuery_dataset.getValue("accountnumber");
+	showUpdate(accountnumber);
 }
 
-function showUpdate(ind_idtype,ind_idnumber){
+function showUpdate(accountnumber){
 
-	showWin("对私账户查询修改","${contextPath}/fpages/regonization/ftl/FjmzhQueryUpdate.ftl?ind_idtype="+ind_idtype+"&ind_idnumber="+ind_idnumber,null,null,window);
+	showWin("非居民账户查询修改","${contextPath}/fpages/regonization/ftl/FjmzhQueryUpdate.ftl?accountnumber="+accountnumber,null,null,window);
 }
 </script>
 </@CommonQueryMacro.page>

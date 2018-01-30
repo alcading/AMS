@@ -19,13 +19,4 @@ public class AmsDszh extends BaseAmsDszh implements java.io.Serializable {
 	/** default constructor */
 	public AmsDszh() {
 	}
-	
-	
-	/** minimal constructor */
-	public AmsDszh(AmsDszhId id) {
-		super(id);
-	}
-
-
-
 }

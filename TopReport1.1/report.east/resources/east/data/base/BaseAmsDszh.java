@@ -18,7 +18,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7981634766426960189L;
-	private AmsDszhId id;
+	
 	private String ckrxm;
 	private String ckrsfzjzl;
 	private String ckrsfzjhm;
@@ -73,20 +73,17 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	public BaseAmsDszh() {
 	}
 
-	/** minimal constructor */
-	public BaseAmsDszh(AmsDszhId id) {
-		this.id = id;
-	}
+	
 
 	/** full constructor */
-	public BaseAmsDszh(AmsDszhId id, String ckrsfzjzl, String ckrsfzjhm, String sfzjdqr, String dqdm, String ckrlb,
+	public BaseAmsDszh(String ckrsfzjzl, String ckrsfzjhm, String sfzjdqr, String dqdm, String ckrlb,
 			String ckrgjdq, String ckrxb, String ckryb, String ckrdz, String ckrdh, String dlrmc, String dlrsfzjzl,
 			String dlrsfzjhm, String dlrgjdq, String dlrdh, String jrjgbm, String zh, String zhzl, String kh,
 			String kdqr, String zhjz, String xkrq, String kzt, String zhlx, String ylzhzh, String ylzhjgbm, String khrq,
 			String xhrq, String zhzt, String bz, String sfjrbzk, String sfshbzk, String hsjg, String wfhsyy,
 			String czff, String xxlx, String khqd, String remarks, String jlzt, String reserve1, String reserve2,
 			String reserve3, String reserve4, String reserve5,String jlrq,String ismodify) {
-		this.id = id;
+		
 		this.ckrsfzjzl = ckrsfzjzl;
 		this.ckrsfzjhm = ckrsfzjhm;
 		this.sfzjdqr = sfzjdqr;
@@ -135,14 +132,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 		this.ismodify = ismodify;
 	}
 
-	public AmsDszhId getId() {
-		return id;
-	}
-
-	public void setId(AmsDszhId id) {
-		this.id = id;
-	}
-
+	
 	public String getCkrxm() {
 		return ckrxm;
 	}

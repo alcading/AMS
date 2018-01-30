@@ -9,7 +9,7 @@
 	async:异步提交标志
 	pagesize:页面显示记录数(缺省为10)
 -->
-<CommQry title="" navigate="主页 &gt; 机构管理 &gt; 机构管理" type="call"
+<CommQry title="" navigate="非居民账户查询修改" type="call"
 	interface="false" pagesize="10" async="false" databusid="FIVE"
 	transdataactionurl="/trans/TransDataAction.do"
 	getterclassname="com.huateng.report.update.FjmzhQueryUpdate">
@@ -17,7 +17,7 @@
 
 	<Fields>
 		
-		<Field id="accountnumber" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/accountnumber" />
+		<Field id="accountnumber" desc="账号" edittype="text" datatype="string" size="20" require="false" readonly="true" xpath="/accountnumber" />
 		<Field id="closedaccount" desc="账户是否注销" edittype="select" translated="DATA_DIC.300008" datatype="string" size="20" require="false" xpath="/closedaccount" />
 		<Field id="duediligenceind" desc="是否新开客户" edittype="select" translated="DATA_DIC.300009" datatype="string" size="20" require="false" xpath="/duediligenceind" />
 		<Field id="selfcertification" desc="是否取得自证声明 " edittype="select" translated="DATA_DIC.300010" datatype="string" size="20" require="false" xpath="/selfcertification" />

@@ -21,10 +21,8 @@ public class FjmzhQueryUpdate extends BaseGetter {
 		try {
 			Map para=this.getCommQueryServletRequest().getParameterMap();
 			
-			String ind_idtype = (String)para.get("ind_idtype");
-			String ind_idnumber = (String)para.get("ind_idnumber");
-			
-			List<AmsFjmzh> list = BaseDao.queryFjmzhUpdate(ind_idtype, ind_idnumber);
+			String accountnumber = (String)para.get("accountnumber");		
+			List<AmsFjmzh> list = BaseDao.queryFjmzhUpdate(accountnumber);
 			
 			System.out.println(list);
 			
