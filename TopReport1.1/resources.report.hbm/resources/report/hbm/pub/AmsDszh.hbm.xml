@@ -96,7 +96,7 @@
 				column="ZHZL"
 				type="string"
 			/>
-			<property
+			<!--<property
 				name="kh"
 				column="KH"
 				type="string"
@@ -120,7 +120,7 @@
 				name="kzt"
 				column="KZT"
 				type="string"
-			/>
+			/>-->
 			<property
 				name="zhlx"
 				column="ZHLX"
@@ -202,21 +202,6 @@
 				type="string"
 			/>
 			<property
-				name="reserve1"
-				column="RESERVE1"
-				type="string"
-			/>
-			<property
-				name="reserve2"
-				column="RESERVE2"
-				type="string"
-			/>
-			<property
-				name="reserve3"
-				column="RESERVE3"
-				type="string"
-			/>
-			<property
 				name="reserve4"
 				column="RESERVE4"
 				type="string"
@@ -236,6 +221,20 @@
 				column="ISMODIFY"
 				type="string"
 			/>
-			
-	</class>	
+			<property
+				name="fgmjyqd"
+				column="FGMJYQD"
+				type="string"
+			/>
+			<property
+				name="sflmzh"
+				column="SFLMZH"
+				type="string"
+			/>
+			<property
+				name="khdqdm"
+				column="KHDQDM"
+				type="string"
+			/>
+	</class>
 </hibernate-mapping>

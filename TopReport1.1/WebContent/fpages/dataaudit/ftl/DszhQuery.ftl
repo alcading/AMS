@@ -19,9 +19,14 @@
 		</td>
 	</tr>
 </table>
+<#--<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" >请先按数据日期查询,再导出</span></span>-->
 </@CommonQueryMacro.CommonQuery>
 
-<script language="javascript"> 
+<script language="javascript">
+$('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
+ function btSave_onClickCheck(button) {
+	  	alert("导出成功");
+	  } 
 function btMod_onClick(){
 	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
 	var ckrsfzjhm = DszhQuery_dataset.getValue("ckrsfzjhm");

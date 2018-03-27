@@ -33,12 +33,9 @@ public class Bctl extends BaseBctl {
 	private String blnBranchBrno;
 	private String blnUpBrno;
 	private String blnManageBrno;
-
 	private String billMailAddrName;
 	private String brclassName;
-	
 	private boolean selected;
-
 	public boolean isSelected() {
 		return selected;
 	}

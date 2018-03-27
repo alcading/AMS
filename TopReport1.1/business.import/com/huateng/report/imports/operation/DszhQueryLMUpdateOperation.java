@@ -8,9 +8,10 @@ import org.apache.commons.logging.LogFactory;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.operation.BaseOperation;
 import com.huateng.ebank.framework.operation.OperationContext;
+import com.huateng.report.imports.service.DszhQueryLMService;
 import com.huateng.report.imports.service.DszhQueryService;
 
-public class DszhQueryUpdateOperation extends BaseOperation {
+public class DszhQueryLMUpdateOperation extends BaseOperation {
 	 private static Log log = LogFactory
 	            .getLog(DszhQueryLMUpdateOperation.class);
 
@@ -46,7 +47,7 @@ public class DszhQueryUpdateOperation extends BaseOperation {
 
 	        List updateList = (List) context.getAttribute(IN_UPDATE);
 
-	        DszhQueryService dszhQueryService = DszhQueryService.getInstance();
+	        DszhQueryLMService dszhQueryService = DszhQueryLMService.getInstance();
 
 	        dszhQueryService.saveDelUpdata(delList,insertList,updateList);
 

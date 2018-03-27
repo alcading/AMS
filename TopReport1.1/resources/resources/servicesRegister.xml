@@ -141,6 +141,12 @@
 	<bean id="com.huateng.report.imports.service.DszhQueryService"
 		 class="com.huateng.report.imports.service.DszhQueryService">
 	</bean>
+	<bean id="com.huateng.report.imports.service.DszhQueryLMService"
+		 class="com.huateng.report.imports.service.DszhQueryLMService">
+	</bean>
+	<bean id="com.huateng.report.imports.service.DszhQueryKAService"
+		 class="com.huateng.report.imports.service.DszhQueryKAService">
+	</bean>
 	<!-- 非居民账户查询修改保存 -->
 	<bean id="com.huateng.report.imports.service.FjmzhQueryService"
 		 class="com.huateng.report.imports.service.FjmzhQueryService">

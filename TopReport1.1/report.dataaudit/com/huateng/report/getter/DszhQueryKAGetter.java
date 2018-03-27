@@ -4,46 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.report.imports.common.FileImportUtil;
-import com.huateng.report.imports.service.DszhQueryService;
 
 import east.dao.BaseDao;
 import resources.east.data.pub.AmsDszh;
+import resources.east.data.pub.KXXB;
+import resources.east.data.pub.LMCKXXB;
 
 @SuppressWarnings("unchecked")
-public class DszhQueryGetter extends BaseGetter{
+public class DszhQueryKAGetter extends BaseGetter{
 	@Override
 	public Result call() throws AppException {
 		try {
 			Map para=this.getCommQueryServletRequest().getParameterMap();
-			String ckrxm = (String)para.get("ckrxm");
-			String ckrsfzjhm = (String)para.get("ckrsfzjhm");
 			String zh = (String)para.get("zh");
-			String xxlx = (String)para.get("xxlx");
-			String jlrq = (String)para.get("jlrq");
-			if(ckrxm!=null && !"".equals(ckrxm)){
-				ckrxm = ckrxm.toUpperCase();
-			}
-			if(ckrsfzjhm!=null && !"".equals(ckrsfzjhm)){
-				ckrsfzjhm = ckrsfzjhm.toUpperCase();
-		   }
-			if(zh!=null && !"".equals(zh)){
-				zh = zh.toUpperCase();
-			}
-			if(xxlx!=null && !"".equals(xxlx)){
-				xxlx = xxlx.toUpperCase();
-			}
-			if(jlrq!=null && !"".equals(jlrq)){
-				jlrq = jlrq.toUpperCase();
-			}
-			
-			List<AmsDszh> list = BaseDao.queryDszh(ckrxm, ckrsfzjhm, zh, xxlx, jlrq);
+			List<KXXB> list = BaseDao.queryDszhKAUpdate(zh);
 			ResultMng.fillResultByList(getCommonQueryBean(),
 					getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);
@@ -57,4 +38,5 @@ public class DszhQueryGetter extends BaseGetter{
 					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}	
+	
 }

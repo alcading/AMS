@@ -26,7 +26,7 @@
       		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
-        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
+        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag,jrjgbm" colNm=4/>
         			 </br>
       				<@CommonQueryMacro.Button id= "btSave"/>
       			</div>

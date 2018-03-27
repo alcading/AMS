@@ -17,7 +17,7 @@
 			<value>jdbc:oracle:thin:@localhost:1521:ORCL</value>
 		</property>
 		<property name="user">
-			<value>report</value>
+			<value>REPORT</value>
 		</property>
 		<property name="password">
 			<value>report</value>
