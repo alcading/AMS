@@ -19,13 +19,13 @@
 		
 		<Field id="zh" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/zh" />
 		<Field id="ckrxm" desc="存款人姓名" edittype="text" datatype="string" size="20" require="false" xpath="/ckrxm" />
-		<Field id="ckrsfzjzl" desc="存款人身份证件种类" edittype="select" translated="DATA_DIC.500001" datatype="string" size="20" require="false" xpath="/ckrsfzjzl" readonly="false" />
+		<Field id="ckrsfzjzl" desc="存款人身份证件种类" edittype="select" translated="DATA_DIC.300003" datatype="string" size="20" require="false" xpath="/ckrsfzjzl" readonly="false" />
 		<Field id="ckrsfzjhm" desc="存款人身份证件号码" edittype="text" datatype="string" size="20" require="false" xpath="/ckrsfzjhm" readonly="false" />
 		<Field id="sfzjdqr" desc="身份证件到期日" edittype="text" datatype="date" size="20" require="false" xpath="/sfzjdqr" />
 		<Field id="dqdm" desc="发证机关所在地的地区代码" edittype="text" datatype="string" size="20" require="false" xpath="/dqdm" />
-		<Field id="ckrlb" desc="存款人类别" edittype="select" translated="DATA_DIC.500006" datatype="string" size="20" require="false" xpath="/ckrlb" />
+		<Field id="ckrlb" desc="存款人类别" edittype="select" translated="DATA_DIC.300008" datatype="string" size="20" require="false" xpath="/ckrlb" />
 		<Field id="ckrgjdq" desc="存款人国籍/地区" edittype="text" datatype="string" size="20" require="false" xpath="/ckrgjdq" />
-		<Field id="ckrxb" desc="存款人性别" edittype="select" translated="DATA_DIC.500007" datatype="string" size="20" require="false" xpath="/ckrxb" />
+		<Field id="ckrxb" desc="存款人性别" edittype="select" translated="DATA_DIC.300009" datatype="string" size="20" require="false" xpath="/ckrxb" />
 	</Fields>
 <Operations>
 	<Button id="btBack" name="btBack" desc="返回" operation=""
