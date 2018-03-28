@@ -497,7 +497,7 @@ select  YXJGDM,JRXKZH,NBJGH,MXKMBH,YXJGMC,MXKMMC,JYBH,LCCPDJBM,JYLX,JYZL,JRGJBH,
 from EAST_ZJJYXXB   			
 		]]>
 		</SQL>
-	</SQLDATA>	
+	</SQLDATA>
 	<SQLDATA>
 		<ID>01002</ID>
 		<TABLE>JRGJXXB</TABLE>
@@ -507,7 +507,7 @@ select YXJGDM,JRXKZH,NBJGH,YXJGMC,ZQMC,JRGJBH,ZCLX,BZ,FXJG,YXCZQYDM,FXGB,DBJG,CP
 from EAST_JRGJXXB 	
 		]]>
 		</SQL>
-	</SQLDATA>	
+	</SQLDATA>
 	<SQLDATA>
 		<ID>01003</ID>
 		<TABLE>HLXXB</TABLE>
@@ -516,7 +516,7 @@ select  YXJGDM,JRXKZH,NBJGH,YXJGMC,WB,BB,ZJJ,JZJ,HLRQ,CJRQ
 from EAST_HLXXB   			
 		]]>
 		</SQL>
-	</SQLDATA>	
+	</SQLDATA>
 	<SQLDATA>
 		<ID>01101</ID>
 		<TABLE>LCCPXXB</TABLE>
@@ -528,7 +528,7 @@ select YXJGDM,JRXKZH,NBJGH,MXKMBH,YXJGMC,MXKMMC,CPMC,CPDJBM,HNBSM,CPPP,CPQC,CPSP
 from  EAST_LCCPXXB  			
 		]]>
 		</SQL>
-	</SQLDATA>	
+	</SQLDATA>
 	<SQLDATA>
 		<ID>01102</ID>
 		<TABLE>LCCPZTB</TABLE>
@@ -537,7 +537,7 @@ select  YXJGDM,JRXKZH,NBJGH,YXJGMC,LCCPMC,HNBSM,SJMJJE,CPQSRQ,CPYJZZRQ,FXDJR,YHD
  from EAST_LCCPZTB   			
 		]]>
 		</SQL>
-	</SQLDATA>	
+	</SQLDATA>
 	<SQLDATA>
 		<ID>01103</ID>
 		<TABLE>KHLCZHXXB</TABLE>
@@ -547,7 +547,7 @@ select  YXJGDM,JRXKZH,NBJGH,MXKMBH,YXJGMC,MXKMMC,BZ,LCZH,KHTYBH,KHXM,GLHQCKZH,LC
 from  EAST_KHLCZHXXB   			
 		]]>
 		</SQL>
-	</SQLDATA>	
+	</SQLDATA>
 	<SQLDATA>
 		<ID>01104</ID>
 		<TABLE>LCCPXSMX</TABLE>
@@ -558,5 +558,60 @@ from  EAST_LCCPXSMX
 		]]>
 		</SQL>
 	</SQLDATA>
-	
+	<SQLDATA>
+		<ID>01105</ID>
+		<TABLE>DSZH</TABLE>
+		<SQL><![CDATA[
+SELECT CKRXM,
+       CKRSFZJZL,
+       CKRSFZJHM,
+       SFZJDQR,
+       DQDM,
+       CKRLB,
+       CKRGJDQ,
+       CKRXB,
+       CKRYB,
+       CKRDZ,
+       CKRDH,
+       DLRMC,
+       DLRSFZJZL,
+       DLRSFZJHM,
+       DLRGJDQ,
+       DLRDH,
+       JRJGBM,
+       ZH,
+       ZHZL,
+       KH,
+       KDQR,
+       ZHJZ,
+       XKRQ,
+       KZT,
+       ZHLX,
+       YLZHZH,
+       YLZHJGBM,
+       KHRQ,
+       XHRQ,
+       ZHZT,
+       BZ,
+       SFJRBZK,
+       SFSHBZK,
+       HSJG,
+       WFHSYY,
+       CZFF,
+       XXLX,
+       KHQD,
+       REMARKS,
+       FGMJYQD,
+       SFLMZH,
+       KHDQDM,
+       RESERVE4,
+       RESERVE5,
+       JLZT,
+       JLRQ,
+       ISMODIFY
+  from AMS_DSZH   		
+		]]>
+		</SQL>
+	</SQLDATA>
+
 </DOCUMENT>

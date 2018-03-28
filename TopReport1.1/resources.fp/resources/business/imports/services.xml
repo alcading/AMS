@@ -23,8 +23,16 @@
 	<bean id="DszhQueryUpdateOperation"
 		class="com.huateng.report.imports.operation.DszhQueryUpdateOperation">
 	</bean>
-
-
+    <bean id="DszhQueryLMUpdateOperation"
+		class="com.huateng.report.imports.operation.DszhQueryLMUpdateOperation">
+	</bean>
+	 <bean id="DszhQueryKAUpdateOperation"
+		class="com.huateng.report.imports.operation.DszhQueryKAUpdateOperation">
+	</bean>
+<!-- 非居民账户查询修改保存 -->
+	<bean id="FjmzhQueryUpdateOperation"
+		class="com.huateng.report.imports.operation.FjmzhQueryUpdateOperation">
+	</bean>
 
 		<!-- TT file -->
 	<bean id="BUF_TT_FEEDBACK" class="com.huateng.service.message.BufferImpl">

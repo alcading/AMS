@@ -4,13 +4,13 @@
 <table width="1349px">
 	<tr>
 		<td>
-			<@CommonQueryMacro.Interface id="interface" label="对私账户查询" btnNm="查询" colNm=8/>
+			<@CommonQueryMacro.Interface id="interface" label="个人结算账户" btnNm="查询" colNm=8/>
 		</td>
 	</tr>
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-,btDel"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq,ismodify"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq,ismodify"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -19,9 +19,35 @@
 		</td>
 	</tr>
 </table>
+<#--<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" >请先按数据日期查询,再导出</span></span>-->
 </@CommonQueryMacro.CommonQuery>
 
-<script language="javascript"> 
+<script language="javascript">
+
+$('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
+ function btSave_onClickCheck(button) {
+	  	alert("导出成功");
+	  } 
+
+
+function btDel_onClickCheck(button) {
+	var rec = DszhQuery_dataset.firstUnit;
+	var f = false;
+	while(rec) {
+		if (rec.getValue('select')) {
+			f = true;
+			//break;
+		}
+		rec = rec.nextUnit;
+	}
+	if(!f) {
+		alert('请选择记录');
+		return false;
+	}
+	btDel.disable(true);
+}
+
+
 function btMod_onClick(){
 	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
 	var ckrsfzjhm = DszhQuery_dataset.getValue("ckrsfzjhm");
@@ -31,13 +57,11 @@ function btMod_onClick(){
 }
 
 function showUpdate(zh){
-	showWin("对私账户查询修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,null,window);
+	showWin("个人结算账户修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,null,window);
 }
 
 function btDel_postSubmit(button){
    	location.reload();
-    
-    
  }
 
 </script>

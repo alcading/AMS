@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="" navigate="非居民账户查询修改" type="call"
+	interface="false" pagesize="10" async="false" databusid="FIVE"
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.update.FjmzhQueryUpdate">
+	<Include id="BankParam" />
+
+	<Fields>
+		
+		<Field id="accountnumber" desc="账号" edittype="text" datatype="string" size="20" require="false" readonly="true" xpath="/accountnumber" />
+		<Field id="closedaccount" desc="账户是否注销" edittype="select" translated="DATA_DIC.300018" datatype="string" size="20" require="false" xpath="/closedaccount" />
+		<Field id="duediligenceind" desc="是否新开客户" edittype="select" translated="DATA_DIC.300019" datatype="string" size="20" require="false" xpath="/duediligenceind" />
+		<Field id="selfcertification" desc="是否取得自证声明 " edittype="select" translated="DATA_DIC.300020" datatype="string" size="20" require="false" xpath="/selfcertification" />
+		<Field id="accountbalance" desc="账户余额" edittype="text" datatype="string" size="20" require="false" xpath="/accountbalance" />
+		<Field id="accountholdertype" desc="账户持有人类别" edittype="select" translated="DATA_DIC.300021" datatype="string" size="20" require="false" xpath="/accountholdertype" />
+		<Field id="openingfiname" desc="开户银行金融机构编码" edittype="text" datatype="string" size="20" require="false" xpath="/openingfiname" />
+		<Field id="payment" desc="账户收入" edittype="text" datatype="string" size="20" require="false" xpath="/payment" />
+		<Field id="ind_name" desc="姓名" edittype="text" datatype="string" size="20" require="false" xpath="/ind_name" />
+		<Field id="ind_gender" desc="性别 " edittype="select" translated="DATA_DIC.300023" datatype="string" size="20" require="false" xpath="/ind_gender" />
+		<Field id="ind_address" desc="地址" edittype="text" datatype="string" size="20" require="false" xpath="/ind_address" />
+		<Field id="ind_phoneno" desc="联系电话" edittype="text" datatype="string" size="20" require="false" xpath="/ind_phoneno" />
+		<Field id="ind_idtype" desc="身份证件类型" edittype="select" translated="DATA_DIC.300022" datatype="string" size="20" require="false" xpath="/ind_idtype" readonly="false" />
+		<Field id="ind_idnumber" desc="身份证件号码" edittype="text" datatype="string" size="20" require="false" xpath="/ind_idnumber" readonly="false" />
+		<Field id="ind_rescountrycode" desc="税收居民国（地区）代码" edittype="text" datatype="string" size="20" require="false" xpath="/ind_rescountrycode" />
+		<Field id="ind_tin" desc="纳税人识别号" edittype="text" datatype="string" size="20" require="false" xpath="/ind_tin" />
+		<Field id="ind_explanation" desc="原因" edittype="text" datatype="string" size="20" require="false" xpath="/ind_explanation" />
+		<Field id="ind_nationality" desc="国籍" edittype="text" datatype="string" size="20" require="false" xpath="/ind_nationality" />
+		<Field id="ind_birthinfo" desc="出生信息" edittype="text" datatype="date" size="20" require="false" xpath="/ind_birthinfo" />
+		<Field id="org_name" desc="机构名称" edittype="text" datatype="string" size="20" require="false" xpath="/org_name" />
+		<Field id="org_address" desc="机构地址" edittype="text" datatype="string" size="20" require="false" xpath="/org_address" />
+		<Field id="org_phoneno" desc="机构电话" edittype="text" datatype="string" size="20" require="false" xpath="/org_phoneno" />
+		<Field id="org_rescountrycode" desc="税收居民国（地区）代码" edittype="text" datatype="string" size="20" require="false" xpath="/org_rescountrycode" />
+		<Field id="org_tin" desc="纳税人识别号" edittype="text" datatype="string" size="20" require="false" xpath="/org_tin" />
+		<Field id="org_explanation" desc="原因" edittype="text" datatype="string" size="20" require="false" xpath="/org_explanation" />
+		<Field id="con_name" desc="控制人姓名" edittype="text" datatype="string" size="20" require="false" xpath="/con_name" />
+		<Field id="con_ctrlgpersontype" desc="控制人类型" edittype="select" translated="DATA_DIC.300024" datatype="string" size="20" require="false" xpath="/con_ctrlgpersontype" readonly="false" />
+		<Field id="con_nationality" desc="国籍" edittype="text" datatype="string" size="20" require="false" xpath="/con_nationality" />
+		<Field id="con_address" desc="地址" edittype="text" datatype="string" size="20" require="false" xpath="/con_address" />
+		<Field id="con_rescountrycode" desc="税收居民国（地区）代码" edittype="text" datatype="string" size="20" require="false" xpath="/con_rescountrycode" />
+		<Field id="con_tin" desc="纳税人识别号" edittype="text" datatype="string" size="20" require="false" xpath="/con_tin" />
+		<Field id="con_explanation" desc="原因" edittype="text" datatype="string" size="20" require="false" xpath="/con_explanation" />
+		<Field id="con_birthinfo" desc="出生信息" edittype="text" datatype="date" size="20" require="false" xpath="/con_birthinfo" />
+	</Fields>
+<Operations>
+
+	<Button id="btBack" name="btBack" desc="返回" operation=""
+				url="#" txn="" />  
+	<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
+				url="/fpages/dataaudit/ftl/FjmzhQuery.ftl" updateClass="com.huateng.report.imports.updater.FjmzhQueryUpdateAndSave" txn="" />   
+</Operations>
+</CommQry>

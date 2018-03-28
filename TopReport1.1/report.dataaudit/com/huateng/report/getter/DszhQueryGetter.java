@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
 import com.huateng.commquery.result.Result;
 import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
+import com.huateng.report.imports.common.FileImportUtil;
+import com.huateng.report.imports.service.DszhQueryService;
 
 import east.dao.BaseDao;
 import resources.east.data.pub.AmsDszh;
@@ -31,7 +32,7 @@ public class DszhQueryGetter extends BaseGetter{
 			}
 			if(ckrsfzjhm!=null && !"".equals(ckrsfzjhm)){
 				ckrsfzjhm = ckrsfzjhm.toUpperCase();
-			}
+		   }
 			if(zh!=null && !"".equals(zh)){
 				zh = zh.toUpperCase();
 			}
@@ -56,5 +57,4 @@ public class DszhQueryGetter extends BaseGetter{
 					Rescode.DEFAULT_RESCODE, ex.getMessage(), ex);
 		}
 	}	
-	
 }

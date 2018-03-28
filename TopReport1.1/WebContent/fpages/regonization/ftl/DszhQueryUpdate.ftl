@@ -4,9 +4,14 @@
 	<table align="left">
 		<tr valign="top">
 			<td valign="top">
-				<@CommonQueryMacro.Group id ="group1" label="对私账户查询修改" fieldStr="ckrxm,ckrsfzjzl,ckrsfzjhm,sfzjdqr,dqdm,ckrlb,ckrgjdq,ckrxb,ckryb,ckrdz,ckrdh,dlrmc,dlrsfzjzl,dlrsfzjhm,dlrgjdq,dlrdh,jrjgbm,zh,zhzl,kh,kdqr,zhjz,xkrq,kzt,zhlx,ylzhzh,ylzhjgbm,khrq,xhrq,zhzt,bz,sfjrbzk,sfshbzk,hsjg,wfhsyy,czff,xxlx,khqd,remarks,jlzt,jlrq,ismodify" colNm=6/>
+				<@CommonQueryMacro.Group id ="group1" label="对私账户查询修改" fieldStr="ckrxm,ckrsfzjzl,ckrsfzjhm,sfzjdqr,dqdm,ckrlb,ckrgjdq,ckrxb,ckryb,ckrdz,ckrdh,dlrmc,dlrsfzjzl,dlrsfzjhm,dlrgjdq,dlrdh,jrjgbm,zh,zhzl,zhlx,ylzhzh,ylzhjgbm,khrq,xhrq,zhzt,bz,sfjrbzk,sfshbzk,hsjg,wfhsyy,czff,xxlx,khqd,remarks,jlzt,jlrq,ismodify,fgmjyqd,sflmzh,khdqdm" colNm=6/>
 			</td>
-		</tr>
+				</tr>
+		<tr>
+		    <td>
+		       <left><@CommonQueryMacro.Button id= "btMod"/></left>
+		    </td>
+		</tr>	
 		<tr>
   		   	<td valign="CENTER">
 				<left><@CommonQueryMacro.Button id= "btBack"/></left>&nbsp;
@@ -25,13 +30,21 @@
 	  }
 	  function btSave_onClickCheck(button) {
 	  	closeWin();
-	  	return true;
 	  }
 	  
 	 function btBack_onClickCheck()
 	 {
-		closeWin();
+	 	closeWin();
+		//window.location.href = "${contextPath}/fpages/dataaudit/ftl/DszhQuery.ftl";
 	 }
-	
+function btMod_onClick(){
+	var zh = DszhQueryUpdate_dataset.getValue("zh");
+	showUpdate(zh);
+}
+
+function showUpdate(zh){
+	showWin("卡信息","${contextPath}/fpages/dataaudit/ftl/DszhQueryKA.ftl?zh="+zh,null,null,window);
+	//window.location.href = "${contextPath}/fpages/regonization/ftl/DszhQueryLM.ftl?zh="+zh;
+}
 </script>
 </@CommonQueryMacro.page>

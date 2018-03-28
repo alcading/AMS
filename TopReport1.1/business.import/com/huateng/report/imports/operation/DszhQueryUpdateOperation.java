@@ -12,7 +12,7 @@ import com.huateng.report.imports.service.DszhQueryService;
 
 public class DszhQueryUpdateOperation extends BaseOperation {
 	 private static Log log = LogFactory
-	            .getLog(DszhQueryUpdateOperation.class);
+	            .getLog(DszhQueryLMUpdateOperation.class);
 
 	    public static final String IN_DEL = "IN_DEL";
 
