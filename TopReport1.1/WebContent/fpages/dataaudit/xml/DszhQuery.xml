@@ -31,7 +31,7 @@
 		<Field id="bz" desc="币种" edittype="select" translated="DATA_DIC.300005" datatype="string" size="20" require="false" xpath="/bz" />
 		<Field id="zhzt" desc="账户状态" edittype="select" translated="DATA_DIC.300006" datatype="string" size="20" require="false" xpath="/zhzt" />
 		<Field id="jlrq" desc="数据日期" edittype="text" datatype="date" size="20" require="false" xpath="/jlrq" />
-		<Field id="ismodify" desc="是否通过验证" edittype="select" translated="DATA_DIC.300007" datatype="string" size="20" require="false" xpath="/ismodify" />
+		<Field id="ismodify" desc="是否通过验证" edittype="select" translated="DATA_DIC.300007" datatype="string" size="20" require="false" xpath="/ismodify" default=""/>
 		
 	</Fields>
 
@@ -41,7 +41,7 @@
 		<TextBox id="ckrsfzjhm" desc="证件号码" datatype="string" index="1" size="20"/>
 		<TextBox id="zh" desc="账号" datatype="string" index="3" size="20"/>
 		<Option id="xxlx"  default="" desc="信息类型" type="string" size="20" tip="" method="None" index="4" translated="DATA_DIC.300002"/>
-		<TextBox id="jlrq" desc="数据日期" datatype="date" index="5" require="true" errmsg="数据日期不能为空！" size="12"/>
+		<TextBox id="jlrq" desc="数据日期" datatype="date" index="5" require="true" errmsg="数据日期不能为空！" tip="时间为必输项" size="12"/>
 	</Where>
 
 	<Operations>

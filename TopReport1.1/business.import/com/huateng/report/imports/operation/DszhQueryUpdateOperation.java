@@ -15,10 +15,10 @@ public class DszhQueryUpdateOperation extends BaseOperation {
 	            .getLog(DszhQueryLMUpdateOperation.class);
 
 	    public static final String IN_DEL = "IN_DEL";
-
-	    public static final String IN_INSERT = "IN_INSERT";
-
-	    public static final String IN_UPDATE = "IN_UPDATE";
+//
+//	    public static final String IN_INSERT = "IN_INSERT";
+//
+//	    public static final String IN_UPDATE = "IN_UPDATE";
 
 	    /* (non-Javadoc)
 	     * @see com.huateng.ebank.framework.operation.BaseOperation#beforeProc(com.huateng.ebank.framework.operation.OperationContext)
@@ -42,13 +42,13 @@ public class DszhQueryUpdateOperation extends BaseOperation {
 
 	        List delList = (List) context.getAttribute(IN_DEL);
 
-	        List insertList = (List) context.getAttribute(IN_INSERT);
-
-	        List updateList = (List) context.getAttribute(IN_UPDATE);
+//	        List insertList = (List) context.getAttribute(IN_INSERT);
+//
+//	        List updateList = (List) context.getAttribute(IN_UPDATE);
 
 	        DszhQueryService dszhQueryService = DszhQueryService.getInstance();
 
-	        dszhQueryService.saveDelUpdata(delList,insertList,updateList);
+	        dszhQueryService.saveDelUpdata(delList);
 
 
 //	        context.setAttribute(OUT_PARAM_All_RESULT,result);

@@ -18,6 +18,9 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7981634766426960189L;
+
+	private boolean select;
+	
 	private String ckrxm;
 	private String ckrsfzjzl;
 	private String ckrsfzjhm;
@@ -64,6 +67,13 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String ismodify;
 	private String fgmjyqd;
 	private String sflmzh;
+	
+	public boolean isSelect() {
+		return select;
+	}
+	public void setSelect(boolean select) {
+		this.select = select;
+	}
 	public String getFgmjyqd() {
 		return fgmjyqd;
 	}

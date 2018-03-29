@@ -47,30 +47,31 @@ private static final Logger logger = Logger.getLogger(DszhQueryUpdateAndSave.cla
 				AmsDszh amsDszh=new AmsDszh();
 				Map map = updateResultBean.next();
 				mapToObject(amsDszh, map);
-				switch (updateResultBean.getRecodeState()) {
-				case UpdateResultBean.INSERT:
-					insertList.add(amsDszh);
-					break;				
-				case UpdateResultBean.DELETE:
-					delList.add(amsDszh);
-					break;
-				case UpdateResultBean.MODIFY:
+//				switch (updateResultBean.getRecodeState()) {
+//				case UpdateResultBean.INSERT:
+//					insertList.add(amsDszh);
+//					break;				
+//				case UpdateResultBean.DELETE:
+//					delList.add(amsDszh);
+//					break;
+//				case UpdateResultBean.MODIFY:
+				if(amsDszh.isSelect()) {
 					String zh = amsDszh.getZh();
-					
 					amsDszh.setZh(zh);
-					
 					updateList.add(amsDszh);
-					
-					break;
-				default:
-					break;
 				}
+					
+					
+//					break;
+//				default:
+//					break;
+//				}
 
 			}
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(DszhQueryUpdateOperation.IN_DEL, updateList);
-			oc.setAttribute(DszhQueryUpdateOperation.IN_INSERT, insertList);
-			oc.setAttribute(DszhQueryUpdateOperation.IN_UPDATE, delList);
+//			oc.setAttribute(DszhQueryUpdateOperation.IN_INSERT, insertList);
+//			oc.setAttribute(DszhQueryUpdateOperation.IN_UPDATE, delList);
 			OPCaller.call("DszhQueryUpdateOperation", oc);
 			return updateReturnBean;
 

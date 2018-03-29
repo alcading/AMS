@@ -10,7 +10,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq,ismodify"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-,btDel"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq,ismodify"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -23,6 +23,9 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
+
+//var txt=document.getElementById('xx')
+//txt.value="20";
 
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
  function btSave_onClickCheck(button) {
@@ -44,25 +47,57 @@ function btDel_onClickCheck(button) {
 		alert('请选择记录');
 		return false;
 	}
-	btDel.disable(true);
 }
 
 
-function btMod_onClick(){
-	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
-	var ckrsfzjhm = DszhQuery_dataset.getValue("ckrsfzjhm");
+function btMod_onClickCheck(button) {
+
+	var rec = DszhQuery_dataset.firstUnit;
 	
-	var zh = DszhQuery_dataset.getValue("zh");
+	var f = false;
+	var zh = null;
+	while(rec) {
+		if (rec.getValue('select')) {
+			zh = rec.getValue("zh");
+			f = true;
+			break;
+		}
+		rec = rec.nextUnit;
+	}
+	if(!f) {
+		alert('请选择记录');
+		return false;
+	}
 	showUpdate(zh);
 }
+
+
+//function btMod_onClick(){
+//	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
+//	var ckrsfzjhm = DszhQuery_dataset.getValue("ckrsfzjhm");
+//	var zh = DszhQuery_dataset.getValue("zh");
+//	showUpdate(zh);
+	
+//}
 
 function showUpdate(zh){
 	showWin("个人结算账户修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,null,window);
 }
 
-function btDel_postSubmit(button){
-   	location.reload();
- }
+function btDel_onClickCheck(button) {
+		return confirm("确认删除该条记录？");
+}
+	
+function btDel_postSubmit(button) {
+		
+		button.url="#";
+		//刷新当前页
+		flushCurrentPage();
+}
+//刷新当前页
+function flushCurrentPage() {
+	DszhQuery_dataset.flushData(DszhQuery_dataset.pageIndex);
+}
 
 </script>
 </@CommonQueryMacro.page>

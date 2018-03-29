@@ -14,24 +14,27 @@ import east.dao.BaseDao;
 import resources.east.data.pub.AmsDszh;
 
 public class DszhQueryUpdate extends BaseGetter {
-
+	AmsDszh amsDszh=new AmsDszh();
 	@Override
 	public Result call() throws AppException {
 		try {
 			Map para=this.getCommQueryServletRequest().getParameterMap();
+//			
 			
-			String zh = (String)para.get("zh");
+				String zh = (String)para.get("zh");
+				
+				List<AmsDszh> list = BaseDao.queryDszhUpdate(zh);
+				
+				System.out.println(list);
+				
+				ResultMng.fillResultByList(getCommonQueryBean(),
+						getCommQueryServletRequest(), list, getResult());
+				result.setContent(list);
+				result.getPage().setTotalPage(1);
+				result.init();
 			
-			List<AmsDszh> list = BaseDao.queryDszhUpdate(zh);
-			
-			System.out.println(list);
-			
-			ResultMng.fillResultByList(getCommonQueryBean(),
-					getCommQueryServletRequest(), list, getResult());
-			result.setContent(list);
-			result.getPage().setTotalPage(1);
-			result.init();
 			return result;
+			
 		} catch (AppException appEx) {
 			throw appEx;
 		} catch (Exception ex) {

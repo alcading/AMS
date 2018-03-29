@@ -30,7 +30,7 @@ public class DszhQueryService {
 		return (DszhQueryService)ApplicationContextUtils.getBean(DszhQueryService.class.getName());
 	}
 
-	public void saveDelUpdata(List delList,List insertList,List updateList) throws CommonException{
+	public void saveDelUpdata(List delList) throws CommonException{
 		ROOTDAO  rootDAO = ROOTDAOUtils.getROOTDAO();
 
 		//新增
@@ -49,16 +49,16 @@ public class DszhQueryService {
 		*/
 		//修改
 		AmsDszh newwrd = null;
-		for(Iterator it = updateList.iterator();it.hasNext();)
-		{
-			newwrd = (AmsDszh) it.next();
+//		for(Iterator it = updateList.iterator();it.hasNext();)
+//		{
+//			newwrd = (AmsDszh) it.next();
 //			AmsDszh list = rootDAO.query(newwrd.getClass(), newwrd.getId());
 //			System.out.println(newwrd.getClass());
 //			if(list!=null && !"".equals(list)) {
-				rootDAO.update(newwrd);
-//			}
-			
-		}
+//				rootDAO.update(newwrd);
+////			}
+//			
+//		}
 		//删除
 		
 		for(Iterator it = delList.iterator();it.hasNext();)
