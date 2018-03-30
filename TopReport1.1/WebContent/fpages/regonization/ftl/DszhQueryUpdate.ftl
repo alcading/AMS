@@ -23,14 +23,7 @@
 
 
 <script language="javascript">
-     function btSave_postSubmit(button){
-	     fieldReadOnlyStatus(true);      
-	     DszhQueryUpdate_dataset.flushData(DszhQueryUpdate_dataset.pageIndex);
-	     
-	  }
-	  function btSave_onClickCheck(button) {
-	  	closeWin();
-	  }
+     
 	  
 	 function btBack_onClickCheck()
 	 {

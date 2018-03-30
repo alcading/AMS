@@ -1,5 +1,7 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
+<#import "/fpages/regonization/ftl/DszhQueryUpdate.ftl" as DszhQueryUpdate>
 <@CommonQueryMacro.page title="数据分析手工执行">
+
 <@CommonQueryMacro.CommonQuery id="DszhQuery" init="true" submitMode="all" navigate="false">
 <table width="1349px">
 	<tr>
@@ -23,9 +25,6 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
-
-//var txt=document.getElementById('xx')
-//txt.value="20";
 
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
  function btSave_onClickCheck(button) {
@@ -69,8 +68,14 @@ function btMod_onClickCheck(button) {
 		return false;
 	}
 	showUpdate(zh);
+	flushCurrentPage();
 }
 
+function btSave_onClickCheck(button) {
+	  
+	  	flushCurrentPage();
+	  	
+}
 
 //function btMod_onClick(){
 //	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
@@ -82,10 +87,11 @@ function btMod_onClickCheck(button) {
 
 function showUpdate(zh){
 	showWin("个人结算账户修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,null,window);
+	
 }
 
 function btDel_onClickCheck(button) {
-		return confirm("确认删除该条记录？");
+		return confirm("确认删除记录？");
 }
 	
 function btDel_postSubmit(button) {

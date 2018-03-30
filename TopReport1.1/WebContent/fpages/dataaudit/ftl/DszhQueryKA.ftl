@@ -25,7 +25,7 @@ function btMod_onClick(){
 
 function showUpdate(zh){
 
-	showWin("对私账户查询修改","${contextPath}/fpages/regonization/ftl/DszhQueryKAUpdate.ftl?zh="+zh,null,null,window);
+	showWin("卡信息修改","${contextPath}/fpages/regonization/ftl/DszhQueryKAUpdate.ftl?zh="+zh,null,null,window);
 }
 </script>
 </@CommonQueryMacro.page>
