@@ -15,7 +15,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	// Fields
 
 	/**
-	 * 
+	 * 	
 	 */
 	private static final long serialVersionUID = -7981634766426960189L;
 

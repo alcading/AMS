@@ -12,7 +12,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-,btDel"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-,btDel,-,btLoad"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -21,7 +21,8 @@
 		</td>
 	</tr>
 </table>
-<#--<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" >请先按数据日期查询,再导出</span></span>-->
+<iframe id="filedownloadfrm"  style="display: none;"></iframe>
+<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" >请先按数据日期查询,再导出</span></span>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
@@ -30,11 +31,15 @@ window.onload=function(){
     DszhQuery_interface_dataset.setValue("jlrq", currentDate);
 }
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
- function btSave_onClickCheck(button) {
+ function btSave_postSubmit(button) {
 	  	alert("导出成功");
 	  } 
 
-
+function btLoad_onClickCheck(button){
+        var jlrq = DszhQuery_dataset.getValue("jlrq");
+		document.getElementById("filedownloadfrm").src ="${contextPath}/btLoad?jlrq="+jlrq;
+		return false;
+  	}
 function btDel_onClickCheck(button) {
 	var rec = DszhQuery_dataset.firstUnit;
 	var f = false;
