@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="反馈报文处理" navigate="反馈报文处理" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.DszhFeedbackGetter">
+	<Include id="BankParam" />
+	
+	<Fields>
+		<Field id="date" desc="上传日期" edittype="text" datatype="date" size="20" require="false" xpath="/date" />
+		<Field id="feedback_type" desc="反馈报文类型" edittype="select" translated="DATA_DIC.300028" datatype="string" size="20" require="false" xpath="/feedback_type" />
+		<Field id="file_name" desc="反馈报文名称" edittype="text"  datatype="string" size="20" require="false" xpath="/file_name" />
+		<Field id="success_num" desc="校验成功条数" edittype="text"  datatype="string" size="20" require="false" xpath="/success_num" />
+		<Field id="fail_num" desc="校验错误条数" edittype="text"  datatype="string" size="20" require="false" xpath="/fail_num" />
+	</Fields>
+
+	<Parameters></Parameters>
+	<Where>
+		
+	</Where>
+
+	<Operations>
+		
+	</Operations>
+	
+	
+
+	<Script>
+	</Script>
+
+</CommQry>

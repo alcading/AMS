@@ -68,6 +68,9 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String fgmjyqd;
 	private String sflmzh;
 	
+	private String report_status;
+	private String jgdm;
+	
 	public boolean isSelect() {
 		return select;
 	}
@@ -447,7 +450,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 			String ylzhzh, String ylzhjgbm, String khrq, String xhrq, String zhzt, String bz, String sfjrbzk,
 			String sfshbzk, String hsjg, String wfhsyy, String czff, String xxlx, String khqd, String remarks,
 			String jlzt, String reserve4, String reserve5, String jlrq, String ismodify, String fgmjyqd, String sflmzh,
-			String khdqdm) {
+			String khdqdm, String report_status, String jgdm) {
 		super();
 		this.ckrxm = ckrxm;
 		this.ckrsfzjzl = ckrsfzjzl;
@@ -491,6 +494,8 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 		this.fgmjyqd = fgmjyqd;
 		this.sflmzh = sflmzh;
 		this.khdqdm = khdqdm;
+		this.report_status = report_status;
+		this.jgdm = jgdm;
 	}
 
 
@@ -525,6 +530,18 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 
 	public void setIsmodify(String ismodify) {
 		this.ismodify = ismodify;
+	}
+	public String getReport_status() {
+		return report_status;
+	}
+	public void setReport_status(String report_status) {
+		this.report_status = report_status;
+	}
+	public String getJgdm() {
+		return jgdm;
+	}
+	public void setJgdm(String jgdm) {
+		this.jgdm = jgdm;
 	}
 
 }

@@ -10,6 +10,10 @@
 	<Query id="DszhQueryUpdate" path="/fpages/management/xml/DszhQueryUpdate.xml"></Query>
 	<Query id="DszhQueryLMUpdate" path="/fpages/management/xml/DszhQueryLMUpdate.xml"></Query>
 	<Query id="DszhQueryKAUpdate" path="/fpages/management/xml/DszhQueryKAUpdate.xml"></Query>
+	<Query id="DszhAdd" path="/fpages/management/xml/DszhAdd.xml"></Query>
+	
+	<!-- 对私账户反馈报文处理 -->
+	<Query id="DszhFeedback" path="/fpages/dataaudit/xml/DszhFeedback.xml"></Query>
 	<!-- 对私联名账户查询 -->
 	<Query id="DszhQueryLM" path="/fpages/dataaudit/xml/DszhQueryLM.xml"></Query>
 	<Query id="DszhQueryKA" path="/fpages/dataaudit/xml/DszhQueryKA.xml"></Query>

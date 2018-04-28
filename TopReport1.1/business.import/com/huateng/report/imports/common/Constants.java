@@ -10,6 +10,7 @@ public interface Constants {
 	String PARAM_DIR = "DIR";
 	String PARAM_DIR_0001 = "0001";
 	String PARAM_DIR_0103 = "0103";
+	String PARAM_DIR_0106 = "0106";
 
 	String IMPORT_SUBJECT = "/import/subject1";
 

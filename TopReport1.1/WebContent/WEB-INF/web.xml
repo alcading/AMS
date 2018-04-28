@@ -388,6 +388,16 @@
         <servlet-name>Uploadify</servlet-name>
         <url-pattern>/scripts/uploadify</url-pattern>
     </servlet-mapping>
+    <!-- 账户管理系统反馈文件上传 -->
+    <servlet>
+        <servlet-name>FeedbackUploadify</servlet-name>
+        <servlet-class>com.huateng.report.imports.servlet.FeedbackUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FeedbackUploadify</servlet-name>
+        <url-pattern>/scripts/FeedbackUpload</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>UserAuthorityExcel</servlet-name>
         <servlet-class>com.huateng.ebank.business.rolemng.update.UserAuthorityExcel</servlet-class>
@@ -484,6 +494,13 @@
 		<servlet-name>DownloadFileServlet</servlet-name>
 		<servlet-class>com.huateng.report.common.servlet.DownloadFileServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>FeedbackUpload</display-name>
+		<servlet-name>FeedbackUpload</servlet-name>
+		<servlet-class>com.huateng.report.imports.servlet.FeedbackUpload</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
@@ -492,6 +509,10 @@
 	<servlet-mapping>
 		<servlet-name>DownloadFileServlet</servlet-name>
 		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FeedbackUpload</servlet-name>
+		<url-pattern>/FeedbackUpload</url-pattern>
 	</servlet-mapping>
 
 

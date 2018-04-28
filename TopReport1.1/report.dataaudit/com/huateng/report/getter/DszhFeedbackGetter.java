@@ -1,6 +1,5 @@
-package com.huateng.report.update;
+package com.huateng.report.getter;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -12,12 +11,11 @@ import com.huateng.commquery.result.ResultMng;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
-import com.huateng.report.imports.service.DszhQueryService;
+import com.huateng.report.imports.service.DszhFeedbackService;
 
-import east.dao.BaseDao;
-import resources.east.data.pub.AmsDszh;
+@SuppressWarnings("unchecked")
+public class DszhFeedbackGetter extends BaseGetter {
 
-public class DszhQueryUpdate extends BaseGetter {
 	@Override
 	public Result call() throws AppException {
 		// TODO Auto-generated method stub
@@ -39,23 +37,17 @@ public class DszhQueryUpdate extends BaseGetter {
 					Rescode.DEFAULT_RESCODE, ex.getMessage(),ex);
 		}
 	}
-	
-	
+
 	private PageQueryResult getData() throws AppException {
-		Map para = this.getCommQueryServletRequest().getParameterMap();
+		Map paramsMap = this.getCommQueryServletRequest().getParameterMap();
 		
-		String zh = (String)para.get("zh");
 		StringBuffer hql = new StringBuffer();
-		
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		
-		hql.append("from AmsDszh A where 1 = 1 ");
+		hql.append("from AmsDszhFeedback A where 1 = 1 ");
 		
-		if(StringUtils.isNotBlank(zh)){
-			hql.append(" and A.zh = '"+zh.trim()+"' ");
-		}
-		return DszhQueryService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString());
+		return DszhFeedbackService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString());
 		
 	}
 

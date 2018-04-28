@@ -22,6 +22,8 @@ import resource.bean.report.SubFileInfo;
 import resource.bean.report.SysCurrency;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
+import resources.east.data.pub.AmsDszh;
+import resources.east.data.pub.Ams_jyjgdm;
 
 import com.huateng.commquery.config.bean.base.ICommonQueryBaseBean;
 import com.huateng.ebank.business.common.service.BctlService;
@@ -898,5 +900,38 @@ public class CQMethod {
 //			}
 //		}
 //	}
+	
+	/**
+	 * 查询个人结算报文反馈错误码及说明
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getCheckResult(ICommonQueryBaseBean element, String value,
+			ServletRequest request) throws HuatengException {
+		
+		Ams_jyjgdm cur = new Ams_jyjgdm();
+		StringBuffer result = new StringBuffer();
+		
+		String[] result_code = value.split(";");
+		StringBuffer hql = new StringBuffer("from Ams_jyjgdm cur where ");
+		for(int i = 0; i < result_code.length - 1; i ++) {
+			hql.append("cur.jgdm='"+ result_code[i] +"' or ");
+		}
+		hql.append("cur.jgdm='"+ result_code[result_code.length - 1] + "'");
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		List list = rootdao.queryByQL2List(hql.toString());
+		if (list == null || list.isEmpty()) {
+			return "所有字段符合规范";
+		} else {
+			for(int i = 0; i < list.size(); i ++) {
+				cur = (Ams_jyjgdm)list.get(i);
+				result.append(cur.getJgdm() + ":" + cur.getJgnr() + "\n");
+			}
+			return result.toString();
+		}
+	}
 
 }

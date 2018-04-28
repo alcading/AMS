@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#import "/fpages/regonization/ftl/DszhQueryUpdate.ftl" as DszhQueryUpdate>
-<@CommonQueryMacro.page title="数据分析手工执行">
+<@CommonQueryMacro.page title="个人结算账户">
 
 <@CommonQueryMacro.CommonQuery id="DszhQuery" init="true" submitMode="all" navigate="false">
 <table width="1349px">
@@ -12,7 +12,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-,btDel"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,bz,zhzt,jlrq,ismodify"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btFeedback"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,zhzt,jlrq,ismodify,report_status"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -25,6 +25,11 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
+/*
+window.onload=function(){
+	DszhQuery_interface_dataset.setValue("jlrq", "2017-09-28");
+}
+*/
 
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
  function btSave_onClickCheck(button) {
@@ -71,11 +76,7 @@ function btMod_onClickCheck(button) {
 	flushCurrentPage();
 }
 
-function btSave_onClickCheck(button) {
-	  
-	  	flushCurrentPage();
-	  	
-}
+
 
 //function btMod_onClick(){
 //	var ckrsfzjzl = DszhQuery_dataset.getValue("ckrsfzjzl");
@@ -85,8 +86,13 @@ function btSave_onClickCheck(button) {
 	
 //}
 
+function btAdd_onClick(){
+	//DszhQuery_dataset.insertRecord();
+	
+}
+
 function showUpdate(zh){
-	showWin("个人结算账户修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,null,window);
+	showWin("个人结算账户修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,flushCurrentPage(),window);
 	
 }
 

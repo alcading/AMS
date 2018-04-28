@@ -22,6 +22,18 @@
 				type="string"
 			/>
 			<property
+				name="ckrsfzjzl"
+				column="CKRSFZJZL"
+				type="string"
+				length="14"
+			/>
+			<property
+				name="ckrsfzjhm"
+				column="CKRSFZJHM"
+				type="string"
+				length="154"
+			/>
+			<property
 				name="sfzjdqr"
 				column="SFZJDQR"
 				type="string"
@@ -235,6 +247,18 @@
 				name="khdqdm"
 				column="KHDQDM"
 				type="string"
+			/>
+			<property
+				name="report_status"
+				column="REPORT_STATUS"
+				type="string"
+				length="2"
+			/>
+			<property
+				name="jgdm"
+				column="JGDM"
+				type="string"
+				length="255"
 			/>
 	</class>
 </hibernate-mapping>

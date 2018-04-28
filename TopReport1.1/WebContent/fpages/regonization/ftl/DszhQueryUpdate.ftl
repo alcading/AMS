@@ -4,26 +4,24 @@
 	<table align="left">
 		<tr valign="top">
 			<td valign="top">
-				<@CommonQueryMacro.Group id ="group1" label="对私账户查询修改" fieldStr="ckrxm,ckrsfzjzl,ckrsfzjhm,sfzjdqr,dqdm,ckrlb,ckrgjdq,ckrxb,ckryb,ckrdz,ckrdh,dlrmc,dlrsfzjzl,dlrsfzjhm,dlrgjdq,dlrdh,jrjgbm,zh,zhzl,zhlx,ylzhzh,ylzhjgbm,khrq,xhrq,zhzt,bz,sfjrbzk,sfshbzk,hsjg,wfhsyy,czff,xxlx,khqd,remarks,jlzt,jlrq,ismodify,fgmjyqd,sflmzh,khdqdm" colNm=6/>
+				<@CommonQueryMacro.Group id ="group1" label="对私账户查询修改" fieldStr="ckrxm,ckrsfzjzl,ckrsfzjhm,sfzjdqr,dqdm,ckrlb,ckrgjdq,ckrxb,ckryb,ckrdz,ckrdh,dlrmc,dlrsfzjzl,dlrsfzjhm,dlrgjdq,dlrdh,jrjgbm,zh,zhzl,zhlx,ylzhzh,ylzhjgbm,khrq,xhrq,zhzt,bz,sfjrbzk,sfshbzk,hsjg,wfhsyy,czff,xxlx,khqd,remarks,jlzt,jlrq,ismodify,fgmjyqd,sflmzh,khdqdm,report_status" colNm=6/>
 			</td>
-				</tr>
+		</tr>
 		<tr>
 		    <td>
-		       <left><@CommonQueryMacro.Button id= "btMod"/></left>
+		       <left><@CommonQueryMacro.Group id ="group1" label="校验信息" colNm="6" fieldStr="checkResult" /></left>
 		    </td>
 		</tr>	
 		<tr>
   		   	<td valign="CENTER">
 				<left><@CommonQueryMacro.Button id= "btBack"/></left>&nbsp;
-				<left><@CommonQueryMacro.Button id= "btSave"/></left>
+				<left><@CommonQueryMacro.Button id= "btSave"/></left>&nbsp;
+				<left><@CommonQueryMacro.Button id= "btMod"/></left>
   			</td>
 		</tr> 
 	</table>
 </@CommonQueryMacro.CommonQuery>
-
-
 <script language="javascript">
-     
 	  
 	 function btBack_onClickCheck()
 	 {

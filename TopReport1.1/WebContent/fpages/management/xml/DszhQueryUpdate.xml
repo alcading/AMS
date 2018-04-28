@@ -16,7 +16,6 @@
 	<Include id="BankParam" />
 
 	<Fields>
-		
 		<Field id="ckrxm" desc="存款人姓名" edittype="text" datatype="string" size="20" require="false" xpath="/ckrxm" />
 		<Field id="ckrsfzjzl" desc="存款人身份证件种类" edittype="select" translated="DATA_DIC.300003" datatype="string" size="20" require="false" xpath="/ckrsfzjzl" readonly="false" />
 		<Field id="ckrsfzjhm" desc="存款人身份证件号码" edittype="text" datatype="string" size="20" require="false" xpath="/ckrsfzjhm" readonly="false" />
@@ -57,15 +56,15 @@
 		<Field id="fgmjyqd" desc="开通的非柜面交易渠道" edittype="select" translated="DATA_DIC.300025" datatype="string" size="20" require="false" xpath="/fgmjyqd" />
 		<Field id="sflmzh" desc="是否为联名账户" edittype="select" translated="DATA_DIC.300026" datatype="string" size="20" require="false" xpath="/sflmzh" />
 		<Field id="khdqdm" desc="开户地地区代码" edittype="text" datatype="string" size="20" require="false" xpath="/khdqdm" />
+		<Field id="report_status" desc="报送状态" edittype="select" datatype="string" translated="DATA_DIC.300027" size="20" require="false" xpath="/report_status" />
+		<Field id="checkResult" desc="校验信息" edittype="textarea" xpath="/jgdm" width="1000" height="100" method="com.huateng.ebank.business.common.CQMethod.getCheckResult"></Field>
 	</Fields>
 <Operations>
 	<Button id="btMod" name="btMod" desc="查看卡信息" 
 				operation="" url="#" show="" group="" txn=""  icon="icon-add"/>
-	  <Button id="btBack" name="btBack" desc="返回" operation=""
-				url="#" txn="" />  
+	<Button id="btBack" name="btBack" desc="返回" operation=""
+				url="#" txn="" />
 		 
-				
-	
 	<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
 				url="/fpages/dataaudit/ftl/DszhQuery.ftl" updateClass="com.huateng.report.imports.updater.DszhQueryUpdateAndSave" txn="" />   
 </Operations>

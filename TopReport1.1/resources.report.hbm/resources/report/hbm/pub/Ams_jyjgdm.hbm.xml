@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resources.east.data.pub">
+	<class
+		name="Ams_jyjgdm"
+		table="Ams_jyjgdm"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="jgdm"
+			column="jgdm"
+			type="string"
+			length="8"
+		 />
+		<property
+			name="jgnr"
+			column="jgnr"
+			type="string"
+			length="256"
+		/>
+	</class>	
+</hibernate-mapping>

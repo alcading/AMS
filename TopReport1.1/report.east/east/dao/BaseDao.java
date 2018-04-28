@@ -560,6 +560,7 @@ public class BaseDao {
 	 * @return
 	 * @throws Exception
 	 */
+	/*
 	public static List<AmsDszh> queryDszh(String ckrxm, String ckrsfzjhm, String zh, String xxlx, String jlrq)
 			throws Exception {
 		
@@ -575,7 +576,7 @@ public class BaseDao {
 		// Map<String, String> map = null;
 		try {
 
-			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY from AMS_DSZH where 1=1";
+			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY, REPORT_STATUS from AMS_DSZH where 1=1";
 			if (ckrxm != null && !"".equals(ckrxm)) {
 				sql += "and ckrxm like '%" + ckrxm + "%'";
 			}
@@ -598,8 +599,11 @@ public class BaseDao {
 			rs = pstmt.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int count = rsmd.getColumnCount();
+			
+			
+			
 			if (rs != null) {
-
+				
 				while (rs.next()) {
 					// map = new HashMap<String, String>();
 					AmsDszh ad = new AmsDszh();
@@ -614,6 +618,7 @@ public class BaseDao {
 					ad.setZhzt(rs.getString("ZHZT"));
 					ad.setJlrq(rs.getString("JLRQ"));
 					ad.setIsmodify(rs.getString("ISMODIFY"));
+					ad.setReport_status(rs.getString("REPORT_STATUS"));
 
 					list.add(ad);
 
@@ -627,13 +632,14 @@ public class BaseDao {
 		return list;
 
 	}
-
+	*/
 	/**
 	 * 对私账户查询修改/ cx add in 2018/1/5
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
+	/*
 	public static List<AmsDszh> queryDszhUpdate(String zh) throws Exception {
 
 		Connection conn = DBUtil.getConnection();
@@ -655,6 +661,7 @@ public class BaseDao {
 			rs = pstmt.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int count = rsmd.getColumnCount();
+			
 			if (rs != null) {
 
 				while (rs.next()) {
@@ -705,7 +712,8 @@ public class BaseDao {
                     ad.setSflmzh(rs.getString("SFLMZH"));
                     ad.setFgmjyqd(rs.getString("FGMJYQD"));
                     ad.setKhdqdm(rs.getString("KHDQDM"));
-                    
+                    ad.setReport_status(rs.getString("REPORT_STATUS"));
+                    ad.setJgdm(rs.getString("JGDM"));
 					list.add(ad);
 				}
 			}
@@ -717,6 +725,7 @@ public class BaseDao {
 		return list;
 
 	}
+	*/
 	/**
 	 *对私联名账户信息查询
 	 * modify by 2018-03-15
