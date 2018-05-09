@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="联名账户查询" navigate="联名账户查询" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.DszhQueryKAGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示  -->
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->
+		<Field id="select" desc="选择" edittype="checkbox" datatype="boolean" xpath="/select" />	
+		<Field id="zh" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/zh" />
+		<Field id="kh" desc="卡号" edittype="text" datatype="string" size="20" require="false" xpath="/kh" />
+		<Field id="kdqr" desc="卡到期日" edittype="text" datatype="date" size="20" require="false" xpath="/kdqr" />
+		<Field id="zhjz" desc="账户介质" edittype="select" translated="DATA_DIC.300010" datatype="string" size="20" require="false" xpath="/zhjz" />
+		<Field id="xkrq" desc="销卡日期" edittype="text" datatype="date" size="20" require="false" xpath="/xkrq" />
+		<Field id="kzt" desc="卡状态" edittype="select" translated="DATA_DIC.300011" datatype="string" size="20" require="false" xpath="/kzt" />
+	</Fields>
+
+	<Parameters></Parameters>
+	<Where>
+	</Where>
+
+	<Operations>
+	
+		<Button id="btMod" name="btMod" desc="修改" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-add"/>
+	</Operations>
+	
+	
+
+	<Script></Script>
+
+</CommQry>

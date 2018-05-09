@@ -575,7 +575,7 @@ public class BaseDao {
 		// Map<String, String> map = null;
 		try {
 
-			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY from AMS_DSZH where 1=1";
+			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY,REPORT_STATUS from AMS_DSZH where 1=1";
 			if (ckrxm != null && !"".equals(ckrxm)) {
 				sql += "and ckrxm like '%" + ckrxm + "%'";
 			}
@@ -614,6 +614,7 @@ public class BaseDao {
 					ad.setZhzt(rs.getString("ZHZT"));
 					ad.setJlrq(rs.getString("JLRQ"));
 					ad.setIsmodify(rs.getString("ISMODIFY"));
+					ad.setReport_status(rs.getString("REPORT_STATUS"));
 
 					list.add(ad);
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="联名账户查询" navigate="联名账户查询" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.DszhQueryLMGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示  -->
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->
+		<Field id="select" desc="选择" edittype="checkbox" datatype="boolean" xpath="/select" />	
+		<Field id="zh" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/zh" />
+		<Field id="ckrxm" desc="存款人姓名" edittype="text" datatype="string" size="20" require="false" xpath="/ckrxm" />
+		<Field id="ckrsfzjzl" desc="存款人身份证件种类" edittype="select" translated="DATA_DIC.300003" datatype="string" size="20" require="false" xpath="/ckrsfzjzl" readonly="false" />
+		<Field id="ckrsfzjhm" desc="存款人身份证件号码" edittype="text" datatype="string" size="20" require="false" xpath="/ckrsfzjhm" readonly="false" />
+		<Field id="sfzjdqr" desc="身份证件到期日" edittype="text" datatype="date" size="20" require="false" xpath="/sfzjdqr" />
+		<Field id="dqdm" desc="发证机关所在地的地区代码" edittype="text" datatype="string" size="20" require="false" xpath="/dqdm" />
+		<Field id="ckrlb" desc="存款人类别" edittype="select" translated="DATA_DIC.300008" datatype="string" size="20" require="false" xpath="/ckrlb" />
+		<Field id="ckrgjdq" desc="存款人国籍/地区" edittype="text" datatype="string" size="20" require="false" xpath="/ckrgjdq" />
+		<Field id="ckrxb" desc="存款人性别" edittype="select" translated="DATA_DIC.300009" datatype="string" size="20" require="false" xpath="/ckrxb" />
+	</Fields>
+
+	<Parameters></Parameters>
+	<Where>
+	</Where>
+
+	<Operations>
+	
+		<Button id="btMod" name="btMod" desc="修改" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-add"/>
+	</Operations>
+	
+	
+
+	<Script></Script>
+
+</CommQry>

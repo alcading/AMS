@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resources.east.data.pub">
+	<class
+		name="LMCKXXB"
+		table="AMS_LMCKXXB"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		
+			<id
+				name="ckrsfzjhm"
+				column="CKRSFZJHM"
+				type="string"
+			/>
+		
+			<property
+				name="ckrxm"
+				column="CKRXM"
+				type="string"
+			/>
+			<property
+				name="sfzjdqr"
+				column="SFZJDQR"
+				type="string"
+			/>
+			<property
+				name="dqdm"
+				column="DQDM"
+				type="string"
+			/>
+			<property
+				name="ckrlb"
+				column="CKRLB"
+				type="string"
+			/>
+			<property
+				name="ckrgjdq"
+				column="CKRGJDQ"
+				type="string"
+			/>
+			<property
+				name="ckrxb"
+				column="CKRXB"
+				type="string"
+			/>
+			<property
+				name="ckrsfzjzl"
+				column="CKRSFZJZL"
+				type="string"
+			/>
+			<property
+				name="zh"
+				column="ZH"
+				type="string"
+			/>
+	
+	 	</class>
+</hibernate-mapping>
