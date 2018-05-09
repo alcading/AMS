@@ -924,7 +924,7 @@ public class CQMethod {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List list = rootdao.queryByQL2List(hql.toString());
 		if (list == null || list.isEmpty()) {
-			return "所有字段符合规范";
+			return "";
 		} else {
 			for(int i = 0; i < list.size(); i ++) {
 				cur = (Ams_jyjgdm)list.get(i);

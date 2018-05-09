@@ -61,7 +61,7 @@ public class DszhQueryGetter extends BaseGetter{
 		}
 		if(StringUtils.isNotBlank(ckrsfzjhm)){
 			hql.append(" and A.ckrsfzjhm = '"+ckrsfzjhm.trim()+"' ");
-	   }
+	    }
 		if(StringUtils.isNotBlank(zh)){
 			hql.append(" and A.zh = '"+zh.trim()+"' ");
 		}

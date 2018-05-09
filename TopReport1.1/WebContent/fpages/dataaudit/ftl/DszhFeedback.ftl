@@ -13,15 +13,20 @@
 	
 	<tr>
 		<td>
-			
+			<@CommonQueryMacro.Interface id="interface" label="个人结算反馈报文处理" btnNm="查询" colNm=6/>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar=""  fieldStr="date,feedback_type,file_name,success_num,fail_num"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar=""  fieldStr="date,feedback_type,file_name,success_num,fail_num"  width="100%" hasFrame="false" height="300" readonly="true"/>
 			
 		</td>
 	</tr>
+	<tr>
+	   	<td valign="CENTER">
+			<left><@CommonQueryMacro.Button id= "btBack"/></left>
+		</td>
+	</tr> 
 </table>
 </@CommonQueryMacro.CommonQuery>
 
@@ -57,7 +62,10 @@ function initUpLoadify(dataset, s, u) {
 							$('#' + id + 'progress').css("display", "inline");
 						},
 						'onUploadComplete' : function(file) {
+							//刷新当前页
+							flushCurrentPage();
 							var id = file.name.split('.')[0]+file.name.split('.')[1];
+							alert("上传成功");
 							// $('#'+id+'answer').html('上传成功');
 							$('#' + id + 'ishave').html('已存在');
 							$('#' + id + 'ishavehave').val('true');
@@ -91,6 +99,18 @@ function initUpLoadify(dataset, s, u) {
 
 						}
 					});
+		
+		
+}
+
+ function btBack_onClickCheck()
+ {
+ 	closeWin();
+ }
+ 
+//刷新当前页
+function flushCurrentPage() {
+	DszhFeedback_dataset.flushData(DszhFeedback_dataset.pageIndex);
 }
 </script>
 </@CommonQueryMacro.page>

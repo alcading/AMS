@@ -18,14 +18,29 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
-function btMod_onClick(){
-	var zh = DszhQueryKA_dataset.getValue("zh");
-	showUpdate(zh);
+function btMod_onClickCheck(button){
+    var rec = DszhQueryKA_dataset.firstUnit;
+	
+	var f = false;
+	var kh = null;
+	while(rec) {
+		if (rec.getValue('select')) {
+			kh = rec.getValue("kh");
+			f = true;
+			break;
+		}
+		rec = rec.nextUnit;
+	}
+	if(!f) {
+		alert('请选择记录');
+		return false;
+	}
+	showUpdate(kh);
 }
 
-function showUpdate(zh){
+function showUpdate(kh){
 
-	showWin("卡信息修改","${contextPath}/fpages/regonization/ftl/DszhQueryKAUpdate.ftl?zh="+zh,null,null,window);
+	showWin("卡信息修改","${contextPath}/fpages/regonization/ftl/DszhQueryKAUpdate.ftl?kh="+kh,null,null,window);
 }
 </script>
 </@CommonQueryMacro.page>

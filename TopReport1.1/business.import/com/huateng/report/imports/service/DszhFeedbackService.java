@@ -94,7 +94,7 @@ public class DszhFeedbackService {
 			
 			
 			saveFeedback(amsDszhFeedback_data);
-			saveFeedback(result_code, "03", zh); //3表示报送失败
+			saveFeedback(result_code, "3", zh); //3表示报送失败
 			
 		}
 		bufReader.close();

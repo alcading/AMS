@@ -483,7 +483,17 @@
 		<servlet-name>PageBackServlet</servlet-name>
 		<url-pattern>/PageBackServlet</url-pattern>
 	</servlet-mapping>
-
+	
+	<!-- 个人结算报文下载 -->
+	<servlet>
+        <servlet-name>DszhQueryLoad</servlet-name>
+        <servlet-class>com.huateng.report.imports.updater.DszhQueryLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DszhQueryLoad</servlet-name>
+        <url-pattern>/btLoad</url-pattern>
+    </servlet-mapping>
+    
 	<servlet>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
 		<servlet-class>

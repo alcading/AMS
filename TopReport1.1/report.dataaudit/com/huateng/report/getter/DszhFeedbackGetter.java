@@ -40,13 +40,19 @@ public class DszhFeedbackGetter extends BaseGetter {
 
 	private PageQueryResult getData() throws AppException {
 		Map paramsMap = this.getCommQueryServletRequest().getParameterMap();
-		
+		String input_date = (String)paramsMap.get("input_date");
 		StringBuffer hql = new StringBuffer();
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		
 		hql.append("from AmsDszhFeedback A where 1 = 1 ");
 		
+		if(StringUtils.isNotBlank(input_date)){
+			hql.append(" and A.date between to_date ('"+ input_date +" 00:00:00','yyyy/mm/dd hh24:mi:ss') "
+					+ "and to_date ('"+ input_date +" 23:59:59','yyyy/mm/dd hh24:mi:ss')");
+		}
+		
+		hql.append(" order by date desc ");
 		return DszhFeedbackService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString());
 		
 	}

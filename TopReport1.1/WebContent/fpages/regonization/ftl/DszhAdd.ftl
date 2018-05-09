@@ -1,10 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="对私账户查询修改">
-<@CommonQueryMacro.CommonQuery id="DszhAdd" init="false" submitMode="all" navigate="false">
+<@CommonQueryMacro.page title="对私账户查询新增">
+<@CommonQueryMacro.CommonQuery id="DszhAdd" init="false" submitMode="current" navigate="false">
 	<table align="left">
 		<tr valign="top">
 			<td valign="top">
-				<@CommonQueryMacro.Group id ="group1" label="对私账户新增" fieldStr="jrjgbm,zh,zhzl,zhlx,khrq,xhrq,zhzt,bz,sfjrbzk,sfshbzk,hsjg,wfhsyy,czff,xxlx,khqd,remarks,jlrq,fgmjyqd,sflmzh,khdqdm" colNm=6/>
+				<@CommonQueryMacro.Group id ="group1" label="对私账户新增" fieldStr="jrjgbm,zh,zhzl,zhlx,khrq,xhrq,zhzt,bz,sfjrbzk,sfshbzk,hsjg,wfhsyy,czff,xxlx,khqd,remarks,fgmjyqd,sflmzh,khdqdm" colNm=6/>
 			</td>
 		</tr>
 		<tr>

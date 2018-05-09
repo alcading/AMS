@@ -32,7 +32,7 @@
 		<Field id="zhzt" desc="账户状态" edittype="select" translated="DATA_DIC.300006" datatype="string" size="20" require="false" xpath="/zhzt" />
 		<Field id="jlrq" desc="数据日期" edittype="text" datatype="date" size="20" require="false" xpath="/jlrq" />
 		<Field id="ismodify" desc="是否通过验证" edittype="select" translated="DATA_DIC.300007" datatype="string" size="20" require="false" xpath="/ismodify" default=""/>
-		<Field id="report_status" desc="报送状态" edittype="select" translated="DATA_DIC.300027" datatype="string" size="15" require="false" xpath="/report_status" default=""/>
+		<Field id="report_status" desc="报送状态" edittype="select" translated="DATA_DIC.300029" datatype="string" size="15" require="false" xpath="/report_status" default=""/>
 		
 	</Fields>
 
@@ -55,9 +55,13 @@
 
 		<Button id="btDel" name="btDel" desc="删除" 
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryDelete" show="" group="" txn=""  icon="icon-remove"/>
-		
+		<Button id="btSave" name="btSave" desc="导出报文" 
+				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryOutput" show="" group="" txn=""  icon="icon-remove"/>
+        <Button id="btLoad" name="btLoad" desc="下载报文" 
+				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryLoad" show="" group="" txn=""  icon="icon-remove"/>
+       
 		<Button id="btFeedback" name="btFeedback" desc="反馈报文处理" 
-				operation="href" url="/fpages/dataaudit/ftl/DszhFeedback.ftl"  show="" group="" txn=""  icon="icon-search"/>
+				operation="" url="#"  show="" group="" txn=""  icon="icon-search"/>
 
 	</Operations>
 	

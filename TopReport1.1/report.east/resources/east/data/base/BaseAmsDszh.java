@@ -15,6 +15,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	// Fields
 
 	/**
+
 	 * 
 	 */
 	private static final long serialVersionUID = -7981634766426960189L;
@@ -118,12 +119,6 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	public BaseAmsDszh() {
 	}
 
-	
-
-	/** full constructor */
-
-
-	
 	public String getCkrxm() {
 		return ckrxm;
 	}
@@ -542,6 +537,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	}
 	public void setJgdm(String jgdm) {
 		this.jgdm = jgdm;
+
 	}
 
 }

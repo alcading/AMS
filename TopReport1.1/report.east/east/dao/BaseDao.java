@@ -567,7 +567,6 @@ public class BaseDao {
 		if(jlrq == null) {
 			return null;
 		}
-
 		Connection conn = DBUtil.getConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		PreparedStatement pstmt = null;
@@ -575,7 +574,6 @@ public class BaseDao {
 		List<AmsDszh> list = new ArrayList<AmsDszh>();
 		// Map<String, String> map = null;
 		try {
-
 			String sql = "select XXLX, CKRXM, CKRSFZJZL, CKRSFZJHM, JRJGBM, ZH, ZHZL, BZ, ZHZT, JLRQ, ISMODIFY, REPORT_STATUS from AMS_DSZH where 1=1";
 			if (ckrxm != null && !"".equals(ckrxm)) {
 				sql += "and ckrxm like '%" + ckrxm + "%'";
@@ -595,7 +593,6 @@ public class BaseDao {
 			}
 			pstmt = conn.prepareStatement(sql);
 			int paramNum = pstmt.getParameterMetaData().getParameterCount();
-
 			rs = pstmt.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int count = rsmd.getColumnCount();
@@ -619,9 +616,7 @@ public class BaseDao {
 					ad.setJlrq(rs.getString("JLRQ"));
 					ad.setIsmodify(rs.getString("ISMODIFY"));
 					ad.setReport_status(rs.getString("REPORT_STATUS"));
-
 					list.add(ad);
-
 				}
 			}
 		} catch (SQLException e) {
@@ -630,7 +625,6 @@ public class BaseDao {
 			DBUtil.close(conn, pstmt, rs);
 		}
 		return list;
-
 	}
 	*/
 	/**
@@ -641,7 +635,6 @@ public class BaseDao {
 	 */
 	/*
 	public static List<AmsDszh> queryDszhUpdate(String zh) throws Exception {
-
 		Connection conn = DBUtil.getConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		PreparedStatement pstmt = null;
@@ -651,19 +644,16 @@ public class BaseDao {
 		try {
 			String sql = "select * from AMS_DSZH where 1=1"; 
 			//String sql = "select * from AMS_DSZH t1 left join AMS_LMCKXXB t2  on t1.zh=t2.zh left join AMS_KXXB t3  on t1.zh=t3.zh where 1=1"; 
-
 			if (zh != null && !"".equals(zh)) {
 				sql += "and zh='" + zh + "'";
 			}
 			pstmt = conn.prepareStatement(sql);
 			int paramNum = pstmt.getParameterMetaData().getParameterCount();
-
 			rs = pstmt.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int count = rsmd.getColumnCount();
 			
 			if (rs != null) {
-
 				while (rs.next()) {
 					// map = new HashMap<String, String>();
 					AmsDszh ad = new AmsDszh();
@@ -723,7 +713,6 @@ public class BaseDao {
 			DBUtil.close(conn, pstmt, rs);
 		}
 		return list;
-
 	}
 	*/
 	/**

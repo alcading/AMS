@@ -8,6 +8,7 @@
  */
 package resources.east.data.update;
 
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
@@ -67,7 +68,9 @@ public void AddEntityValue(List list) throws CommonException{
 			bean.setBrcode(commonService .getBrcodeID());
 			bean.setStatus(SystemConstant.FLAG_ON);
 			bean.setLastUpdTlr(GlobalInfo.getCurrentInstance().getTlrno());
-			bean.setLastUpdDate(DateUtil.getCurrentDate());
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String dateString = formatter.format(DateUtil.getCurrentDate());
+			bean.setLastUpdDate(dateString);
 			//modified by xuhong 20150331 机构信息直接导入 begin
 //			bean.setSt(ReportEnum.REPORT_ST1.CR.value);
 //			bean.setLock(true);
