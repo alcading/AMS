@@ -50,7 +50,7 @@
 </Where>
 
 <Operations>
-	<Button id="btNew" name="btNew" desc ="CurrencyManEntry.button.btNew" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add"/>/>
+	<Button id="btNew" name="btNew" desc ="CurrencyManEntry.button.btNew" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add"/>
 	<Button id="btMod" name="btMod" desc="CurrencyManEntry.button.btMod" operation="syncsubmit" url="#" show="" group="" txn="" />
 
 	<Button id="btDel" name="btDel" desc="CurrencyManEntry.button.btDel"

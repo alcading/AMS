@@ -49,6 +49,9 @@ public class DszhQueryGetter extends BaseGetter{
 		String zh = (String)para.get("zh");
 		String xxlx = (String)para.get("xxlx");
 		String jlrq = (String)para.get("jlrq");
+		
+//		String jlrq = getCommQueryServletRequest().getParameter("jlrq");
+		
 		StringBuffer hql = new StringBuffer();
 		
 		int pageSize = this.getResult().getPage().getEveryPage();

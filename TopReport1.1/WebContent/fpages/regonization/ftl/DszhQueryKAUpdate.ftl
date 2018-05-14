@@ -1,15 +1,15 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="卡信息查询修改">
+<@CommonQueryMacro.page title="介质信息查询修改">
 <@CommonQueryMacro.CommonQuery id="DszhQueryKAUpdate" init="true" submitMode="all" navigate="false">
 	<table align="left">
 		<tr valign="top">
 			<td valign="top">
-				<@CommonQueryMacro.Group id ="group1" label="卡信息查询修改" fieldStr="zh,kh,kdqr,zhjz,xkrq,kzt" colNm=6/>
+				<@CommonQueryMacro.Group id ="group1" label="介质信息查询修改" fieldStr="zh,kh,kdqr,zhjz,xkrq,kzt" colNm=6/>
 			</td>
 		</tr>
 		<tr>
 		     <td>
-		         <left><@CommonQueryMacro.Button id= "btMod"/></left>
+		         
 		     </td>
 		</tr>
 		<tr>
@@ -37,14 +37,6 @@
 	 {
 		closeWin();
 	 }
-function btMod_onClick(){
-	var zh = DszhQueryKAUpdate_dataset.getValue("zh");
-	showUpdate(zh);
-}
 
-function showUpdate(zh){
-	showWin("联名账户信息","${contextPath}/fpages/dataaudit/ftl/DszhQueryLM.ftl?zh="+zh,null,null,window);
-	//window.location.href = "${contextPath}/fpages/regonization/ftl/DszhQueryLM.ftl?zh="+zh;
-}
 </script>
 </@CommonQueryMacro.page>

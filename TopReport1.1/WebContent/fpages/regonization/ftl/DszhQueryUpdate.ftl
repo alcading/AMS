@@ -93,33 +93,42 @@
 								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="wfhsyy" /></td>
 							</tr>
 							<tr>
-								<td align="center" class="labeltd">处置方法</td>
-								<td class="datatd" > <@CommonQueryMacro.SingleField fId="czff"/></td>
 								<td align="center" nowrap class="labeltd">信息类型</td>
 								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="xxlx" /></td>
 								<td align="center" nowrap class="labeltd">开户渠道</td>
 								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="khqd" /></td>
+								<td align="center" nowrap class="labeltd">是否为联名账户</td>
+								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="sflmzh" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">备注</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="remarks"/></td>
-								<td align="center" nowrap class="labeltd">有效状态</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="jlzt" /></td>
+								<td align="center" nowrap class="labeltd">开通的非柜面交易渠道</td>
+								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="fgmjyqd" /></td>
 								<td align="center" class="labeltd">开户地地区代码</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="khdqdm"/></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">是否通过验证</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="ismodify"/></td>
-								<td align="center" nowrap class="labeltd">开通的非柜面交易渠道</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="fgmjyqd" /></td>
-								<td align="center" nowrap class="labeltd">是否为联名账户</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="sflmzh" /></td>
+								
 							</tr>
+							<tr>
+								<td align="center" class="labeltd">处置方法</td>
+								<td class="datatd" colspan="5"> <@CommonQueryMacro.SingleField fId="czff"/></td>
 							</tr>
 						</table>
 				</@CommonQueryMacro.GroupBox>
 			</td>
+		</tr>
+		<tr>
+  		   	<td valign="CENTER">
+				<left><@CommonQueryMacro.Button id= "btBack"/></left>&nbsp;
+				<left><@CommonQueryMacro.Button id= "btSave"/></left>&nbsp;
+				<left><@CommonQueryMacro.Button id= "btMod"/></left>&nbsp;
+				<left><@CommonQueryMacro.Button id= "btModLM"/></left>&nbsp;
+				
+  			</td>
 		</tr>
 		<tr>
 		    <td>
@@ -134,13 +143,7 @@
 			</td>
 		    </td>
 		</tr>	
-		<tr>
-  		   	<td valign="CENTER">
-				<left><@CommonQueryMacro.Button id= "btBack"/></left>&nbsp;
-				<left><@CommonQueryMacro.Button id= "btSave"/></left>&nbsp;
-				<left><@CommonQueryMacro.Button id= "btMod"/></left>
-  			</td>
-		</tr> 
+		 
 	</table>
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
@@ -150,18 +153,93 @@
  	closeWin();
 	//window.location.href = "${contextPath}/fpages/dataaudit/ftl/DszhQuery.ftl";
  }
- function btSave_onClickCheck()
- {
- 	closeWin();
- }
 function btMod_onClick(){
 	var zh = DszhQueryUpdate_dataset.getValue("zh");
 	showUpdate(zh);
 }
 
 function showUpdate(zh){
-	showWin("卡信息","${contextPath}/fpages/dataaudit/ftl/DszhQueryKA.ftl?zh="+zh,null,null,window);
+	showWin("介质信息","${contextPath}/fpages/dataaudit/ftl/DszhQueryKA.ftl?zh="+zh,null,null,window);
 	//window.location.href = "${contextPath}/fpages/regonization/ftl/DszhQueryLM.ftl?zh="+zh;
+}
+
+function btModLM_onClick(){
+	var zh = DszhQueryUpdate_dataset.getValue("zh");
+	showUpdateLM(zh);
+}
+
+function showUpdateLM(zh){
+	showWin("联名账户信息","${contextPath}/fpages/dataaudit/ftl/DszhQueryLM.ftl?zh="+zh,null,null,window);
+}
+
+//非空校验
+function btSave_onClickCheck(button){
+	var ckrxm = DszhQueryUpdate_dataset.getValue("ckrxm");
+	if(ckrxm == null || ckrxm == ""){
+		return false;
+	}
+	
+	var zhzl = DszhQueryUpdate_dataset.getValue("zhzl");
+	if(zhzl == null ||zhzl == ""){
+		return false;
+	}
+	
+	var zhzt = DszhQueryUpdate_dataset.getValue("zhzt");
+	if(zhzt == null || zhzt == ""){
+		return false;
+	}
+	
+	var sfshbzk = DszhQueryUpdate_dataset.getValue("sfshbzk");
+	if(sfshbzk == null || sfshbzk == ""){
+		return false;
+	}
+	
+	var ckrxb = DszhQueryUpdate_dataset.getValue("ckrxb");
+	if(ckrxb == null || ckrxb == ""){
+		return false;
+	}
+	
+	var jrjgbm = DszhQueryUpdate_dataset.getValue("jrjgbm");
+	if(jrjgbm == null || jrjgbm == ""){
+		return false;
+	}
+	
+	var khrq = DszhQueryUpdate_dataset.getValue("khrq");
+	if(khrq == null || khrq == ""){
+		return false;
+	}
+	
+	var bz = DszhQueryUpdate_dataset.getValue("bz");
+	if(bz == null || bz == ""){
+		return false;
+	}
+	
+	var hsjg = DszhQueryUpdate_dataset.getValue("hsjg");
+	if(hsjg == null || hsjg == ""){
+		return false;
+	}
+	
+	var xxlx = DszhQueryUpdate_dataset.getValue("xxlx");
+	if(xxlx == null || xxlx == ""){
+		return false;
+	}
+	
+	var zh = DszhQueryUpdate_dataset.getValue("zh");
+	if(zh == null || zh == ""){
+		return false;
+	}
+	
+	var sfjrbzk = DszhQueryUpdate_dataset.getValue("sfjrbzk");
+	if(sfjrbzk == null || sfjrbzk == ""){
+		return false;
+	}
+	
+	var khqd = DszhQueryUpdate_dataset.getValue("khqd");
+	if(khqd == null || khqd == ""){
+		return false;
+	}
+	
+	closeWin();
 }
 </script>
 </@CommonQueryMacro.page>

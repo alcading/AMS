@@ -36,19 +36,14 @@ public class DszhQueryKAService {
 		ROOTDAO  rootDAO = ROOTDAOUtils.getROOTDAO();
 
 		//新增
-		/*
+		
 		for(Iterator it = insertList.iterator();it.hasNext();)
 		{
-			BiImportFileConfig newwrd = (BiImportFileConfig) it.next();
-			if(newwrd.getBatchNo() == null) {
-				newwrd.setBatchNo(0);
-			}
-			if(newwrd.getSeqNo() == null) {
-				newwrd.setSeqNo(0);
-			}
+			KXXB newwrd = (KXXB) it.next();
+			
 			rootDAO.save(newwrd);
 		}
-		*/
+		
 		//修改
 		KXXB newwrd = null;
 		for(Iterator it = updateList.iterator();it.hasNext();)

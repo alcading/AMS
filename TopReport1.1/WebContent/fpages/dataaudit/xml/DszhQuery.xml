@@ -36,7 +36,9 @@
 		
 	</Fields>
 
-	<Parameters></Parameters>
+	<Parameters>
+		<!-- <Parameter id="jlrq" desc="时间参数" value="20170929" /> -->
+	</Parameters>
 	<Where>
 		<TextBox id="ckrxm" desc="存款人姓名" datatype="string" index="1" size="20" />
 		<TextBox id="ckrsfzjhm" desc="证件号码" datatype="string" index="2" size="20"/>
@@ -67,7 +69,7 @@
 	
 	
 
-	<Script>
+	<Script >
 	</Script>
 
 </CommQry>

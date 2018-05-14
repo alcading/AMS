@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="" navigate="" type="form"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname=""><!-- com.huateng.report.update.DszhAdd -->
+	<Include id="BankParam" />
+
+	<Fields>
+		<Field id="jrjgbm" desc="开户银行金融机构编码" edittype="text" datatype="string" size="30" require="true" status="F" xpath="/jrjgbm" />
+		<Field id="zh" desc="账号" edittype="text" datatype="string" size="35" require="true" xpath="/zh" />
+		<Field id="zhzl" desc="账户种类" edittype="select" translated="DATA_DIC.300004" datatype="string" size="30" require="true" status="F" xpath="/zhzl" />
+		<Field id="zhlx" desc="账户类型" edittype="select" translated="DATA_DIC.300012" datatype="string" size="30" require="false" status="F" xpath="/zhlx" />
+		<Field id="khrq" desc="开户日期" edittype="text" datatype="date" size="30" require="true" status="F" xpath="/khrq"  />
+		<Field id="xhrq" desc="销户日期" edittype="text" datatype="date" size="30" require="false" status="F" xpath="/xhrq" />
+		<Field id="zhzt" desc="账户状态" edittype="select" translated="DATA_DIC.300006" datatype="string" size="30" require="true" status="F" xpath="/zhzt" />
+		<Field id="bz" desc="币种" edittype="select" translated="DATA_DIC.300005" datatype="string" size="30" require="true" xpath="/bz" />
+		<Field id="sfjrbzk" desc="是否为军人保障卡" edittype="select" translated="DATA_DIC.300013" datatype="string" size="30" require="true" status="F" xpath="/sfjrbzk" />
+		<Field id="sfshbzk" desc="是否为社会保障卡" edittype="select" translated="DATA_DIC.300013" datatype="string" size="30" require="true" status="F" xpath="/sfshbzk" />
+		<Field id="hsjg" desc="核实结果" edittype="select" translated="DATA_DIC.300014" datatype="string" size="30" require="true" status="F" xpath="/hsjg" />
+		<Field id="wfhsyy" desc="无法核实原因" edittype="select" translated="DATA_DIC.300015" datatype="string" size="30" require="false" status="F" xpath="/wfhsyy" />
+		<Field id="czff" desc="处置方法" edittype="checkbox" translated="DATA_DIC.300016" datatype="string" size="30" require="false" xpath="/czff" />
+		<Field id="xxlx" desc="信息类型" edittype="select" translated="DATA_DIC.300002" datatype="string" size="30" require="true" status="F" xpath="/xxlx" />
+		<Field id="khqd" desc="开户渠道" edittype="select" translated="DATA_DIC.300017" datatype="string" size="30" require="true" status="F" xpath="/khqd" />
+		<Field id="remarks" desc="备注" edittype="text" datatype="string" size="20" require="false" status="F" xpath="/remarks" />
+		
+		<Field id="fgmjyqd" desc="开通的非柜面交易渠道" edittype="select" translated="DATA_DIC.300025" datatype="string" size="30" require="false" status="F" xpath="/fgmjyqd" />
+		<Field id="sflmzh" desc="是否为联名账户" edittype="select" translated="DATA_DIC.300026" datatype="string" size="30" require="false" status="F" xpath="/sflmzh" />
+		<Field id="khdqdm" desc="开户地地区代码" edittype="text" datatype="string" size="30" require="false" status="F" xpath="/khdqdm" />
+	</Fields>
+	<Where>
+	</Where>
+<Operations>
+	<Button id="btBack" name="btBack" desc="返回" operation=""
+				url="#" txn="" />  
+		 
+	<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
+				url="/fpages/dataaudit/ftl/DszhQuery.ftl" updateClass="com.huateng.report.update.DszhAddUpdate" txn="" />   
+</Operations>
+</CommQry>

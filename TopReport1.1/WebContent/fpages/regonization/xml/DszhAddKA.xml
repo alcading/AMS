@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="" navigate="" type="form"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname=""><!-- com.huateng.report.update.DszhAdd -->
+	<Include id="BankParam" />
+
+	<Fields>
+		<Field id="zh" desc="账号" edittype="text" datatype="string" size="35" require="false" xpath="/zh" />
+		<Field id="kh" desc="卡号" edittype="text" datatype="string" size="35" require="false" xpath="/kh" />
+		<Field id="kdqr" desc="卡到期日" edittype="text" datatype="date" size="30" require="false" status="F" xpath="/kdqr" />
+		<Field id="zhjz" desc="账户介质" edittype="select" translated="DATA_DIC.300010" datatype="string" size="30" require="false" status="F" xpath="/zhjz" />
+		<Field id="xkrq" desc="销卡日期" edittype="text" datatype="date" size="30" require="false" status="F" xpath="/xkrq"  />
+		<Field id="kzt" desc="卡状态" edittype="select" translated="DATA_DIC.300011" datatype="string" size="30" require="false" status="F" xpath="/kzt" />
+	</Fields>
+	<Where>
+	</Where>
+<Operations>
+	<Button id="btBack" name="btBack" desc="返回" operation=""
+				url="#" txn="" />  
+		 
+	<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
+				url="/fpages/dataaudit/ftl/DszhQueryKA.ftl" updateClass="com.huateng.report.imports.updater.DszhQueryKAUpdateAndSave" txn="" />   
+</Operations>
+</CommQry>

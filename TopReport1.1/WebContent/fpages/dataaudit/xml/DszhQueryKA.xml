@@ -28,14 +28,24 @@
 		<Field id="kzt" desc="卡状态" edittype="select" translated="DATA_DIC.300011" datatype="string" size="20" require="false" xpath="/kzt" />
 	</Fields>
 
-	<Parameters></Parameters>
+	<Parameters>
+	</Parameters>
 	<Where>
 	</Where>
 
-	<Operations>
+	<Operations>	
 	
 		<Button id="btMod" name="btMod" desc="修改" 
-				operation="" url="#" show="" group="" txn=""  icon="icon-add"/>
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>
+				
+		<!-- <Button id="btAdd" name="btAdd" desc="新增" 
+				operation="href" url="/fpages/regonization/ftl/DszhAddKA.ftl" show="" group="" txn=""  icon="icon-add"/> -->
+				
+		<Button id="btNew" name="btNew" desc ="CurrencyManEntry.button.btNew" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add"/>
+		<Button id="btSave" name="btSave" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.DszhQueryKAUpdateAndSave"
+			url="/fpages/dataaudit/ftl/DszhQueryKA.ftl" txn="" />
 	</Operations>
 	
 	

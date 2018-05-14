@@ -25,8 +25,7 @@
 		<Field id="kzt" desc="卡状态" edittype="select" translated="DATA_DIC.300011" datatype="string" size="20" require="false" xpath="/kzt" />
 	</Fields>
 <Operations>
-    <Button id="btMod" name="btMod" desc="联名账户信息" 
-				operation="" url="#" show="" group="" txn=""  icon="icon-add"/>
+
 	<Button id="btBack" name="btBack" desc="返回" operation=""
 				url="#" txn="" />  
 	<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"

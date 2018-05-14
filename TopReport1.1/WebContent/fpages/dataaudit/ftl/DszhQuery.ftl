@@ -35,9 +35,10 @@ window.onload=function(){
 */
 
 window.onload=function(){
-	currentDate="2018-04-01";
+	currentDate="2017-09-28";
     DszhQuery_interface_dataset.setValue("jlrq", currentDate);
 }
+
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
  function btSave_postSubmit(button) {
 	  	alert("导出成功");

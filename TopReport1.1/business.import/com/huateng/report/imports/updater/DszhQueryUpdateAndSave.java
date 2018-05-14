@@ -38,7 +38,7 @@ public class DszhQueryUpdateAndSave extends BaseUpdate {
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("DszhAdd");
+					.getUpdateResultBeanByID("DszhQueryUpdate");
 
 
 			List<AmsDszh> updateList = new ArrayList<AmsDszh>();
