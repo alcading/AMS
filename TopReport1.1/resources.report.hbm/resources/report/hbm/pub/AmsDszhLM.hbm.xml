@@ -11,11 +11,17 @@
 		<meta attribute="sync-DAO">false</meta>
 		
 			<id
+				name="id"
+				column="ID"
+				type="int"
+			>
+			<generator class="increment" />
+			</id>
+			<property
 				name="zh"
 				column="ZH"
 				type="string"
 			/>
-		
 			<property
 				name="ckrxm"
 				column="CKRXM"

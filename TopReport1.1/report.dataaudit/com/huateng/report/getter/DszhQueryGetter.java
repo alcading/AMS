@@ -57,7 +57,7 @@ public class DszhQueryGetter extends BaseGetter{
 		int pageSize = this.getResult().getPage().getEveryPage();
 		int pageIndex = this.getResult().getPage().getCurrentPage();
 		
-		hql.append("from AmsDszh A where 1 = 1 ");
+		hql.append("from AmsDszh A,Globalinfo B where 1 = 1 ");
 		
 		if(StringUtils.isNotBlank(ckrxm)){
 			hql.append(" and A.ckrxm = '"+ckrxm.trim()+"' ");

@@ -22,6 +22,8 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 
 	private boolean select;
 	
+//	private String lbhdate;
+	
 	private String ckrxm;
 	private String ckrsfzjzl;
 	private String ckrsfzjhm;
@@ -29,6 +31,8 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String dqdm;
 	private String ckrlb;
 	private String ckrgjdq;
+	
+
 	private String ckrxb;
 	private String ckryb;
 	private String ckrdz;
@@ -82,7 +86,12 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 		return fgmjyqd;
 	}
 
-
+//	public String getLbhdate() {
+//		return lbhdate;
+//	}
+//	public void setLbhdate(String lbhdate) {
+//		this.lbhdate = lbhdate;
+//	}
 
 	public void setFgmjyqd(String fgmjyqd) {
 		this.fgmjyqd = fgmjyqd;
@@ -447,6 +456,7 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 			String jlzt, String reserve4, String reserve5, String jlrq, String ismodify, String fgmjyqd, String sflmzh,
 			String khdqdm, String report_status, String jgdm) {
 		super();
+		
 		this.ckrxm = ckrxm;
 		this.ckrsfzjzl = ckrsfzjzl;
 		this.ckrsfzjhm = ckrsfzjhm;

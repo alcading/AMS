@@ -16,9 +16,9 @@
 	<Include id="BankParam" />
 
 	<Fields>
-		<Field id="ckrxm" desc="存款人姓名" edittype="text" datatype="string" size="30" require="false" xpath="/ckrxm" />
-		<Field id="ckrsfzjzl" desc="存款人身份证件种类" edittype="select" translated="DATA_DIC.300003" datatype="string" size="20" require="false" xpath="/ckrsfzjzl" readonly="false" />
-		<Field id="ckrsfzjhm" desc="存款人身份证件号码" edittype="text" datatype="string" size="20" require="false" xpath="/ckrsfzjhm" readonly="false" />
+		<Field id="ckrxm" desc="存款人姓名" edittype="text" datatype="string" size="30" require="true" xpath="/ckrxm" />
+		<Field id="ckrsfzjzl" desc="存款人身份证件种类" edittype="select" translated="DATA_DIC.300003" datatype="string" size="20" require="true" xpath="/ckrsfzjzl" readonly="false" />
+		<Field id="ckrsfzjhm" desc="存款人身份证件号码" edittype="text" datatype="string" size="20" require="true" xpath="/ckrsfzjhm" readonly="false" />
 		<Field id="sfzjdqr" desc="身份证件到期日" edittype="text" datatype="date" size="20" require="false" xpath="/sfzjdqr" />
 		<Field id="dqdm" desc="发证机关所在地的地区代码" edittype="text" datatype="string" size="20" require="false" xpath="/dqdm" />
 		<Field id="ckrlb" desc="存款人类别" edittype="select" translated="DATA_DIC.300008" datatype="string" size="20" require="false" xpath="/ckrlb" />

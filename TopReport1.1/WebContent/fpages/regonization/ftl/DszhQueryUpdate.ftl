@@ -32,33 +32,33 @@
 								<td align="center" class="labeltd">存款人国籍/地区 </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="ckrgjdq"/></td>
 								<td align="center" nowrap class="labeltd">存款人性别</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="ckrxb" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="ckrxb" /></td>
 								<td align="center" nowrap class="labeltd">存款人邮编</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="ckryb" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="ckryb" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">存款人地址 </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="ckrdz"/></td>
 								<td align="center" nowrap class="labeltd">存款人电话</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="ckrdh" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="ckrdh" /></td>
 								<td align="center" nowrap class="labeltd">代理人名称</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="dlrmc" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="dlrmc" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">代理人身份证件种类 </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="dlrsfzjzl"/></td>
 								<td align="center" nowrap class="labeltd">代理人身份证件号码</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="dlrsfzjhm" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="dlrsfzjhm" /></td>
 								<td align="center" nowrap class="labeltd">代理人国籍/地区</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="dlrgjdq" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="dlrgjdq" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">代理人电话 </td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="dlrdh"/></td>
 								<td align="center" nowrap class="labeltd">开户银行金融机构编码</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="jrjgbm" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="jrjgbm" /></td>
 								<td align="center" nowrap class="labeltd">账号</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="zh" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="zh" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">账户种类</td>
@@ -72,50 +72,48 @@
 								<td align="center" class="labeltd">绑定I类账户开户银行金融机构编码</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="ylzhjgbm"/></td>
 								<td align="center" nowrap class="labeltd">开户日期</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="khrq" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="khrq" /></td>
 								<td align="center" nowrap class="labeltd">销户日期</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="xhrq" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="xhrq" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">账户状态</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="zhzt"/></td>
 								<td align="center" nowrap class="labeltd">币种</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="bz" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="bz" /></td>
 								<td align="center" nowrap class="labeltd">是否为军人保障卡</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="sfjrbzk" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="sfjrbzk" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">是否为社会保障卡</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="sfshbzk"/></td>
 								<td align="center" nowrap class="labeltd">核实结果</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="hsjg" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="hsjg" /></td>
 								<td align="center" nowrap class="labeltd">无法核实原因</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="wfhsyy" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="wfhsyy" /></td>
 							</tr>
 							<tr>
 								<td align="center" nowrap class="labeltd">信息类型</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="xxlx" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="xxlx" /></td>
 								<td align="center" nowrap class="labeltd">开户渠道</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="khqd" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="khqd" /></td>
 								<td align="center" nowrap class="labeltd">是否为联名账户</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="sflmzh" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="sflmzh" /></td>
 							</tr>
 							<tr>
 								<td align="center" class="labeltd">备注</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="remarks"/></td>
 								<td align="center" nowrap class="labeltd">开通的非柜面交易渠道</td>
-								<td  class="datatd"> <@CommonQueryMacro.SingleField fId="fgmjyqd" /></td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="fgmjyqd" /></td>
 								<td align="center" class="labeltd">开户地地区代码</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="khdqdm"/></td>
 							</tr>
 							<tr>
+								<td align="center" class="labeltd">处置方法</td>
+								<td class="datatd"> <@CommonQueryMacro.SingleField fId="czff"/></td>
 								<td align="center" class="labeltd">是否通过验证</td>
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="ismodify"/></td>
 								
-							</tr>
-							<tr>
-								<td align="center" class="labeltd">处置方法</td>
-								<td class="datatd" colspan="5"> <@CommonQueryMacro.SingleField fId="czff"/></td>
 							</tr>
 						</table>
 				</@CommonQueryMacro.GroupBox>

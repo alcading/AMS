@@ -25,6 +25,7 @@ public class DszhQueryKAGetter extends BaseGetter{
 			Map para=this.getCommQueryServletRequest().getParameterMap();
 			String zh = (String)para.get("zh");
 			List<KXXB> list = BaseDao.queryDszhKAUpdate(zh);
+			
 			ResultMng.fillResultByList(getCommonQueryBean(),
 					getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);

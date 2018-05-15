@@ -6,9 +6,21 @@
 <@CommonQueryMacro.CommonQuery id="DszhQuery" init="true" submitMode="all" navigate="false">
 <table width="1349px">
 	<tr>
+		
+		<td>
+			<@CommonQueryMacro.GroupBox id="guoup1" label="" expand="true">
+			<table frame=void class="grouptable" width="30%">
+				<tr>
+					<td align="center" class="labeltd">数据日期</td>
+					<td class="datatd"> <@CommonQueryMacro.SingleField fId="lbhdate"/></td>
+				</tr>
+			</table>
+			</@CommonQueryMacro.GroupBox>
+		</td>
+	</tr>
+	<tr>
 		<td>
 			<@CommonQueryMacro.Interface id="interface" label="个人结算账户" btnNm="查询" colNm=8/>
-			
 		</td>
 	</tr>
 	
@@ -89,6 +101,7 @@ function btMod_onClickCheck(button) {
 	}
 	showUpdate(zh);
 	flushCurrentPage();
+	
 }
 
 

@@ -37,7 +37,7 @@ private static final Logger logger = Logger.getLogger(DszhAddUpdate.class);
 
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("DszhAddLM");
+					.getUpdateResultBeanByID("DszhQueryLM");
 
 
 			List<LMCKXXB> updateList = new ArrayList<LMCKXXB>();

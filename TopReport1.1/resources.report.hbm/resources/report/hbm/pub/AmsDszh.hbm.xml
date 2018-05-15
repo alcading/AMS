@@ -15,7 +15,7 @@
 				column="ZH"
 				type="string"
 			/>
-		
+			
 			<property
 				name="ckrxm"
 				column="CKRXM"

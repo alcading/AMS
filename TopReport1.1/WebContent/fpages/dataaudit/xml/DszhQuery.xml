@@ -34,6 +34,8 @@
 		<Field id="ismodify" desc="是否通过验证" edittype="select" translated="DATA_DIC.300007" datatype="string" size="20" require="false" xpath="/ismodify" default=""/>
 		<Field id="report_status" desc="报送状态" edittype="select" translated="DATA_DIC.300029" datatype="string" size="15" require="false" xpath="/report_status" default=""/>
 		
+		<Field id="lbhdate" desc="数据日期" edittype="text" datatype="date" size="20" require="false" xpath="/lbhdate" readonly="true"/>
+		
 	</Fields>
 
 	<Parameters>

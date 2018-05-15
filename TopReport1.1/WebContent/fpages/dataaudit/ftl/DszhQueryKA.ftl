@@ -2,8 +2,6 @@
 <@CommonQueryMacro.page title="介质信息">
 <@CommonQueryMacro.CommonQuery id="DszhQueryKA" init="true" submitMode="all" navigate="false">
 <table width="1349px">
-	
-	
 	<tr>
 		<td>
 			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-,btNew"  fieldStr="select[40],zh,kh,kdqr,zhjz,xkrq,kzt"  width="100%" hasFrame="true" height="300" readonly="true"/>
@@ -25,6 +23,23 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
+var name = null;
+window.onload=function(){
+	var sname = GetQueryString("zh");
+	 
+	if(sname!=null) 
+	{ 
+		name = decodeURIComponent(sname); 
+	}
+}
+
+function GetQueryString(name) { 
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i"); 
+	var r = window.location.search.substr(1).match(reg); 
+	if (r!=null) return (r[2]); 
+	return null; 
+}
+
 function btMod_onClickCheck(button){
     var rec = DszhQueryKA_dataset.firstUnit;
 	
@@ -51,11 +66,18 @@ function showUpdate(kh){
 }
 
 function btNew_onClick(button){
-//	var zh = DszhQueryUpdate_dataset.getValue("zh");
-//	alert(zh);
+	DszhQueryKA_dataset.setValue("zh",name);
 	subwindow_signWindow.show();
 	  
 }
+
+function btSave_postSubmit(button)
+  {
+	button.url="#";
+	//alert("保存成功");
+	subwindow_signWindow.hide();
+	DszhQueryKA_dataset.flushData(DszhQueryKA_dataset.pageIndex);
+  }
 
 function signWindow_floatWindow_beforeClose(subwindow){
 	
