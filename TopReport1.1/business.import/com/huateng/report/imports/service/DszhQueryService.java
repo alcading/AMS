@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.huateng.ebank.business.common.PageQueryCondition;
+import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 
@@ -30,23 +32,18 @@ public class DszhQueryService {
 		return (DszhQueryService)ApplicationContextUtils.getBean(DszhQueryService.class.getName());
 	}
 
-	public void saveDelUpdata(List delList,List insertList,List updateList) throws CommonException{
+	public void saveDelUpdata(List delList, List insertList,List updateList) throws CommonException{
 		ROOTDAO  rootDAO = ROOTDAOUtils.getROOTDAO();
 
 		//新增
-		/*
+		
 		for(Iterator it = insertList.iterator();it.hasNext();)
 		{
-			BiImportFileConfig newwrd = (BiImportFileConfig) it.next();
-			if(newwrd.getBatchNo() == null) {
-				newwrd.setBatchNo(0);
-			}
-			if(newwrd.getSeqNo() == null) {
-				newwrd.setSeqNo(0);
-			}
+			AmsDszh newwrd = (AmsDszh)it.next();
+			
 			rootDAO.save(newwrd);
 		}
-		*/
+		
 		//修改
 		AmsDszh newwrd = null;
 		for(Iterator it = updateList.iterator();it.hasNext();)
@@ -56,28 +53,36 @@ public class DszhQueryService {
 //			System.out.println(newwrd.getClass());
 //			if(list!=null && !"".equals(list)) {
 				rootDAO.update(newwrd);
-//			}
-			
+////			}
+//			
 		}
 		//删除
-		/*
+		
 		for(Iterator it = delList.iterator();it.hasNext();)
 		{
-			BiImportFileConfig newwrd = (BiImportFileConfig) it.next();
-			String importidFileid=newwrd.getId();
-//			List delimportList=rootDAO.queryByCondition("importFileId='"+importidFileid+"'", "BiImportFieldConfig");
-			List delimportList=rootDAO.queryByCondition("from BiImportFieldConfig b where b.importFileId = '"+importidFileid+"'");
-			List delxmlList=rootDAO.queryByCondition("from BiImportXmlConfig b where b.guid ='"+importidFileid+"'");
-			for(int i=0;i<delimportList.size();i++){
-				BiImportFieldConfig delimport=(BiImportFieldConfig)delimportList.get(i);
-				rootDAO.delete(delimport);
-			}	
-			for(int i=0;i<delxmlList.size();i++){
-				BiImportXmlConfig delxml=(BiImportXmlConfig)delxmlList.get(i);
-				rootDAO.delete(delxml);
-			}	
+			newwrd = (AmsDszh) it.next();
+			
 			rootDAO.delete(newwrd);
 		}
-		*/
+		
+	}
+	
+	/**
+	 * 分页服务
+	 * @param pageIndex
+	 * @param maxRows
+	 * @param hql
+	 * @return
+	 * @throws CommonException
+	 */
+	public PageQueryResult pageQueryByHql(int pageIndex,int maxRows,String hql) throws CommonException {
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		PageQueryResult pageQueryResult = null;
+		PageQueryCondition queryCondition = new PageQueryCondition();
+		queryCondition.setQueryString(hql);
+		queryCondition.setPageIndex(pageIndex);
+		queryCondition.setPageSize(maxRows);
+		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
+		return pageQueryResult;
 	}
 }

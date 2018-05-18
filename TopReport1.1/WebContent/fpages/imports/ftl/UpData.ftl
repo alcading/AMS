@@ -28,11 +28,14 @@
 </td></tr></table>
 </@CommonQueryMacro.CommonQueryTab>
 <script type="text/javascript">
-	$(document).ready(function() {	
-	       var swf='${contextPath}/templets/updata/uploadify.swf';
-	       var uploader='${contextPath}/scripts/uploadify?someKey="a"';	  
-		   initUpLoadify(getDatasetByID('UpData_dataset'),swf,uploader);
-     });
+	
+       var swf='${contextPath}/templets/updata/uploadify.swf';
+       
+       var uploader='${contextPath}/scripts/uploadify?someKey="a"';	 
+       
+	   initUpLoadify(getDatasetByID('UpData_dataset'),swf,uploader);
+	   
+    
      
     function uptable_answer_onRefresh(cell,value,record){
               if(record){

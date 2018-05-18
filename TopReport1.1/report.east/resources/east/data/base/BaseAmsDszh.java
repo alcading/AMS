@@ -15,9 +15,14 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	// Fields
 
 	/**
+
 	 * 
 	 */
 	private static final long serialVersionUID = -7981634766426960189L;
+
+	private boolean select;
+	
+//	private String lbhdate;
 	
 	private String ckrxm;
 	private String ckrsfzjzl;
@@ -26,6 +31,8 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String dqdm;
 	private String ckrlb;
 	private String ckrgjdq;
+	
+
 	private String ckrxb;
 	private String ckryb;
 	private String ckrdz;
@@ -38,11 +45,11 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String jrjgbm;
 	private String zh;
 	private String zhzl;
-	private String kh;
-	private String kdqr;
-	private String zhjz;
-	private String xkrq;
-	private String kzt;
+	//private String kh;
+	//private String kdqr;
+	//private String zhjz;
+	//private String xkrq;
+	//private String kzt;
 	private String zhlx;
 	private String ylzhzh;
 	private String ylzhjgbm;
@@ -59,80 +66,68 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String khqd;
 	private String remarks;
 	private String jlzt;
-	private String reserve1;
-	private String reserve2;
-	private String reserve3;
 	private String reserve4;
 	private String reserve5;
 	private String jlrq;
 	private String ismodify;
+	private String fgmjyqd;
+	private String sflmzh;
+	
+	private String report_status;
+	private String jgdm;
+	
+	public boolean isSelect() {
+		return select;
+	}
+	public void setSelect(boolean select) {
+		this.select = select;
+	}
+	public String getFgmjyqd() {
+		return fgmjyqd;
+	}
 
+//	public String getLbhdate() {
+//		return lbhdate;
+//	}
+//	public void setLbhdate(String lbhdate) {
+//		this.lbhdate = lbhdate;
+//	}
+
+	public void setFgmjyqd(String fgmjyqd) {
+		this.fgmjyqd = fgmjyqd;
+	}
+
+
+
+	public String getSflmzh() {
+		return sflmzh;
+	}
+
+
+
+	public void setSflmzh(String sflmzh) {
+		this.sflmzh = sflmzh;
+	}
+
+
+
+	public String getKhdqdm() {
+		return khdqdm;
+	}
+
+
+
+	public void setKhdqdm(String khdqdm) {
+		this.khdqdm = khdqdm;
+	}
+
+	private String khdqdm;
 	// Constructors
 
 	/** default constructor */
 	public BaseAmsDszh() {
 	}
 
-	
-
-	/** full constructor */
-	public BaseAmsDszh(String ckrsfzjzl, String ckrsfzjhm, String sfzjdqr, String dqdm, String ckrlb,
-			String ckrgjdq, String ckrxb, String ckryb, String ckrdz, String ckrdh, String dlrmc, String dlrsfzjzl,
-			String dlrsfzjhm, String dlrgjdq, String dlrdh, String jrjgbm, String zh, String zhzl, String kh,
-			String kdqr, String zhjz, String xkrq, String kzt, String zhlx, String ylzhzh, String ylzhjgbm, String khrq,
-			String xhrq, String zhzt, String bz, String sfjrbzk, String sfshbzk, String hsjg, String wfhsyy,
-			String czff, String xxlx, String khqd, String remarks, String jlzt, String reserve1, String reserve2,
-			String reserve3, String reserve4, String reserve5,String jlrq,String ismodify) {
-		
-		this.ckrsfzjzl = ckrsfzjzl;
-		this.ckrsfzjhm = ckrsfzjhm;
-		this.sfzjdqr = sfzjdqr;
-		this.dqdm = dqdm;
-		this.ckrlb = ckrlb;
-		this.ckrgjdq = ckrgjdq;
-		this.ckrxb = ckrxb;
-		this.ckryb = ckryb;
-		this.ckrdz = ckrdz;
-		this.ckrdh = ckrdh;
-		this.dlrmc = dlrmc;
-		this.dlrsfzjzl = dlrsfzjzl;
-		this.dlrsfzjhm = dlrsfzjhm;
-		this.dlrgjdq = dlrgjdq;
-		this.dlrdh = dlrdh;
-		this.jrjgbm = jrjgbm;
-		this.zh = zh;
-		this.zhzl = zhzl;
-		this.kh = kh;
-		this.kdqr = kdqr;
-		this.zhjz = zhjz;
-		this.xkrq = xkrq;
-		this.kzt = kzt;
-		this.zhlx = zhlx;
-		this.ylzhzh = ylzhzh;
-		this.ylzhjgbm = ylzhjgbm;
-		this.khrq = khrq;
-		this.xhrq = xhrq;
-		this.zhzt = zhzt;
-		this.bz = bz;
-		this.sfjrbzk = sfjrbzk;
-		this.sfshbzk = sfshbzk;
-		this.hsjg = hsjg;
-		this.wfhsyy = wfhsyy;
-		this.czff = czff;
-		this.xxlx = xxlx;
-		this.khqd = khqd;
-		this.remarks = remarks;
-		this.jlzt = jlzt;
-		this.reserve1 = reserve1;
-		this.reserve2 = reserve2;
-		this.reserve3 = reserve3;
-		this.reserve4 = reserve4;
-		this.reserve5 = reserve5;
-		this.jlrq = jlrq;
-		this.ismodify = ismodify;
-	}
-
-	
 	public String getCkrxm() {
 		return ckrxm;
 	}
@@ -284,46 +279,46 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	public void setZhzl(String zhzl) {
 		this.zhzl = zhzl;
 	}
-
-	public String getKh() {
-		return kh;
-	}
-
-	public void setKh(String kh) {
-		this.kh = kh;
-	}
-
-	public String getKdqr() {
-		return kdqr;
-	}
-
-	public void setKdqr(String kdqr) {
-		this.kdqr = kdqr;
-	}
-
-	public String getZhjz() {
-		return zhjz;
-	}
-
-	public void setZhjz(String zhjz) {
-		this.zhjz = zhjz;
-	}
-
-	public String getXkrq() {
-		return xkrq;
-	}
-
-	public void setXkrq(String xkrq) {
-		this.xkrq = xkrq;
-	}
-
-	public String getKzt() {
-		return kzt;
-	}
-
-	public void setKzt(String kzt) {
-		this.kzt = kzt;
-	}
+//
+//	public String getKh() {
+//		return kh;
+//	}
+//
+//	public void setKh(String kh) {
+//		this.kh = kh;
+//	}
+//
+//	public String getKdqr() {
+//		return kdqr;
+//	}
+//
+//	public void setKdqr(String kdqr) {
+//		this.kdqr = kdqr;
+//	}
+//
+//	public String getZhjz() {
+//		return zhjz;
+//	}
+//
+//	public void setZhjz(String zhjz) {
+//		this.zhjz = zhjz;
+//	}
+//
+//	public String getXkrq() {
+//		return xkrq;
+//	}
+//
+//	public void setXkrq(String xkrq) {
+//		this.xkrq = xkrq;
+//	}
+//
+//	public String getKzt() {
+//		return kzt;
+//	}
+//
+//	public void setKzt(String kzt) {
+//		this.kzt = kzt;
+//	}
 
 	public String getZhlx() {
 		return zhlx;
@@ -453,29 +448,62 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 		this.jlzt = jlzt;
 	}
 
-	public String getReserve1() {
-		return reserve1;
+	public BaseAmsDszh(String ckrxm, String ckrsfzjzl, String ckrsfzjhm, String sfzjdqr, String dqdm, String ckrlb,
+			String ckrgjdq, String ckrxb, String ckryb, String ckrdz, String ckrdh, String dlrmc, String dlrsfzjzl,
+			String dlrsfzjhm, String dlrgjdq, String dlrdh, String jrjgbm, String zh, String zhzl, String zhlx,
+			String ylzhzh, String ylzhjgbm, String khrq, String xhrq, String zhzt, String bz, String sfjrbzk,
+			String sfshbzk, String hsjg, String wfhsyy, String czff, String xxlx, String khqd, String remarks,
+			String jlzt, String reserve4, String reserve5, String jlrq, String ismodify, String fgmjyqd, String sflmzh,
+			String khdqdm, String report_status, String jgdm) {
+		super();
+		
+		this.ckrxm = ckrxm;
+		this.ckrsfzjzl = ckrsfzjzl;
+		this.ckrsfzjhm = ckrsfzjhm;
+		this.sfzjdqr = sfzjdqr;
+		this.dqdm = dqdm;
+		this.ckrlb = ckrlb;
+		this.ckrgjdq = ckrgjdq;
+		this.ckrxb = ckrxb;
+		this.ckryb = ckryb;
+		this.ckrdz = ckrdz;
+		this.ckrdh = ckrdh;
+		this.dlrmc = dlrmc;
+		this.dlrsfzjzl = dlrsfzjzl;
+		this.dlrsfzjhm = dlrsfzjhm;
+		this.dlrgjdq = dlrgjdq;
+		this.dlrdh = dlrdh;
+		this.jrjgbm = jrjgbm;
+		this.zh = zh;
+		this.zhzl = zhzl;
+		this.zhlx = zhlx;
+		this.ylzhzh = ylzhzh;
+		this.ylzhjgbm = ylzhjgbm;
+		this.khrq = khrq;
+		this.xhrq = xhrq;
+		this.zhzt = zhzt;
+		this.bz = bz;
+		this.sfjrbzk = sfjrbzk;
+		this.sfshbzk = sfshbzk;
+		this.hsjg = hsjg;
+		this.wfhsyy = wfhsyy;
+		this.czff = czff;
+		this.xxlx = xxlx;
+		this.khqd = khqd;
+		this.remarks = remarks;
+		this.jlzt = jlzt;
+		this.reserve4 = reserve4;
+		this.reserve5 = reserve5;
+		this.jlrq = jlrq;
+		this.ismodify = ismodify;
+		this.fgmjyqd = fgmjyqd;
+		this.sflmzh = sflmzh;
+		this.khdqdm = khdqdm;
+		this.report_status = report_status;
+		this.jgdm = jgdm;
 	}
 
-	public void setReserve1(String reserve1) {
-		this.reserve1 = reserve1;
-	}
 
-	public String getReserve2() {
-		return reserve2;
-	}
-
-	public void setReserve2(String reserve2) {
-		this.reserve2 = reserve2;
-	}
-
-	public String getReserve3() {
-		return reserve3;
-	}
-
-	public void setReserve3(String reserve3) {
-		this.reserve3 = reserve3;
-	}
 
 	public String getReserve4() {
 		return reserve4;
@@ -507,6 +535,19 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 
 	public void setIsmodify(String ismodify) {
 		this.ismodify = ismodify;
+	}
+	public String getReport_status() {
+		return report_status;
+	}
+	public void setReport_status(String report_status) {
+		this.report_status = report_status;
+	}
+	public String getJgdm() {
+		return jgdm;
+	}
+	public void setJgdm(String jgdm) {
+		this.jgdm = jgdm;
+
 	}
 
 }

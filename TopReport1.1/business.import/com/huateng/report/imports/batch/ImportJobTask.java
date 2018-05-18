@@ -57,7 +57,7 @@ public class ImportJobTask {
 		
 		//2：检查后台导数是否正确完成
 		//拼装错误文件路径，格式如：/home/jgbs/source_data/20150228/error
-		String filePath = ReportUtils.getSysParamsValue(Constants.PARAM_DIR, Constants.PARAM_DIR_0001, "D:/bad");
+		String filePath = ReportUtils.getSysParamsValue(Constants.PARAM_DIR, Constants.PARAM_DIR_0001, "G:/Temp");
 		filePath = filePath.substring(0, filePath.lastIndexOf("/")) + "/source_data/" + workdate + filePath.substring( filePath.lastIndexOf("/"));
 		File errDir = new File(filePath);
 		if (errDir.isDirectory() && errDir.exists()) {
@@ -65,7 +65,7 @@ public class ImportJobTask {
 //				ExceptionUtil.throwCommonException("后台执行batch.sh出错，请检查对应" + filePath + "文件夹下的文件！");
 			}
 		}else{
-			System.out.println("请注意：目录" + filePath + "不存在！");
+			System.out.println("请注意：目录" + filePath + "不存在！！！");
 		}
 		
 		//3：前台导数

@@ -10,6 +10,7 @@ package com.huateng.ebank.business.common.service;
 
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -694,7 +695,9 @@ public class BctlService {
 				}
 				bctlDel.setStatus(SystemConstant.FLAG_OFF);
 				bctlDel.setLastUpdTlr(GlobalInfo.getCurrentInstance().getTlrno());
-				bctlDel.setLastUpdDate(DateUtil.getCurrentDate());
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String dateString = formatter.format(DateUtil.getCurrentDate());
+				bctlDel.setLastUpdDate(dateString);
 				dao.update(bctlDel);
 			}
 		}
@@ -737,7 +740,9 @@ public class BctlService {
 				bctlModify.setBrattr(bean.getBrattr());
 				bctlModify.setOtherAreaFlag(bean.getOtherAreaFlag());
 				bctlModify.setLastUpdTlr(GlobalInfo.getCurrentInstance().getTlrno());
-				bctlModify.setLastUpdDate(DateUtil.getCurrentDate());
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String dateString = formatter.format(DateUtil.getCurrentDate());
+				bctlModify.setLastUpdDate(dateString);
 				bctlModify.setBrtype(bean.getBrtype());
 				bctlModify.setBillMailAddr(bean.getBillMailAddr());
 				bctlModify.setAccumFundExchno(bean.getAccumFundExchno());
@@ -765,7 +770,9 @@ public class BctlService {
 				bean.setBrcode(commonService.getBrcodeID());
 				bean.setStatus(SystemConstant.FLAG_ON);
 				bean.setLastUpdTlr(GlobalInfo.getCurrentInstance().getTlrno());
-				bean.setLastUpdDate(DateUtil.getCurrentDate());
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				String dateString = formatter.format(DateUtil.getCurrentDate());
+				bean.setLastUpdDate(dateString);
 				dao.insert(bean);
 			}
 		}

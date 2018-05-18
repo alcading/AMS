@@ -50,10 +50,10 @@ public class BranchManageQueryGetter extends BaseGetter {
 			String hql = "po.del='F'";
 			 
 			if (!DataFormat.isEmpty(brno)) {
-				hql = "brno like '%" + brno + "%' and " + hql;
+				hql = "po.brno like '%" + brno + "%' and " + hql;
 			}
 			if (!DataFormat.isEmpty(brname)) {
-				hql = "brname like '%" + brname + "%' and " + hql;
+				hql = "po.brname like '%" + brname + "%' and " + hql;
 			}
 			if(qst!=null && qst.length()>0){
 				   hql+=(" and po.st ='"+qst+"'");

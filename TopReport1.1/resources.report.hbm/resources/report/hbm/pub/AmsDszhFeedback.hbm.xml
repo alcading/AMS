@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resources.east.data.pub">
+	<class
+		name="AmsDszhFeedback"
+		table="AMS_FEEDBACKFILE_LOG"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+				name="id"
+				column="id"
+				type="int"
+		>
+			<generator class="increment" />
+		</id>
+		<property
+			name="date"
+			column="input_date"
+			type="timestamp"
+			not-null="true"
+		/>
+		<property
+			name="feedback_type"
+			column="feedback_type"
+			type="string"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="file_name"
+			column="file_name"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="success_num"
+			column="success_num"
+			type="int"
+			not-null="false"
+		/>
+		<property
+			name="fail_num"
+			column="fail_num"
+			type="int"
+			not-null="false"
+		/>
+
+
+
+	</class>	
+</hibernate-mapping>

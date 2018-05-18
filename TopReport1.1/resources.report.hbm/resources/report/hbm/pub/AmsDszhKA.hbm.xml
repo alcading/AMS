@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resources.east.data.pub">
+	<class
+		name="KXXB"
+		table="AMS_KXXB"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		
+			<id
+				name="zh"
+				column="ZH"
+				type="string"
+			/>
+		
+			<property
+				name="kh"
+				column="KH"
+				type="string"
+			/>
+			<property
+				name="kdqr"
+				column="KDQR"
+				type="string"
+			/>
+			<property
+				name="zhjz"
+				column="ZHJZ"
+				type="string"
+			/>
+			<property
+				name="xkrq"
+				column="XKRQ"
+				type="string"
+			/>
+			<property
+				name="kzt"
+				column="KZT"
+				type="string"
+			/>
+	 	</class>
+</hibernate-mapping>

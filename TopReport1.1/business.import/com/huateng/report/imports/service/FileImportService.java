@@ -48,8 +48,22 @@ public class FileImportService {
 	 * @throws CommonException
 	 */
 	public String getDefaultImportPath() throws CommonException {
-		String path = ReportUtils.getSysParamsValue(Constants.IMPORT,
-				Constants.DEFAULT_PATH, "D:");
+		String path = ReportUtils.getSysParamsValue(Constants.PARAM_DIR,
+				Constants.PARAM_DIR_0106, "D:");
+		if(path.endsWith("/") || path.endsWith("\\")) {
+			path = path.substring(0, path.length() - 1);
+		}
+		return path;
+	}
+	
+	/**
+	 * 账户管理反馈报文上传路径
+	 * @return
+	 * @throws CommonException
+	 */
+	public String getFeedbackImportPath() throws CommonException {
+		String path = ReportUtils.getSysParamsValue(Constants.PARAM_DIR,
+				Constants.PARAM_DIR_0106, "D:");
 		if(path.endsWith("/") || path.endsWith("\\")) {
 			path = path.substring(0, path.length() - 1);
 		}
