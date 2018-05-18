@@ -33,7 +33,7 @@
 		<Field id="dlrgjdq" desc="代理人国籍/地区" edittype="text" datatype="string" size="30" require="false" xpath="/dlrgjdq" />
 		<Field id="dlrdh" desc="代理人电话" edittype="text" datatype="string" size="30" require="false" xpath="/dlrdh" />
 		<Field id="jrjgbm" desc="开户银行金融机构编码" edittype="text" datatype="string" size="30" require="true" primary="true" xpath="/jrjgbm" readonly="false" />
-		<Field id="zh" desc="账号" edittype="text" datatype="string" size="35" require="true" errmsg="账号不能为空" xpath="/zh" readonly="false" />
+		<Field id="zh" desc="账号" edittype="text" datatype="string" size="35" require="true" errmsg="账号不能为空" xpath="/zh" readonly="true" />
 		<Field id="zhzl" desc="账户种类" edittype="select" translated="DATA_DIC.300004" datatype="string" size="30" require="true" errmsg="账户种类不能为空" xpath="/zhzl" readonly="false" />
 		<Field id="zhlx" desc="账户类型" edittype="select" translated="DATA_DIC.300012" datatype="string" size="30" require="false" xpath="/zhlx" />
 		<Field id="ylzhzh" desc="绑定I类账户账号" edittype="text" datatype="string" size="30" require="false" xpath="/ylzhzh" />

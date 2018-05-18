@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -23,14 +25,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.huateng.commquery.result.MultiUpdateResultBean;
+import com.huateng.commquery.result.ResultMng;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
+import com.huateng.ebank.business.common.service.DataDicService;
+import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.utils.ReportUtils;
 
 import east.utils.tools.DBUtil;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
 import resources.east.data.pub.AmsDszh;
 import resources.east.data.pub.KXXB;
 import resources.east.data.pub.LMCKXXB;
@@ -44,6 +51,10 @@ public class DszhQueryOutput extends BaseUpdate {
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("DszhQuery");
 		String jlrq=updateResultBean.getParameter("jlrq");
+		
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		List<AmsDszh> list = rootDAO.queryByQL2List(" from AmsDszh model where model.jlrq='" + jlrq + "'");
+		
 		BufferedWriter bw=null;
 		String jrjgbm=null;
 		long currentTime = System.currentTimeMillis();
@@ -59,12 +70,12 @@ public class DszhQueryOutput extends BaseUpdate {
 		}
 		StringBuilder bf=new StringBuilder();
 		bf.append(
-				"存款人姓名(存款人子信息)|存款人身份证件种类(存款人子信息)|存款人身份证件号码(存款人子信息)|身份证件到期日(存款人子信息)|发证机关所在地的地区代码(存款人子信息)|存款人类别(存款人子信息)|存款人国籍(存款人子信息)|存款人性别(存款人子信息)|存款人邮编|存款人地址|存款人电话|代理人名称|代理人身份证件种类|代理人身份证件号码|代理人国籍|代理人电话|开户银行金融机构编码（不可变更）|账号（不可变更）|账户种类|卡号（卡子信息）|卡到期日（卡子信息）|账户介质（卡子信息）|销卡日期(卡子信息)|卡状态（卡子信息）|账户类型|绑定I类账户账号(绑定I类账户子信息)|绑定I类账户开户银行金融机构编码(绑定I类账户子信息)|开户日期|销户日期(不可变)|账户状态|币种|是否为军人保障卡|是否为社会保障卡|核实结果|无法核实原因|处置方法|信息类型|开户渠道|备注|开通的非柜面交易渠道|开户地地区代码|是否为联名账户|预留字段4|预留字段5");
+				"存款人姓名(存款人子信息)|存款人身份证件种类(存款人子信息)|存款人身份证件号码(存款人子信息)|身份证件到期日(存款人子信息)|发证机关所在地的地区代码(存款人子信息)|存款人类别(存款人子信息)|存款人国籍(存款人子信息)|存款人性别(存款人子信息)|存款人邮编|存款人地址|存款人电话|代理人名称|代理人身份证件种类|代理人身份证件号码|代理人国籍|代理人电话|开户银行金融机构编码（不可变更）|账号（不可变更）|账户种类|介质号（介质子信息）|介质到期日（介质子信息）|账户介质（介质子信息）|介质注销日期(介质子信息)|介质状态（介质子信息）|账户类型|II、III类户绑定账户账号(绑定账户子信息)|II、III类户绑定账户开户银行金融机构编码(绑定账户子信息)|开户日期|销户日期(不可变)|账户状态|币种|是否为军人保障卡|是否为社会保障卡|核实结果|无法核实原因|处置方法|信息类型|开户渠道|备注|开通的非柜面交易渠道|是否为\"联名账户\"|开户地地区代码|预留字段4|预留字段5");
 		bf.append("\r\n");
-		while (updateResultBean.hasNext()) {
-			AmsDszh amsDszh = new AmsDszh();
-			Map map = updateResultBean.next();
-			mapToObject(amsDszh, map);
+		Iterator it = list.iterator();
+		for(AmsDszh amsDszh:list) {
+//			Map map = updateResultBean.next();
+//			mapToObject(amsDszh, map);
 			String sflmzh = amsDszh.getSflmzh();
 			jrjgbm = amsDszh.getJrjgbm();
 			jlrq = amsDszh.getJlrq();
@@ -91,8 +102,8 @@ public class DszhQueryOutput extends BaseUpdate {
 		try {
 			int min = 10000;
 			int max = 99999;
-			filePath = filePath + "[" + jrjgbm + "]" + "[cams.001.001.01]" + "[" + workDate + "]"
-					+ (new Random().nextInt(max) % (max + min + 1) + min);
+			filePath = filePath + "[" + jrjgbm + "]" + "[cams00100101]" + "[" + workDate
+					+ (new Random().nextInt(max) % (max + min + 1) + min) + "]";
 			File txtFile = new File(filePath + ".txt");
 			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(txtFile), "UTF-8"));
 			bw.write(bf.toString());	
@@ -104,6 +115,7 @@ public class DszhQueryOutput extends BaseUpdate {
 		}
 		return updateReturnBean;
 	}
+	
 
 	public static int outPutFile(String jlrq,String sflmzh, String zh,StringBuilder bf) throws IOException {
 		Integer lmccount=0;
@@ -789,7 +801,7 @@ public class DszhQueryOutput extends BaseUpdate {
 				lmckxxb.setCkrgjdq(builder7.toString());
 				lmckxxb.setCkrxb(builder8.toString());
 				bf.append(amsDszh.getCkrxm() +";"+ lmckxxb.getCkrxm()+"|" + amsDszh.getCkrsfzjzl() +";"+lmckxxb.getCkrsfzjzl()+"|" + amsDszh.getCkrsfzjhm() +";"+lmckxxb.getCkrsfzjhm()+ "|"
-						+ amsDszh.getDqdm() +";"+lmckxxb.getDqdm()+"|" + amsDszh.getSfzjdqr() +";"+lmckxxb.getSfzjdqr()+ "|" + amsDszh.getCkrlb() + ";"+lmckxxb.getCkrlb()+"|"
+						+ amsDszh.getSfzjdqr() +";"+lmckxxb.getSfzjdqr()+"|" + amsDszh.getDqdm() +";"+lmckxxb.getDqdm()+ "|" + amsDszh.getCkrlb() + ";"+lmckxxb.getCkrlb()+"|"
 						+ amsDszh.getCkrgjdq() +";"+lmckxxb.getCkrgjdq()+ "|" + amsDszh.getCkrxb() + ";"+lmckxxb.getCkrxb()+"|" + amsDszh.getCkryb() + "|"
 						+ amsDszh.getCkrdz() + "|" + amsDszh.getCkrdh() + "|" + amsDszh.getDlrmc() + "|"
 						+ amsDszh.getDlrsfzjzl() + "|" + amsDszh.getDlrsfzjhm() + "|" + amsDszh.getDlrgjdq() + "|"
@@ -803,7 +815,7 @@ public class DszhQueryOutput extends BaseUpdate {
 						+ amsDszh.getReserve5());
 			}else{
 				bf.append(amsDszh.getCkrxm() +"|" + amsDszh.getCkrsfzjzl() +"|" + amsDszh.getCkrsfzjhm() + "|"
-						+ amsDszh.getDqdm()+"|" + amsDszh.getSfzjdqr()+ "|" + amsDszh.getCkrlb() +"|"
+						+ amsDszh.getSfzjdqr()+"|" + amsDszh.getDqdm()+ "|" + amsDszh.getCkrlb() +"|"
 						+ amsDszh.getCkrgjdq() + "|" + amsDszh.getCkrxb() +"|" + amsDszh.getCkryb() + "|"
 						+ amsDszh.getCkrdz() + "|" + amsDszh.getCkrdh() + "|" + amsDszh.getDlrmc() + "|"
 						+ amsDszh.getDlrsfzjzl() + "|" + amsDszh.getDlrsfzjhm() + "|" + amsDszh.getDlrgjdq() + "|"

@@ -24,8 +24,14 @@
 	  
 	 function btBack_onClickCheck()
 	 {
-	 	closeWin();
-		//window.location.href = "${contextPath}/fpages/dataaudit/ftl/DszhQuery.ftl";
+	 	//closeWin();
+		
+	 }
+	 
+	 function btBack_onClick()
+	 {
+	 	//closeWin();
+		window.location.href = "${contextPath}/fpages/dataaudit/ftl/DszhQuery.ftl";
 	 }
 
 
