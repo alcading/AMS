@@ -22,6 +22,7 @@ import com.huateng.report.imports.operation.DszhQueryUpdateOperation;
 
 import resources.east.data.pub.KXXB;
 import resources.east.data.pub.LMCKXXB;
+import sun.misc.Perf.GetPerfAction;
 import resources.east.data.pub.LMCKXXB;
 
 public class DszhQueryKAUpdateAndSave extends BaseUpdate {
@@ -37,11 +38,12 @@ public class DszhQueryKAUpdateAndSave extends BaseUpdate {
 
 			String nextUrl = "";
 			
-
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
+			
 			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("DszhQueryKA");
-
+						.getUpdateResultBeanByID("DszhQueryKA");
+			
+			
 
 			List<KXXB> updateList = new ArrayList<KXXB>();
 			List delList = new ArrayList();
@@ -49,23 +51,19 @@ public class DszhQueryKAUpdateAndSave extends BaseUpdate {
 
 
 			while (updateResultBean.hasNext()) {
-				KXXB lmckxxb=new KXXB();
+				KXXB kxxb=new KXXB();
 				Map map = updateResultBean.next();
-				mapToObject(lmckxxb, map);
+				mapToObject(kxxb, map);
 				switch (updateResultBean.getRecodeState()) {
 				case UpdateResultBean.INSERT:
 					
-					insertList.add(lmckxxb);
+					insertList.add(kxxb);
 					break;				
 				case UpdateResultBean.DELETE:
-					delList.add(lmckxxb);
+					delList.add(kxxb);
 					break;
 				case UpdateResultBean.MODIFY:
-					String zh = lmckxxb.getZh();
-					
-					lmckxxb.setZh(zh);
-					
-					updateList.add(lmckxxb);
+					updateList.add(kxxb);
 					
 					break;
 				default:

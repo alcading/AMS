@@ -22,8 +22,9 @@ public class DszhQueryLMUpdate extends BaseGetter {
 			Map para=this.getCommQueryServletRequest().getParameterMap();
 			
 			String zh = (String)para.get("zh");
+			String ckrsfzjhm = (String)para.get("ckrsfzjhm");
 			
-			List<LMCKXXB> list = BaseDao.queryDszhLMUpdate(zh);
+			List<LMCKXXB> list = BaseDao.queryDszhLMUpdate(zh, ckrsfzjhm);
 			
 			System.out.println(list);
 			

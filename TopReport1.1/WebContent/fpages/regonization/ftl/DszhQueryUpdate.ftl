@@ -158,7 +158,6 @@ function btMod_onClick(){
 
 function showUpdate(zh){
 	showWin("介质信息","${contextPath}/fpages/dataaudit/ftl/DszhQueryKA.ftl?zh="+zh,null,null,window);
-	//window.location.href = "${contextPath}/fpages/regonization/ftl/DszhQueryLM.ftl?zh="+zh;
 }
 
 function btModLM_onClick(){
@@ -198,7 +197,8 @@ function btSave_onClickCheck(button){
 	}
 	
 	var jrjgbm = DszhQueryUpdate_dataset.getValue("jrjgbm");
-	if(jrjgbm == null || jrjgbm == ""){
+	if(jrjgbm == null || jrjgbm == "" || jrjgbm.length != 14){
+		alert("金融机构编码不能为空且必须为14位");
 		return false;
 	}
 	
@@ -223,7 +223,8 @@ function btSave_onClickCheck(button){
 	}
 	
 	var zh = DszhQueryUpdate_dataset.getValue("zh");
-	if(zh == null || zh == ""){
+	if(zh == null || zh == "" || zh.length > 32){
+		alert("账号不能为空且最大长度为32");
 		return false;
 	}
 	
@@ -237,6 +238,85 @@ function btSave_onClickCheck(button){
 		return false;
 	}
 	
+	var ckrsfzjhm = DszhQueryUpdate_dataset.getValue("ckrsfzjhm");
+	if(ckrsfzjhm != null || ckrsfzjhm != ""){
+		if(ckrsfzjhm.length > 30){
+			alert("存款人身份证件号码最大长度为30");
+			return false;
+		}
+	}
+	
+	var dqdm = DszhQueryUpdate_dataset.getValue("dqdm");
+	if(dqdm != null || dqdm != "") {
+		if(dqdm.length != 4){
+			alert("地区代码长度必须为4");
+			return false;
+		}
+	}
+	
+	var ckrgjdq = DszhQueryUpdate_dataset.getValue("ckrgjdq");
+	if(ckrgjdq != null || ckrgjdq != "") {
+		if(ckrgjdq.length != 3){
+			alert("国籍地区长度必须为3");
+			return false;
+		}
+	}
+	
+	var ckrdh = DszhQueryUpdate_dataset.getValue("ckrdh");
+	if(ckrdh != null || ckrdh != "") {
+		if(ckrdh.length > 15){
+			alert("存款人电话最大长度为15");
+			return false;
+		}
+	}
+	
+	var dlrsfzjhm = DszhQueryUpdate_dataset.getValue("dlrsfzjhm");
+	if(dlrsfzjhm != null || dlrsfzjhm != "") {
+		if(dlrsfzjhm.length > 30){
+			alert("代理存款人身份证件号码最大长度为30");
+			return false;
+		}
+	}
+	
+	var dlrgjdq = DszhQueryUpdate_dataset.getValue("dlrgjdq");
+	if(dlrgjdq != null || dlrgjdq != "") {
+		if(dlrgjdq.length != 3){
+			alert("代理人国籍/地区长度必须为3");
+			return false;
+		}
+	}
+	
+	var dlrdh = DszhQueryUpdate_dataset.getValue("dlrdh");
+	if(dlrdh != null || dlrdh != "") {
+		if(dlrdh.length > 15){
+			alert("代理人电话最大长度为15");
+			return false;
+		}
+	}
+	
+	var ylzhzh = DszhQueryUpdate_dataset.getValue("ylzhzh");
+	if(ylzhzh != null || ylzhzh != "") {
+		if(ylzhzh.length > 32){
+			alert("绑定I类账户账号最大长度为32");
+			return false;
+		}
+	}
+	
+	var ylzhjgbm = DszhQueryUpdate_dataset.getValue("ylzhjgbm");
+	if(ylzhjgbm != null || ylzhjgbm != "") {
+		if(ylzhjgbm.length != 14){
+			alert("绑定I类账户开户银行金融机构编码必须为14位");
+			return false;
+		}
+	}
+	
+	var khdqdm = DszhQueryUpdate_dataset.getValue("khdqdm");
+	if(khdqdm != null || khdqdm != "") {
+		if(khdqdm.length != 6){
+			alert("开户地地区代码必须为6位");
+			return false;
+		}
+	}
 	closeWin();
 }
 </script>

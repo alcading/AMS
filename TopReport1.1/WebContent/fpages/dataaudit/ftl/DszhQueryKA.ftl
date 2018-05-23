@@ -4,7 +4,7 @@
 <table width="1349px">
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btMod,-,btNew"  fieldStr="select[40],zh,kh,kdqr,zhjz,xkrq,kzt"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btNew"  fieldStr="select[40],zh,kh,kdqr,zhjz,xkrq,kzt,operation"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -19,10 +19,44 @@
      		 </@CommonQueryMacro.FloatWindow>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<@CommonQueryMacro.FloatWindow id="signWindowEdit" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
+      			<div align="center">
+      				<@CommonQueryMacro.Group id="group1" label="介质信息修改"
+        			  fieldStr="zh,kh,kdqr,zhjz,xkrq,kzt" colNm=4/>
+        			 </br>
+      				<@CommonQueryMacro.Button id= "btSaveEdit"/>
+      			</div>
+     		 </@CommonQueryMacro.FloatWindow>
+		</td>
+	</tr>
+	
 </table>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
+
+
+//定位一行记录
+	function locate(kh) {
+		var record = DszhQueryKA_dataset.find(["kh"],[kh]);
+		if(record) {
+			DszhQueryKA_dataset.setRecord(record);
+		}
+	}
+//系统刷新单元格
+	function datatable1_operation_onRefresh(cell,value,record) {
+		if(record) {
+			var kh = record.getValue("kh");
+			cell.innerHTML="<center><a href=\"JavaScript:showUpdate('"+kh+"')\">修改</a></center>";
+		}else {//当不存在记录时
+		 cell.innerHTML="&nbsp;";
+		}
+			
+	}
+
+
 var name = null;
 window.onload=function(){
 	var sname = GetQueryString("zh");
@@ -40,36 +74,19 @@ function GetQueryString(name) {
 	return null; 
 }
 
-function btMod_onClickCheck(button){
-    var rec = DszhQueryKA_dataset.firstUnit;
-	
-	var f = false;
-	var kh = null;
-	while(rec) {
-		if (rec.getValue('select')) {
-			kh = rec.getValue("kh");
-			f = true;
-			break;
-		}
-		rec = rec.nextUnit;
-	}
-	if(!f) {
-		alert('请选择记录');
-		return false;
-	}
-	showUpdate(kh);
-}
-
-function showUpdate(kh){
-
-	showWin("介质信息修改","${contextPath}/fpages/regonization/ftl/DszhQueryKAUpdate.ftl?kh="+kh,null,null,window);
-}
-
 function btNew_onClick(button){
 	DszhQueryKA_dataset.setValue("zh",name);
-	subwindow_signWindow.show();
-	  
+	DszhQueryKA_dataset.setFieldReadOnly("kh",false);
+	subwindow_signWindow.show();  
 }
+
+//修改
+function showUpdate(kh){
+	locate(kh);
+	DszhQueryKA_dataset.setFieldReadOnly("kh",true);
+	subwindow_signWindowEdit.show();  
+}
+
 
 function btSave_postSubmit(button)
   {
@@ -88,5 +105,13 @@ function signWindow_floatWindow_beforeClose(subwindow){
 function signWindow_floatWindow_beforeHide(subwindow){
 	return signWindow_floatWindow_beforeClose(subwindow);
 }
+
+
+//保存后刷新当前页
+	function btSaveEdit_postSubmit(button) {
+		button.url="#";
+		subwindow_signWindowEdit.close();
+		flushCurrentPage();
+	}
 </script>
 </@CommonQueryMacro.page>

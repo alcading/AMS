@@ -11,14 +11,14 @@
 		<meta attribute="sync-DAO">false</meta>
 		
 			<id
-				name="zh"
-				column="ZH"
+				name="kh"
+				column="KH"
 				type="string"
 			/>
 		
 			<property
-				name="kh"
-				column="KH"
+				name="zh"
+				column="ZH"
 				type="string"
 			/>
 			<property

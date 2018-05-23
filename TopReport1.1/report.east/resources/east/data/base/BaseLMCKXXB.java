@@ -18,7 +18,6 @@ public abstract class BaseLMCKXXB implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -7981634766426960189L;
-	private Integer id;
 	private String ckrxm;
 	private String ckrsfzjzl;
 	private String ckrsfzjhm;
@@ -40,12 +39,7 @@ public abstract class BaseLMCKXXB implements java.io.Serializable {
 		this.ckrxb = ckrxb;
 		this.zh = zh;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	public String getCkrxm() {
 		return ckrxm;
 	}

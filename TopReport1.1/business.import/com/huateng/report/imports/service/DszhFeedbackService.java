@@ -39,6 +39,7 @@ public class DszhFeedbackService {
             bufread = new BufferedReader(fileread);
             
             read = bufread.readLine();
+            read = bufread.readLine();
              
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -81,7 +82,7 @@ public class DszhFeedbackService {
 		String result_code = null;
 		while((line = bufReader.readLine())!= null) {
 			i ++;
-			if(i == 1) {
+			if(i < 4) {
 				continue;
 			}
 			temp = line.split("\\|");

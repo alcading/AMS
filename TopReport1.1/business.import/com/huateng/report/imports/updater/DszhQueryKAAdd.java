@@ -16,15 +16,12 @@ import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
-import com.huateng.report.imports.operation.DszhQueryLMUpdateOperation;
-import com.huateng.report.imports.operation.DszhQueryUpdateOperation;
+import com.huateng.report.imports.operation.DszhQueryKAUpdateOperation;
 
-import resources.east.data.pub.LMCKXXB;
-import resources.east.data.pub.LMCKXXB;
+import resources.east.data.pub.KXXB;
 
-public class DszhQueryLMUpdateAndSave extends BaseUpdate {
-
-	private static final Logger logger = Logger.getLogger(DszhQueryLMUpdateAndSave.class);
+public class DszhQueryKAAdd extends BaseUpdate {
+private static final Logger logger = Logger.getLogger(DszhQueryKAUpdateAndSave.class);
 	
 	@Override
 	public UpdateReturnBean saveOrUpdate(
@@ -34,34 +31,37 @@ public class DszhQueryLMUpdateAndSave extends BaseUpdate {
 		// TODO Auto-generated method stub
 
 			String nextUrl = "";
-
+			
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
+			
 			UpdateResultBean updateResultBean = multiUpdateResultBean
-					.getUpdateResultBeanByID("DszhQueryLM");
+						.getUpdateResultBeanByID("DszhQueryKA");
+			
+			
 
-
-			List<LMCKXXB> updateList = new ArrayList<LMCKXXB>();
+			List<KXXB> updateList = new ArrayList<KXXB>();
 			List delList = new ArrayList();
 			List insertList = new ArrayList();
 
 
 			while (updateResultBean.hasNext()) {
-				LMCKXXB lmckxxb=new LMCKXXB();
+				KXXB kxxb=new KXXB();
 				Map map = updateResultBean.next();
-				mapToObject(lmckxxb, map);
+				mapToObject(kxxb, map);
 				switch (updateResultBean.getRecodeState()) {
 				case UpdateResultBean.INSERT:
-					insertList.add(lmckxxb);
+					
+					insertList.add(kxxb);
 					break;				
 				case UpdateResultBean.DELETE:
-					delList.add(lmckxxb);
+					delList.add(kxxb);
 					break;
 				case UpdateResultBean.MODIFY:
 //					String zh = lmckxxb.getZh();
 //					
 //					lmckxxb.setZh(zh);
 					
-					updateList.add(lmckxxb);
+					updateList.add(kxxb);
 					
 					break;
 				default:
@@ -70,13 +70,12 @@ public class DszhQueryLMUpdateAndSave extends BaseUpdate {
 
 			}
 			OperationContext oc = new OperationContext();
-			oc.setAttribute(DszhQueryLMUpdateOperation.IN_DEL, delList);
-			oc.setAttribute(DszhQueryLMUpdateOperation.IN_INSERT, insertList);
-			oc.setAttribute(DszhQueryLMUpdateOperation.IN_UPDATE, updateList);
-			OPCaller.call("DszhQueryLMUpdateOperation", oc);
+			oc.setAttribute(DszhQueryKAUpdateOperation.IN_DEL, delList);
+			oc.setAttribute(DszhQueryKAUpdateOperation.IN_INSERT, insertList);
+			oc.setAttribute(DszhQueryKAUpdateOperation.IN_UPDATE, updateList);
+			OPCaller.call("DszhQueryKAUpdateOperation", oc);
 			return updateReturnBean;
 
 
 	}
-
 }

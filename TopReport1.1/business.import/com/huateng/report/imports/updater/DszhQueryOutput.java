@@ -810,8 +810,8 @@ public class DszhQueryOutput extends BaseUpdate {
 						+ kxxb.getKzt() + "|" + amsDszh.getZhlx() + "|" + amsDszh.getYlzhzh() + "|" + amsDszh.getYlzhjgbm()
 						+ "|" + amsDszh.getKhrq() + "|" + amsDszh.getXhrq() + "|" + amsDszh.getZhzt() + "|"
 						+ amsDszh.getBz() + "|" + amsDszh.getSfjrbzk() + "|" + amsDszh.getSfshbzk() + "|"
-						+ amsDszh.getHsjg() + "|" + amsDszh.getWfhsyy() + "|" + amsDszh.getCzff() + "|" + amsDszh.getXxlx()
-						+ "|" + amsDszh.getKhqd() + "|" + amsDszh.getRemarks() + "|" +amsDszh.getFgmjyqd() + "|" + amsDszh.getSflmzh() + "|" + amsDszh.getKhdqdm()+ amsDszh.getReserve4() + "|"
+						+ amsDszh.getHsjg() + "|" + amsDszh.getWfhsyy() + "|" + amsDszh.getCzff().replaceAll(",", ";") + "|" + amsDszh.getXxlx()
+						+ "|" + amsDszh.getKhqd() + "|" + amsDszh.getRemarks() + "|" +amsDszh.getFgmjyqd().replaceAll(",", ";") + "|" + amsDszh.getSflmzh() + "|" + amsDszh.getKhdqdm()+ amsDszh.getReserve4() + "|"
 						+ amsDszh.getReserve5());
 			}else{
 				bf.append(amsDszh.getCkrxm() +"|" + amsDszh.getCkrsfzjzl() +"|" + amsDszh.getCkrsfzjhm() + "|"
@@ -824,8 +824,8 @@ public class DszhQueryOutput extends BaseUpdate {
 						+ kxxb.getKzt() + "|" + amsDszh.getZhlx() + "|" + amsDszh.getYlzhzh() + "|" + amsDszh.getYlzhjgbm()
 						+ "|" + amsDszh.getKhrq() + "|" + amsDszh.getXhrq() + "|" + amsDszh.getZhzt() + "|"
 						+ amsDszh.getBz() + "|" + amsDszh.getSfjrbzk() + "|" + amsDszh.getSfshbzk() + "|"
-						+ amsDszh.getHsjg() + "|" + amsDszh.getWfhsyy() + "|" + amsDszh.getCzff() + "|" + amsDszh.getXxlx()
-						+ "|" + amsDszh.getKhqd() + "|" + amsDszh.getRemarks() + "|" +amsDszh.getFgmjyqd() + "|" + amsDszh.getSflmzh() + "|" + amsDszh.getKhdqdm()+ amsDszh.getReserve4() + "|"
+						+ amsDszh.getHsjg() + "|" + amsDszh.getWfhsyy() + "|" + amsDszh.getCzff().replaceAll(",", ";") + "|" + amsDszh.getXxlx()
+						+ "|" + amsDszh.getKhqd() + "|" + amsDszh.getRemarks() + "|" +amsDszh.getFgmjyqd().replaceAll(",", ";") + "|" + amsDszh.getSflmzh() + "|" + amsDszh.getKhdqdm()+ amsDszh.getReserve4() + "|"
 						+ amsDszh.getReserve5());
 			}
 			// String kh=map.get(kxxb).getKh();

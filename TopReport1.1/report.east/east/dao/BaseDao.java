@@ -721,7 +721,7 @@ public class BaseDao {
 	 * 
 	 */
 	
-	public static List<LMCKXXB> queryDszhLMUpdate(String zh) throws Exception {
+	public static List<LMCKXXB> queryDszhLMUpdate(String zh, String ckrsfzjhm) throws Exception {
 
 		Connection conn = DBUtil.getConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -733,6 +733,9 @@ public class BaseDao {
 			String sql = "select * from AMS_LMCKXXB where 1=1";
 			if (zh != null && !"".equals(zh)) {
 				sql += "and zh='" + zh + "'";
+			}
+			if (ckrsfzjhm != null && !"".equals(ckrsfzjhm)) {
+				sql += "and ckrsfzjhm='" + ckrsfzjhm + "'";
 			}
 			pstmt = conn.prepareStatement(sql);
 			int paramNum = pstmt.getParameterMetaData().getParameterCount();

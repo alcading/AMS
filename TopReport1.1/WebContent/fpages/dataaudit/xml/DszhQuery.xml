@@ -47,6 +47,7 @@
 		<TextBox id="zh" desc="账号" datatype="string" index="3" size="20"/>
 		<Option id="xxlx"  default="" desc="信息类型" type="string" size="20" tip="" method="None" index="4" translated="DATA_DIC.300002"/>
 		<TextBox id="jlrq" desc="数据日期" datatype="date" index="5" require="true" errmsg="数据日期不能为空！" tip="时间为必输项" size="12"/>
+		<Option id="report_status"  default="" desc="报送状态" type="string" size="20" tip="" method="None" index="6" translated="DATA_DIC.300029"/>
 		
 	</Where>
 

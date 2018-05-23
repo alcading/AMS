@@ -10,18 +10,11 @@
 	>
 		<meta attribute="sync-DAO">false</meta>
 		
-			<id
-				name="id"
-				column="ID"
-				type="int"
-			>
-			<generator class="increment" />
-			</id>
-			<property
-				name="zh"
-				column="ZH"
-				type="string"
-			/>
+			<composite-id>  
+	            <key-property name="zh" column="ZH" type="string"/>  
+	            <key-property name="ckrsfzjhm" column="CKRSFZJHM" type="string"/>  
+	        </composite-id>
+			
 			<property
 				name="ckrxm"
 				column="CKRXM"
@@ -55,11 +48,6 @@
 			<property
 				name="ckrsfzjzl"
 				column="CKRSFZJZL"
-				type="string"
-			/>
-			<property
-				name="ckrsfzjhm"
-				column="CKRSFZJHM"
 				type="string"
 			/>
 	

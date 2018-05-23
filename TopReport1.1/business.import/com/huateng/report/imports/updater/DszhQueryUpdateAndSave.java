@@ -61,9 +61,11 @@ public class DszhQueryUpdateAndSave extends BaseUpdate {
 					delList.add(amsDszh);
 					break;
 				case UpdateResultBean.MODIFY:
-					String zh = amsDszh.getZh();
-					
-					amsDszh.setZh(zh);
+//					String zh = amsDszh.getZh();
+//					
+//					amsDszh.setZh(zh);
+//					amsDszh.setCzff(amsDszh.getCzff().replaceAll(",", ";"));
+//					amsDszh.setFgmjyqd(amsDszh.getFgmjyqd().replaceAll(",", ";"));
 					
 					updateList.add(amsDszh);
 					

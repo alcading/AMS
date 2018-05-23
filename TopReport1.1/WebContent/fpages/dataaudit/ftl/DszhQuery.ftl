@@ -1,10 +1,11 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
 <#import "/fpages/regonization/ftl/DszhQueryUpdate.ftl" as DszhQueryUpdate>
-
+<script src="templets/ui/js/jquery-1.8.2.min.js"></script>
 <@CommonQueryMacro.page title="个人结算账户">
 
 <@CommonQueryMacro.CommonQuery id="DszhQuery" init="true" submitMode="all" navigate="false">
 <table width="1349px">
+<!--
 	<tr>
 		
 		<td>
@@ -18,6 +19,7 @@
 			</@CommonQueryMacro.GroupBox>
 		</td>
 	</tr>
+-->
 	<tr>
 		<td>
 			<@CommonQueryMacro.Interface id="interface" label="个人结算账户" btnNm="查询" colNm=8/>
@@ -40,12 +42,12 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
+
 /*
 window.onload=function(){
 	DszhQuery_interface_dataset.setValue("jlrq", "2017-09-28");
 }
 */
-
 window.onload=function(){
 	currentDate="2017-09-28";
     DszhQuery_interface_dataset.setValue("jlrq", currentDate);

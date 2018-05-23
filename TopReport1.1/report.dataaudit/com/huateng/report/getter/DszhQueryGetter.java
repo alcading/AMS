@@ -31,6 +31,9 @@ public class DszhQueryGetter extends BaseGetter{
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
 			result.init();
+			
+			
+			
 			return result;
 		}catch(AppException appEx){
 			throw appEx;
@@ -49,6 +52,7 @@ public class DszhQueryGetter extends BaseGetter{
 		String zh = (String)para.get("zh");
 		String xxlx = (String)para.get("xxlx");
 		String jlrq = (String)para.get("jlrq");
+		String report_status = (String)para.get("report_status");
 		
 //		String jlrq = getCommQueryServletRequest().getParameter("jlrq");
 		
@@ -70,6 +74,9 @@ public class DszhQueryGetter extends BaseGetter{
 		}
 		if(StringUtils.isNotBlank(xxlx)){
 			hql.append(" and A.xxlx = '"+xxlx.trim()+"' ");
+		}
+		if(StringUtils.isNotBlank(report_status)){
+			hql.append(" and A.report_status = '"+report_status.trim()+"' ");
 		}
 		if(StringUtils.isNotBlank(jlrq)){
 			hql.append(" and A.jlrq = '"+jlrq.trim().toUpperCase()+"' ");
