@@ -1,6 +1,6 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<@CommonQueryMacro.page title="非居民账户查询修改">
-<@CommonQueryMacro.CommonQuery id="FjmzhQueryUpdate" init="true" submitMode="all" navigate="false">
+<@CommonQueryMacro.page title="非居民账户新增">
+<@CommonQueryMacro.CommonQuery id="FjmzhAdd" init="false" submitMode="current" navigate="false">
 	<table align="left">
 		<tr valign="top" style="text-align:center;">
 			<td valign="top">
@@ -33,41 +33,13 @@
 
 
 <script language="javascript">
-
-
-     function btSave_postSubmit(button){
-	     fieldReadOnlyStatus(true);      
-	     FjmzhQueryUpdate_dataset.flushData(FjmzhQueryUpdate_dataset.pageIndex);
-	     //window.location.href = "${contextPath}/fpages/dataaudit/ftl/FjmzhQuery.ftl";
-	  }
-	  
-	  //非空校验
+   
 	  function btSave_onClickCheck(button) {
-	    var accountnumber = FjmzhQueryUpdate_dataset.getValue("accountnumber");
-	    if(accountnumber == null || accountnumber == "" || accountnumber.length > 32){
-	    	alert("账号不能为空且最大长度为32.");
-			return false;
-	    }
-	    
-	    var closedaccount = FjmzhQueryUpdate_dataset.getValue("closedaccount");
-	    if(closedaccount == null || closedaccount == ""){
-	    	alert("账号是否注销为必选项.");
-			return false;
-	    }
-	    
-	    var duediligenceind = FjmzhQueryUpdate_dataset.getValue("duediligenceind");
-	    if(duediligenceind == null || duediligenceind == ""){
-	    	alert("是否新开账户为必选项.");
-			return false;
-	    }
-	        
-	  	closeWin();
-	  	return true;
+	  	
 	  }
 	  
-	 function btBack_onClickCheck()
+	 function btBack_onClick()
 	 {
-		closeWin();
 		window.location.href = "${contextPath}/fpages/dataaudit/ftl/FjmzhQuery.ftl";
 	 }
 	
