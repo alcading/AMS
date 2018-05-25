@@ -42,16 +42,23 @@
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
-
-/*
 window.onload=function(){
-	DszhQuery_interface_dataset.setValue("jlrq", "2017-09-28");
-}
-*/
-window.onload=function(){
-	currentDate="2017-09-28";
+	var date = new Date();
+    date.setTime(date.getTime()-24*60*60*1000);
+    var currentDate = date.getFullYear()+"-" + (date.getMonth()+1) + "-" + date.getDate();
+//	currentDate="2017-09-28";
     DszhQuery_interface_dataset.setValue("jlrq", currentDate);
 }
+
+
+//定位一行记录
+	function locate(zh) {
+		var record = DszhQuery_dataset.find(["zh"],[zh]);
+		if(record) {
+			DszhQuery_dataset.setRecord(record);
+		}
+	}
+
 
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
  function btSave_postSubmit(button) {
@@ -80,10 +87,12 @@ function btDel_onClickCheck(button) {
 		alert('请选择记录');
 		return false;
 	}
+	
+	return confirm("确认删除记录？");
 }
 
 
-function btMod_onClickCheck(button) {
+function btMod_onClickCheck() {
 
 	var rec = DszhQuery_dataset.firstUnit;
 	
@@ -117,6 +126,7 @@ function btMod_onClickCheck(button) {
 //}
 
 function btAdd_onClick(){
+	
 	//DszhQuery_dataset.insertRecord();
 	
 	//var paramMap = new Map();
@@ -124,7 +134,8 @@ function btAdd_onClick(){
 }
 
 function showUpdate(zh){
-	showWin("个人结算账户修改","${contextPath}/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh,null,flushCurrentPage(),window);
+	
+	showWin("个人结算账户修改","/fpages/regonization/ftl/DszhQueryUpdate.ftl?zh="+zh);
 	
 }
 
@@ -136,10 +147,6 @@ function btFeedback_onClick(){
 function showFeedback(){
 	showWin("反馈文件处理","${contextPath}/fpages/dataaudit/ftl/DszhFeedback.ftl");
 	//popWin.showWin("1000","800","标题","${contextPath}/fpages/dataaudit/ftl/DszhFeedback.ftl");
-}
-
-function btDel_onClickCheck(button) {
-		return confirm("确认删除记录？");
 }
 	
 function btDel_postSubmit(button) {

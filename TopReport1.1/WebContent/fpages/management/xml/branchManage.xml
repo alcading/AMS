@@ -52,7 +52,7 @@
 			primary="false" type="String" require="true" size="100"
 			default="false" xpath="/address" tip="机构地址" />
 		<Field id="jrjgbm" desc="金融机构编码" status="F" method="None" size="14"
-			primary="false" type="String" require="true" default="false"
+			primary="false" type="String" require="true" default=""
 			xpath="/jrjgbm" tip="金融机构编码" />	
 				<!-- 根据对比需求增加的字段 -->
 			

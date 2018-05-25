@@ -115,6 +115,7 @@
 								<td class="datatd" > <@CommonQueryMacro.SingleField fId="ismodify"/></td>
 								
 							</tr>
+							
 						</table>
 				</@CommonQueryMacro.GroupBox>
 			</td>
@@ -123,7 +124,7 @@
   		   	<td valign="CENTER">
 				<left><@CommonQueryMacro.Button id= "btBack"/></left>&nbsp;
 				<left><@CommonQueryMacro.Button id= "btSave"/></left>&nbsp;
-				<left><@CommonQueryMacro.Button id= "btMod"/></left>&nbsp;
+				<left><@CommonQueryMacro.Button id= "btModKA"/></left>&nbsp;
 				<left><@CommonQueryMacro.Button id= "btModLM"/></left>&nbsp;
 				
   			</td>
@@ -141,7 +142,7 @@
 			</td>
 		    </td>
 		</tr>	
-		 
+		
 	</table>
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript">
@@ -151,12 +152,12 @@
  	closeWin();
 	//window.location.href = "${contextPath}/fpages/dataaudit/ftl/DszhQuery.ftl";
  }
-function btMod_onClick(){
+function btModKA_onClick(){
 	var zh = DszhQueryUpdate_dataset.getValue("zh");
-	showUpdate(zh);
+	showUpdateKA(zh);
 }
 
-function showUpdate(zh){
+function showUpdateKA(zh){
 	showWin("介质信息","${contextPath}/fpages/dataaudit/ftl/DszhQueryKA.ftl?zh="+zh,null,null,window);
 }
 
@@ -170,8 +171,9 @@ function showUpdateLM(zh){
 }
 
 //非空校验
+
 function btSave_onClickCheck(button){
-	var ckrxm = DszhQueryUpdate_dataset.getValue("ckrxm");
+var ckrxm = DszhQueryUpdate_dataset.getValue("ckrxm");
 	if(ckrxm == null || ckrxm == ""){
 		return false;
 	}
@@ -239,7 +241,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var ckrsfzjhm = DszhQueryUpdate_dataset.getValue("ckrsfzjhm");
-	if(ckrsfzjhm != null || ckrsfzjhm != ""){
+	if(ckrsfzjhm != ""){
 		if(ckrsfzjhm.length > 30){
 			alert("存款人身份证件号码最大长度为30");
 			return false;
@@ -247,7 +249,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var dqdm = DszhQueryUpdate_dataset.getValue("dqdm");
-	if(dqdm != null || dqdm != "") {
+	if(dqdm != "") {
 		if(dqdm.length != 4){
 			alert("地区代码长度必须为4");
 			return false;
@@ -255,7 +257,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var ckrgjdq = DszhQueryUpdate_dataset.getValue("ckrgjdq");
-	if(ckrgjdq != null || ckrgjdq != "") {
+	if(ckrgjdq != "") {
 		if(ckrgjdq.length != 3){
 			alert("国籍地区长度必须为3");
 			return false;
@@ -263,7 +265,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var ckrdh = DszhQueryUpdate_dataset.getValue("ckrdh");
-	if(ckrdh != null || ckrdh != "") {
+	if(ckrdh != "") {
 		if(ckrdh.length > 15){
 			alert("存款人电话最大长度为15");
 			return false;
@@ -271,7 +273,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var dlrsfzjhm = DszhQueryUpdate_dataset.getValue("dlrsfzjhm");
-	if(dlrsfzjhm != null || dlrsfzjhm != "") {
+	if(dlrsfzjhm != "") {
 		if(dlrsfzjhm.length > 30){
 			alert("代理存款人身份证件号码最大长度为30");
 			return false;
@@ -279,7 +281,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var dlrgjdq = DszhQueryUpdate_dataset.getValue("dlrgjdq");
-	if(dlrgjdq != null || dlrgjdq != "") {
+	if(dlrgjdq != "") {
 		if(dlrgjdq.length != 3){
 			alert("代理人国籍/地区长度必须为3");
 			return false;
@@ -287,7 +289,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var dlrdh = DszhQueryUpdate_dataset.getValue("dlrdh");
-	if(dlrdh != null || dlrdh != "") {
+	if(dlrdh != "") {
 		if(dlrdh.length > 15){
 			alert("代理人电话最大长度为15");
 			return false;
@@ -295,7 +297,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var ylzhzh = DszhQueryUpdate_dataset.getValue("ylzhzh");
-	if(ylzhzh != null || ylzhzh != "") {
+	if(ylzhzh != "") {
 		if(ylzhzh.length > 32){
 			alert("绑定I类账户账号最大长度为32");
 			return false;
@@ -303,7 +305,7 @@ function btSave_onClickCheck(button){
 	}
 	
 	var ylzhjgbm = DszhQueryUpdate_dataset.getValue("ylzhjgbm");
-	if(ylzhjgbm != null || ylzhjgbm != "") {
+	if(ylzhjgbm != "") {
 		if(ylzhjgbm.length != 14){
 			alert("绑定I类账户开户银行金融机构编码必须为14位");
 			return false;
@@ -311,13 +313,15 @@ function btSave_onClickCheck(button){
 	}
 	
 	var khdqdm = DszhQueryUpdate_dataset.getValue("khdqdm");
-	if(khdqdm != null || khdqdm != "") {
+	if(khdqdm != "") {
 		if(khdqdm.length != 6){
 			alert("开户地地区代码必须为6位");
 			return false;
 		}
 	}
+	alert("保存成功");
 	closeWin();
 }
+
 </script>
 </@CommonQueryMacro.page>

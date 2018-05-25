@@ -212,6 +212,7 @@
 				name="jlzt"
 				column="JLZT"
 				type="string"
+				update="false"
 			/>
 			<property
 				name="reserve4"
@@ -259,6 +260,7 @@
 				column="JGDM"
 				type="string"
 				length="255"
+				update="false"
 			/>
 	</class>
 </hibernate-mapping>

@@ -16,26 +16,54 @@
 	<Include id="BankParam" />
 
 	<Fields>
-		<Field id="jrjgbm" desc="开户银行金融机构编码" edittype="text" datatype="string" size="30" require="true" status="F" xpath="/jrjgbm" />
-		<Field id="zh" desc="账号" edittype="text" datatype="string" size="35" require="true" xpath="/zh" />
-		<Field id="zhzl" desc="账户种类" edittype="select" translated="DATA_DIC.300004" datatype="string" size="30" require="true" status="F" xpath="/zhzl" />
-		<Field id="zhlx" desc="账户类型" edittype="select" translated="DATA_DIC.300012" datatype="string" size="30" require="false" status="F" xpath="/zhlx" />
-		<Field id="khrq" desc="开户日期" edittype="text" datatype="date" size="30" require="true" status="F" xpath="/khrq"  />
-		<Field id="xhrq" desc="销户日期" edittype="text" datatype="date" size="30" require="false" status="F" xpath="/xhrq" />
-		<Field id="zhzt" desc="账户状态" edittype="select" translated="DATA_DIC.300006" datatype="string" size="30" require="true" status="F" xpath="/zhzt" />
-		<Field id="bz" desc="币种" edittype="select" translated="DATA_DIC.300005" datatype="string" size="30" require="true" xpath="/bz" />
-		<Field id="sfjrbzk" desc="是否为军人保障卡" edittype="select" translated="DATA_DIC.300013" datatype="string" size="30" require="true" status="F" xpath="/sfjrbzk" />
-		<Field id="sfshbzk" desc="是否为社会保障卡" edittype="select" translated="DATA_DIC.300013" datatype="string" size="30" require="true" status="F" xpath="/sfshbzk" />
-		<Field id="hsjg" desc="核实结果" edittype="select" translated="DATA_DIC.300014" datatype="string" size="30" require="true" status="F" xpath="/hsjg" />
-		<Field id="wfhsyy" desc="无法核实原因" edittype="select" translated="DATA_DIC.300015" datatype="string" size="30" require="false" status="F" xpath="/wfhsyy" />
+		<Field id="ckrxm" desc="存款人姓名" edittype="text" datatype="string" size="128" require="false" errmsg="" xpath="/ckrxm" readonly="false" />
+		<Field id="ckrsfzjzl" desc="存款人身份证件种类" edittype="select" translated="DATA_DIC.300003" datatype="string" size="30" require="false" xpath="/ckrsfzjzl" readonly="false" />
+		<Field id="ckrsfzjhm" desc="存款人身份证件号码" edittype="text" datatype="string" size="50" require="false" xpath="/ckrsfzjhm" readonly="false" />
+		<Field id="sfzjdqr" desc="身份证件到期日" edittype="text" datatype="date" size="30" require="false" xpath="/sfzjdqr" />
+		<Field id="dqdm" desc="发证机关所在地的地区代码" edittype="text" datatype="string" size="6" require="false" xpath="/dqdm" />
+		<Field id="ckrlb" desc="存款人类别" edittype="select" translated="DATA_DIC.300008" datatype="string" size="30" require="false" xpath="/ckrlb" />
+		<Field id="ckrgjdq" desc="存款人国籍/地区" edittype="text" datatype="string" size="5" require="false" xpath="/ckrgjdq" />
+		<Field id="ckrxb" desc="存款人性别" edittype="select" translated="DATA_DIC.300009" datatype="string" size="20" require="false" errmsg="" xpath="/ckrxb" readonly="false" />
+		<Field id="ckryb" desc="存款人邮编" edittype="text" datatype="string" size="30" require="false" xpath="/ckryb" />
+		<Field id="ckrdz" desc="存款人地址" edittype="text" datatype="string" size="90" require="false" xpath="/ckrdz" />
+		<Field id="ckrdh" desc="存款人电话" edittype="text" datatype="string" size="17" require="false" xpath="/ckrdh" />
+		<Field id="dlrmc" desc="代理人名称" edittype="text" datatype="string" size="128" require="false" xpath="/dlrmc" />
+		<Field id="dlrsfzjzl" desc="代理人身份证件种类" edittype="select" translated="DATA_DIC.300003" datatype="string" size="14" require="false" xpath="/dlrsfzjzl" />
+		<Field id="dlrsfzjhm" desc="代理人身份证件号码" edittype="text" datatype="string" size="50" require="false" xpath="/dlrsfzjhm" />
+		<Field id="dlrgjdq" desc="代理人国籍/地区" edittype="text" datatype="string" size="5" require="false" xpath="/dlrgjdq" />
+		<Field id="dlrdh" desc="代理人电话" edittype="text" datatype="string" size="17" require="false" xpath="/dlrdh" />
+		<Field id="jrjgbm" desc="开户银行金融机构编码" edittype="text" datatype="string" size="16" require="false" primary="true" xpath="/jrjgbm" readonly="false" />
+		<Field id="zh" desc="账号" edittype="text" datatype="string" size="34" require="false" errmsg="" xpath="/zh" readonly="false" />
+		<Field id="zhzl" desc="账户种类" edittype="select" translated="DATA_DIC.300004" datatype="string" size="30" require="false" errmsg="" xpath="/zhzl" readonly="false" />
+		<Field id="zhlx" desc="账户类型" edittype="select" translated="DATA_DIC.300012" datatype="string" size="30" require="false" xpath="/zhlx" />
+		<Field id="ylzhzh" desc="绑定I类账户账号" edittype="text" datatype="string" size="34" require="false" xpath="/ylzhzh" />
+		<Field id="ylzhjgbm" desc="绑定I类账户开户银行金融机构编码" edittype="text" datatype="string" size="16" require="false" xpath="/ylzhjgbm" />
+		<Field id="khrq" desc="开户日期" edittype="text" datatype="date" size="30" require="false" errmsg="" xpath="/khrq" readonly="false" />
+		<Field id="xhrq" desc="销户日期" edittype="text" datatype="date" size="30" require="false" xpath="/xhrq" />
+		<Field id="zhzt" desc="账户状态" edittype="select" translated="DATA_DIC.300006" datatype="string" size="30" require="false" errmsg="" xpath="/zhzt" readonly="false" /> 
+		<Field id="bz" desc="币种" edittype="select" translated="DATA_DIC.300005" datatype="string" size="30" require="false" errmsg="" xpath="/bz" readonly="false" />
+		<Field id="sfjrbzk" desc="是否为军人保障卡" edittype="select" translated="DATA_DIC.300013" datatype="string" size="30" require="false" errmsg="" xpath="/sfjrbzk" readonly="false" />
+		<Field id="sfshbzk" desc="是否为社会保障卡" edittype="select" translated="DATA_DIC.300013" datatype="string" size="30" require="false" errmsg="" xpath="/sfshbzk" readonly="false" />
+		<Field id="hsjg" desc="核实结果" edittype="select" translated="DATA_DIC.300014" datatype="string" size="30" require="false" errmsg="" xpath="/hsjg" readonly="false" />
+		<Field id="wfhsyy" desc="无法核实原因" edittype="select" translated="DATA_DIC.300015" datatype="string" size="30" require="false" xpath="/wfhsyy" />
 		<Field id="czff" desc="处置方法" edittype="select" multiple="true" translated="DATA_DIC.300016" datatype="string" size="30" require="false" xpath="/czff" />
-		<Field id="xxlx" desc="信息类型" edittype="select" translated="DATA_DIC.300002" datatype="string" size="30" require="true" status="F" xpath="/xxlx" />
-		<Field id="khqd" desc="开户渠道" edittype="select" translated="DATA_DIC.300017" datatype="string" size="30" require="true" status="F" xpath="/khqd" />
-		<Field id="remarks" desc="备注" edittype="text" datatype="string" size="20" require="false" status="F" xpath="/remarks" />
+		<Field id="xxlx" desc="信息类型" edittype="select" translated="DATA_DIC.300002" datatype="string" size="30" require="false" errmsg="" xpath="/xxlx" readonly="false" />
+		<Field id="khqd" desc="开户渠道" edittype="select" translated="DATA_DIC.300017" datatype="string" size="30" require="false" errmsg="" xpath="/khqd" readonly="false" />
+		<Field id="remarks" desc="备注" edittype="text" datatype="string" size="128" require="false" xpath="/remarks" />
+		<Field id="jlrq" desc="数据日期" edittype="text" datatype="date" size="20" require="false" xpath="/jlrq" readonly="false" />
+		<Field id="ismodify" desc="是否通过验证" edittype="select" translated="DATA_DIC.300007" datatype="string" size="30" require="false" xpath="/ismodify" readonly="false" />
+		<Field id="fgmjyqd" desc="开通的非柜面交易渠道" edittype="select" multiple="true" translated="DATA_DIC.300025" datatype="string" size="30" require="false" xpath="/fgmjyqd" readonly="false" />
+		<Field id="sflmzh" desc="是否为联名账户" edittype="select" translated="DATA_DIC.300026" datatype="string" size="30" require="false" xpath="/sflmzh" />
+		<Field id="khdqdm" desc="开户地地区代码" edittype="text" datatype="string" size="8" require="false" xpath="/khdqdm" readonly="false"/>
+		<Field id="report_status" desc="报送状态" edittype="select" datatype="string" translated="DATA_DIC.300029" size="30" require="false" xpath="/report_status" readonly="true" />
+		<Field id="checkResult" desc="校验信息" edittype="textarea" xpath="/jgdm" width="1000" height="100" method="com.huateng.ebank.business.common.CQMethod.getCheckResult"></Field>
 		
-		<Field id="fgmjyqd" desc="开通的非柜面交易渠道" edittype="select" multiple="true" translated="DATA_DIC.300025" datatype="string" size="30" require="false" status="F" xpath="/fgmjyqd" />
-		<Field id="sflmzh" desc="是否为联名账户" edittype="select" translated="DATA_DIC.300026" datatype="string" size="30" require="false" status="F" xpath="/sflmzh" />
-		<Field id="khdqdm" desc="开户地地区代码" edittype="text" datatype="string" size="30" require="false" status="F" xpath="/khdqdm" />
+		<!-- 介质信息字段 -->
+		<Field id="kh" desc="卡号" edittype="text" datatype="string" size="20" require="false" readonly="false" xpath="/kh" />
+		<Field id="kdqr" desc="卡到期日" edittype="text" datatype="date" size="20" require="false" xpath="/kdqr" />
+		<Field id="zhjz" desc="账户介质" edittype="select" translated="DATA_DIC.300010" datatype="string" size="20" require="false" xpath="/zhjz" />
+		<Field id="xkrq" desc="销卡日期" edittype="text" datatype="date" size="20" require="false" xpath="/xkrq" />
+		<Field id="kzt" desc="卡状态" edittype="select" translated="DATA_DIC.300011" datatype="string" size="20" require="false" xpath="/kzt" />
 	</Fields>
 	<Where>
 	</Where>
@@ -44,6 +72,15 @@
 				url="#" txn="" />  
 		 
 	<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-				url="/fpages/dataaudit/ftl/DszhQuery.ftl" updateClass="com.huateng.report.update.DszhAddUpdate" txn="" />   
+				url="#" updateClass="com.huateng.report.update.DszhAddUpdate" txn="" /> 
+	
+	<Button id="btSaveLM" name="btSaveLM" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			url="#" updateClass="com.huateng.report.update.DszhAddLM" txn="" />  
+			
+	<Button id="btSaveKA" name="btSaveKA" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.update.DszhAddKA"
+			url="#" txn="" />
 </Operations>
 </CommQry>

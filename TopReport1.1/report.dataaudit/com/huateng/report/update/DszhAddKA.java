@@ -19,12 +19,11 @@ import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
 import com.huateng.report.imports.operation.DszhQueryUpdateOperation;
-import com.huateng.report.imports.updater.DszhQueryUpdateAndSave;
 
-import resources.east.data.pub.AmsDszh;
+import resources.east.data.pub.KXXB;
+import resources.east.data.pub.LMCKXXB;
 
-public class DszhAddUpdate extends BaseUpdate {
-
+public class DszhAddKA extends BaseUpdate {
 private static final Logger logger = Logger.getLogger(DszhAddUpdate.class);
 	
 	@Override
@@ -41,7 +40,7 @@ private static final Logger logger = Logger.getLogger(DszhAddUpdate.class);
 					.getUpdateResultBeanByID("DszhAdd");
 
 
-			List<AmsDszh> updateList = new ArrayList<AmsDszh>();
+			List<KXXB> updateList = new ArrayList<KXXB>();
 			List delList = new ArrayList();
 			List insertList = new ArrayList();
 			Date date = new Date();
@@ -49,12 +48,11 @@ private static final Logger logger = Logger.getLogger(DszhAddUpdate.class);
 			String createdate = sdf.format(date);
 			
 			while (updateResultBean.hasNext()) {
-				AmsDszh amsDszh=new AmsDszh();
+				KXXB amsDszh=new KXXB();
 				Map map = updateResultBean.next();
 				mapToObject(amsDszh, map);
 				switch (updateResultBean.getRecodeState()) {
 				case UpdateResultBean.INSERT:
-					amsDszh.setJlrq(createdate);
 					insertList.add(amsDszh);
 					break;				
 				case UpdateResultBean.DELETE:
@@ -75,9 +73,9 @@ private static final Logger logger = Logger.getLogger(DszhAddUpdate.class);
 			}
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(DszhQueryUpdateOperation.IN_DEL, delList);
-			oc.setAttribute(DszhQueryUpdateOperation.IN_INSERT, insertList);
-			oc.setAttribute(DszhQueryUpdateOperation.IN_UPDATE, updateList);
-			OPCaller.call("DszhQueryUpdateOperation", oc);
+			oc.setAttribute(DszhQueryUpdateOperation.IN_INSERT, updateList);
+			oc.setAttribute(DszhQueryUpdateOperation.IN_UPDATE, insertList);
+			OPCaller.call("DszhQueryKAUpdateOperation", oc);
 			return updateReturnBean;
 
 

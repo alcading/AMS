@@ -49,7 +49,7 @@
 	function datatable1_operation_onRefresh(cell,value,record) {
 		if(record) {
 			var kh = record.getValue("kh");
-			cell.innerHTML="<center><a href=\"JavaScript:showUpdate('"+kh+"')\">修改</a></center>";
+			cell.innerHTML="<center><a href=\"JavaScript:showDetailKA('"+kh+"')\">修改</a></center>";
 		}else {//当不存在记录时
 		 cell.innerHTML="&nbsp;";
 		}
@@ -81,7 +81,7 @@ function btNew_onClick(button){
 }
 
 //修改
-function showUpdate(kh){
+function showDetailKA(kh){
 	locate(kh);
 	DszhQueryKA_dataset.setFieldReadOnly("kh",true);
 	subwindow_signWindowEdit.show();  

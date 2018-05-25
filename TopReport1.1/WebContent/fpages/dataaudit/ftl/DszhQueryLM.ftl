@@ -50,7 +50,7 @@
 		if(record) {
 			var zh = record.getValue("zh");
 			var ckrsfzjhm = record.getValue("ckrsfzjhm");
-			cell.innerHTML="<center><a href=\"JavaScript:showUpdate('"+zh+"','"+ckrsfzjhm+"')\">修改</a></center>";
+			cell.innerHTML="<center><a href=\"JavaScript:showDetailLM('"+zh+"','"+ckrsfzjhm+"')\">修改</a></center>";
 		}else {//当不存在记录时
 		 cell.innerHTML="&nbsp;";
 		}
@@ -86,7 +86,7 @@ function btNew_onClick(button){
 }
 
 //修改
-function showUpdate(zh,ckrsfzjhm){
+function showDetailLM(zh,ckrsfzjhm){
 	locate(zh,ckrsfzjhm);
 	subwindow_signWindowEdit.show();  
 }
