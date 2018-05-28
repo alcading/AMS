@@ -1,6 +1,4 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<#import "/fpages/regonization/ftl/DszhQueryUpdate.ftl" as DszhQueryUpdate>
-<script src="templets/ui/js/jquery-1.8.2.min.js"></script>
 <@CommonQueryMacro.page title="个人结算账户">
 
 <@CommonQueryMacro.CommonQuery id="DszhQuery" init="true" submitMode="all" navigate="false">
