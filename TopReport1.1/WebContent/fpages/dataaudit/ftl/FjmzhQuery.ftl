@@ -30,11 +30,13 @@ function btMod_onClickCheck(button) {
 	
 	var f = false;
 	var accountnumber = null;
+	var accountholdertype = null;
 	
 	while(rec) {
 		if (rec.getValue('select')) {
 			f = true;
 			accountnumber = rec.getValue('accountnumber');
+			accountholdertype = rec.getValue('accountholdertype');
 			break;
 		}
 		rec = rec.nextUnit;
@@ -43,14 +45,14 @@ function btMod_onClickCheck(button) {
 		alert('请选择记录');
 		return false;
 	}
-	showUpdate(accountnumber);
+	showUpdate(accountnumber,accountholdertype);
 	flushCurrentPage();
 	
 }
 
-function showUpdate(accountnumber){
+function showUpdate(accountnumber,accountholdertype){
 
-	showWin("非居民账户查询修改","${contextPath}/fpages/regonization/ftl/FjmzhQueryUpdate.ftl?accountnumber="+accountnumber,null,flushCurrentPage(),window);
+	showWin("非居民账户查询修改","${contextPath}/fpages/regonization/ftl/FjmzhQueryUpdate.ftl?accountnumber="+accountnumber+"&accountholdertype="+accountholdertype,null,flushCurrentPage(),window);
 	
 }
 
