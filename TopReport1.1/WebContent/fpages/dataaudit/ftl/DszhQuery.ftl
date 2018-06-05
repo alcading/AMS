@@ -1,4 +1,5 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
+<#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <@CommonQueryMacro.page title="个人结算账户">
 
 <@CommonQueryMacro.CommonQuery id="DszhQuery" init="true" submitMode="all" navigate="false">
@@ -36,15 +37,18 @@
 	</tr>
 </table>
 <iframe id="filedownloadfrm"  style="display: none;"></iframe>
-<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" >请先按数据日期查询,再导出报文</span></span>
+<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" ><@bean.message key="DszhQuery.message" /></span></span>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
 window.onload=function(){
 	var date = new Date();
     date.setTime(date.getTime()-24*60*60*1000);
-    var currentDate = date.getFullYear()+"-" + (date.getMonth()+1) + "-" + date.getDate();
-//	currentDate="2017-09-28";
+    if(date.getDate() < 10) {
+    	today_date = "0" + date.getDate();
+    }
+    var currentDate = date.getFullYear()+"-" + (date.getMonth()+1) + "-" + today_date;
+
     DszhQuery_interface_dataset.setValue("jlrq", currentDate);
 }
 
