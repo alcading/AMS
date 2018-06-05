@@ -9,15 +9,15 @@
 	async:异步提交标志
 	pagesize:页面显示记录数(缺省为10)
 -->
-<CommQry title="" navigate="非居民账户查询新增" type="call"
-	interface="false" pagesize="10" async="false" databusid="FIVE"
+<CommQry title="" navigate="非居民账户新增" type="form"
+	interface="false" pagesize="10" async="true" databusid=""
 	transdataactionurl="/trans/TransDataAction.do"
-	getterclassname="com.huateng.report.update.FjmzhQueryUpdate">
+	getterclassname="">
 	<Include id="BankParam" />
 
 	<Fields>
 		
-		<Field id="accountnumber" desc="账号" edittype="text" datatype="string" size="20" require="false" readonly="true" xpath="/accountnumber" />
+		<Field id="accountnumber" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/accountnumber" />
 		<Field id="closedaccount" desc="账户是否注销" edittype="select" translated="DATA_DIC.300018" datatype="string" size="20" require="false" xpath="/closedaccount" />
 		<Field id="duediligenceind" desc="是否新开客户" edittype="select" translated="DATA_DIC.300019" datatype="string" size="20" require="false" xpath="/duediligenceind" />
 		<Field id="selfcertification" desc="是否取得自证声明 " edittype="select" translated="DATA_DIC.300020" datatype="string" size="20" require="false" xpath="/selfcertification" />
@@ -56,6 +56,6 @@
 	<Button id="btBack" name="btBack" desc="返回" operation=""
 				url="#" txn="" />  
 	<Button id="btSave" name="btSave" desc="保存" operation="asysubmit"
-				url="/fpages/dataaudit/ftl/FjmzhQuery.ftl" updateClass="com.huateng.report.imports.updater.FjmzhQueryUpdateAndSave" txn="" />   
+				url="/fpages/dataaudit/ftl/FjmzhQuery.ftl" updateClass="com.huateng.report.imports.updater.FjmzhQueryAdd" txn="" />   
 </Operations>
 </CommQry>
