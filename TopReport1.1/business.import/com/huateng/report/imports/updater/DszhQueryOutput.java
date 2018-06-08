@@ -5,16 +5,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +28,7 @@ import com.huateng.exception.AppException;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.utils.ReportUtils;
 
-import east.utils.tools.DBUtil;
+import resource.bean.pub.Bctl;
 import resource.dao.base.HQLDAO;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
@@ -48,48 +42,36 @@ public class DszhQueryOutput extends BaseUpdate {
 	@Override
 	public UpdateReturnBean saveOrUpdate(MultiUpdateResultBean multiUpdateResultBean, HttpServletRequest request,
 			HttpServletResponse response) throws AppException {
-		//Connection conn = DBUtil.getConnection();
 		UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 		UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("DszhQuery");
 		String jlrq=updateResultBean.getParameter("jlrq");
 		
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		@SuppressWarnings("unchecked")
 		List<AmsDszh> list = rootDAO.queryByQL2List(" from AmsDszh model where model.jlrq='" + jlrq + "'");
 		
+		@SuppressWarnings("unchecked")
+		List<Bctl> Bctl_list = rootDAO.queryByQL2List(" from Bctl B where B.brclass='1'");
+		String headOfficeJrjgbm = Bctl_list.get(0).getJrjgbm();
+		
 		BufferedWriter bw=null;
-		String jrjgbm=null;
 		long currentTime = System.currentTimeMillis();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 		Date date = new Date(currentTime);
 		String workDate = formatter.format(date);
 		String filePath = ReportUtils.getSysParamsValue(Constants.PARAM_DIR, Constants.PARAM_DIR_0105, "");
 		filePath = filePath + File.separator + jlrq + File.separator;
-		//filePath=filePath+File.separator+jlrq.substring(0,6)+File.separator+jlrq+File.separator;
 		File file = new File(filePath);
 		if (!file.exists()) {
 			file.mkdir();
 		}
 		
 		
-		/*
-		 * 先将ams_dszh,ams_kxxb,ams_lmckxxb三张表全部查出，放入一级缓存
-		 */
 		HQLDAO dao = DAOUtils.getHQLDAO();
 		session = dao.getHibernateTemplate().getSessionFactory().openSession();
 		Transaction tx = null;
 		
 		tx = session.beginTransaction();
-		//AMS_DSZH
-//		String amsDszh_hql = " FROM AmsDszh WHERE JLRQ= " + jlrq;
-//		List<AmsDszh> amsDszh_list = (List<AmsDszh>)session.createQuery(amsDszh_hql).list();
-//		
-//		//AMS_KXXB
-//		String kxxb_hql = " FROM KXXB";
-//		List<KXXB> amsKxxb_list = (List<KXXB>)session.createQuery(kxxb_hql).list();
-//		
-//		String lmckxxb_hql = " FROM LMCKXXB";
-//		List<LMCKXXB> amsLmckxxb_list = (List<LMCKXXB>)session.createQuery(lmckxxb_hql).list();
-//		tx.commit();
 		
 		System.out.println(session.hashCode());
 		
@@ -99,10 +81,7 @@ public class DszhQueryOutput extends BaseUpdate {
 		bf.append("\r\n");
 		Iterator it = list.iterator();
 		for(AmsDszh amsDszh:list) {
-//			Map map = updateResultBean.next();
-//			mapToObject(amsDszh, map);
 			String sflmzh = amsDszh.getSflmzh();
-			jrjgbm = amsDszh.getJrjgbm();
 			jlrq = amsDszh.getJlrq();
 			String report_status = amsDszh.getReport_status();
 			if(!report_status.equals("0")&&(!report_status.equals("3"))){
@@ -114,20 +93,14 @@ public class DszhQueryOutput extends BaseUpdate {
 				try {
 					outPutFile(jlrq,sflmzh, zh,bf);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
-//				try {
-//					bw.close();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 		}
 		try {
 			int min = 10000;
 			int max = 99999;
-			filePath = filePath + "[" + jrjgbm + "]" + "[cams00100101]" + "[" + workDate
+			filePath = filePath + "[" + headOfficeJrjgbm + "]" + "[cams00100101]" + "[" + workDate
 					+ (new Random().nextInt(max) % (max + min + 1) + min) + "]";
 			File txtFile = new File(filePath + ".txt");
 			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(txtFile), "UTF-8"));
@@ -135,7 +108,6 @@ public class DszhQueryOutput extends BaseUpdate {
 	    bw.flush();
 	    bw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return updateReturnBean;
@@ -144,19 +116,15 @@ public class DszhQueryOutput extends BaseUpdate {
 
 	public static int outPutFile(String jlrq,String sflmzh, String zh,StringBuilder bf) throws IOException {
 		
-		System.out.println("===========================================================================================================================");
 		
 		HQLDAO dao = DAOUtils.getHQLDAO();
 		Transaction tx = null;
 		
 		Integer lmccount=0;
 		Integer counts=0;
-//		Connection conn = DBUtil.getConnection();
 		AmsDszh amsDszh = new AmsDszh();
 		KXXB kxxb = new KXXB();
 		LMCKXXB lmckxxb = new LMCKXXB();
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
 		String sql = "FROM AmsDszh WHERE ZH="+ zh;
 		
 		System.out.println(session.hashCode());
@@ -170,36 +138,18 @@ public class DszhQueryOutput extends BaseUpdate {
 		StringBuilder builder6 = new StringBuilder();
 		StringBuilder builder7 = new StringBuilder();
 		StringBuilder builder8 = new StringBuilder();
-//		String sql_update = "update ams_dszh t set t.report_status='1' where zh="+zh;
 		try {
-//			pstmt = conn.prepareStatement(sql_update);
-//			pstmt.executeUpdate();
-			
 			tx = session.beginTransaction();
 			AmsDszh s = (AmsDszh)session.get(AmsDszh.class, zh);  
 			s.setReport_status("1");
-//			
-//			
-//			session.createSQLQuery(sql_update);
 			tx.commit();
 			
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}finally{
-//			if(pstmt!=null){
-//				try {
-//					pstmt.close();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
 		}
 		String sql_lmckxxb = "select COUNT(*) FROM LMCKXXB where zh=" + zh;
 		try {
-//			pstmt = conn.prepareStatement(sql_lmckxxb);
-//			rs = pstmt.executeQuery();
 			tx = session.beginTransaction();
 			Query query = session.createQuery(sql_lmckxxb);
 			List lmckxxb_count = query.list();
@@ -209,24 +159,11 @@ public class DszhQueryOutput extends BaseUpdate {
 				lmccount=Integer.parseInt(lmckxxb_count.get(i).toString());
 			}
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}finally{
-//			if(pstmt!=null){
-//				try {
-//					pstmt.close();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
 		}
 		String sql_lmckxxb1 = "from LMCKXXB where zh=" + zh;
 		try {
-//			pstmt = conn.prepareStatement(sql_lmckxxb1);
-//			rs = pstmt.executeQuery();
-			
-			
 			tx = session.beginTransaction();
 			Query query = session.createQuery(sql_lmckxxb1);
 			List<LMCKXXB> lmckxxb_temp = (List<LMCKXXB>)query.list();
@@ -427,21 +364,10 @@ public class DszhQueryOutput extends BaseUpdate {
 				
 			}
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}finally{
-//			if(pstmt!=null){
-//				try {
-//					pstmt.close();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
 		}
 		try {
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
 			
 			
 			tx = session.beginTransaction();
@@ -708,10 +634,6 @@ public class DszhQueryOutput extends BaseUpdate {
 			}
  			String sql_kxxb = "SELECT count(*) FROM KXXB WHERE ZH=" + zh;
 			Integer count = 0;
-//			pstmt = conn.prepareStatement(sql_kxxb);
-//			rs = pstmt.executeQuery();
-			
-			
 			tx = session.beginTransaction();
 			Query query_kxxbCount = session.createQuery(sql_kxxb);
 			List kxxb_count = query_kxxbCount.list();
@@ -722,10 +644,6 @@ public class DszhQueryOutput extends BaseUpdate {
 				count=Integer.parseInt(kxxb_count.get(i).toString());
 			}
 			String sql_kxxb0 = "from KXXB where zh=" + zh;
-//			pstmt = conn.prepareStatement(sql_kxxb0);
-//			rs = pstmt.executeQuery();
-			
-			
 			tx = session.beginTransaction();
 			Query query_kxxb = session.createQuery(sql_kxxb0);
 			List kxxb_list = query_kxxb.list();
@@ -914,31 +832,11 @@ public class DszhQueryOutput extends BaseUpdate {
 						+ "|" + amsDszh.getKhqd() + "|" + amsDszh.getRemarks() + "|" +amsDszh.getFgmjyqd().replaceAll(",", ";") + "|" + amsDszh.getSflmzh() + "|" + amsDszh.getKhdqdm() + "|" + amsDszh.getReserve4() + "|"
 						+ amsDszh.getReserve5());
 			}
-			// String kh=map.get(kxxb).getKh();
 			bf.append("\r\n");
 		} catch (Exception e) {
-			// TODO Auto-generategd catch block
 			e.printStackTrace();
 		}finally{
-//			if(conn!=null){
-//				try {
-//					conn.close();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
-//			if(pstmt!=null){
-//				try {
-//					pstmt.close();
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
 		}
-//		bw.write(bf.toString());
-//		bw.flush();
 		int ret = 0;
 		return ret;
 	}

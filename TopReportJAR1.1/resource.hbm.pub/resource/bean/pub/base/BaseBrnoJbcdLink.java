@@ -1,5 +1,7 @@
 package resource.bean.pub.base;
 
+import resource.bean.pub.Bctl;
+
 public class BaseBrnoJbcdLink {
 	private String brno;
 	private String jrjgbm;
