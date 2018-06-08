@@ -952,6 +952,9 @@ public class CQMethod {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<BrnoJbcdLink> list = rootdao.queryByQL2List(hql.toString());
 		String jrjgbm = list.get(0).getJrjgbm();
+		if(jrjgbm == "" || jrjgbm == null) {
+			return "";
+		}
 		return jrjgbm;
 	}
 }

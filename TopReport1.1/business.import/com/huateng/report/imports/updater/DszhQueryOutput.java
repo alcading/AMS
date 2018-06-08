@@ -28,7 +28,7 @@ import com.huateng.exception.AppException;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.utils.ReportUtils;
 
-import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 import resource.dao.base.HQLDAO;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
@@ -51,9 +51,13 @@ public class DszhQueryOutput extends BaseUpdate {
 		List<AmsDszh> list = rootDAO.queryByQL2List(" from AmsDszh model where model.jlrq='" + jlrq + "'");
 		
 		@SuppressWarnings("unchecked")
-		List<Bctl> Bctl_list = rootDAO.queryByQL2List(" from Bctl B where B.brclass='1'");
-		String headOfficeJrjgbm = Bctl_list.get(0).getJrjgbm();
+		List Bctl_list = rootDAO.queryByQL2List("select A.brno, A.jrjgbm from BrnoJbcdLink A, Bctl B where A.brno = B.brno and B.brclass='1'");
+		String headOfficeJrjgbm = null;
 		
+		for(int i = 0; i < Bctl_list.size(); i ++) {
+			 Object[] object = (Object[])Bctl_list.get(i);
+			 headOfficeJrjgbm = (String)object[1];
+		}
 		BufferedWriter bw=null;
 		long currentTime = System.currentTimeMillis();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");

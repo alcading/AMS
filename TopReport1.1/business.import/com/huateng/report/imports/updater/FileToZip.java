@@ -28,29 +28,30 @@ public final class FileToZip {
 			try {
 				File zipFile = new File(zipFilePath + "/" + fileName + ".zip");
 				if (zipFile.exists()) {
-					System.out.println(zipFilePath + "目录下存在名字为:" + fileName + ".zip" + "打包文件.");
+					zipFile.delete();
+//					System.out.println(zipFilePath + "目录下存在名字为:" + fileName + ".zip" + "打包文件.");
+				} 
+				File[] sourceFiles = sourceFile.listFiles();
+				if (null == sourceFiles || sourceFiles.length < 1) {
+					System.out.println("待压缩的文件目录：" + sourceFilePath + "里面不存在文件，无需压缩.");
 				} else {
-					File[] sourceFiles = sourceFile.listFiles();
-					if (null == sourceFiles || sourceFiles.length < 1) {
-						System.out.println("待压缩的文件目录：" + sourceFilePath + "里面不存在文件，无需压缩.");
-					} else {
-						fos = new FileOutputStream(zipFile);
-						zos = new ZipOutputStream(new BufferedOutputStream(fos));
-						byte[] bufs = new byte[1024 * 10];
-						for (int i = 0; i < sourceFiles.length; i++) {
-							// 创建ZIP实体，并添加进压缩包
-							ZipEntry zipEntry = new ZipEntry(sourceFiles[i].getName());
-							zos.putNextEntry(zipEntry);
-							// 读取待压缩的文件并写进压缩包里
-							fis = new FileInputStream(sourceFiles[i]);
-							bis = new BufferedInputStream(fis, 1024 * 10);
-							int read = 0;
-							while ((read = bis.read(bufs, 0, 1024 * 10)) != -1) {
-								zos.write(bufs, 0, read);
-							}
+					fos = new FileOutputStream(zipFile);
+					zos = new ZipOutputStream(new BufferedOutputStream(fos));
+					byte[] bufs = new byte[1024 * 10];
+					for (int i = 0; i < sourceFiles.length; i++) {
+						// 创建ZIP实体，并添加进压缩包
+						ZipEntry zipEntry = new ZipEntry(sourceFiles[i].getName());
+						zos.putNextEntry(zipEntry);
+						// 读取待压缩的文件并写进压缩包里
+						fis = new FileInputStream(sourceFiles[i]);
+						bis = new BufferedInputStream(fis, 1024 * 10);
+						int read = 0;
+						while ((read = bis.read(bufs, 0, 1024 * 10)) != -1) {
+							zos.write(bufs, 0, read);
 						}
 					}
 				}
+				
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
