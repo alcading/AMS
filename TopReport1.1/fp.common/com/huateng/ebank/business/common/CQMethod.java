@@ -946,15 +946,20 @@ public class CQMethod {
 	 */
 	public static String getJrjgbm(ICommonQueryBaseBean element, String value,
 			ServletRequest request) throws HuatengException {
-		
+		String jrjgbm = null;
 		System.out.println(value);
 		String hql = "from BrnoJbcdLink B where B.brno = " + value;
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<BrnoJbcdLink> list = rootdao.queryByQL2List(hql.toString());
-		String jrjgbm = list.get(0).getJrjgbm();
-		if(jrjgbm == "" || jrjgbm == null) {
+		if(list.size() != 0) {
+			jrjgbm = list.get(0).getJrjgbm();
+			if(jrjgbm == "" || jrjgbm == null) {
+				return "";
+			}
+		}else {
 			return "";
 		}
 		return jrjgbm;
+		
 	}
 }

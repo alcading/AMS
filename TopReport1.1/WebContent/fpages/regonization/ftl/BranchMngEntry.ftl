@@ -68,7 +68,7 @@
 		Management_branchManage_dataset.setFieldReadOnly("postno", false);
 		Management_branchManage_dataset.setFieldReadOnly("teleno", false);
 		Management_branchManage_dataset.setFieldReadOnly("brclass", false);
-		Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode", true);
+		Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode", false);
 		Management_branchManage_dataset.setFieldReadOnly("blnManageBrcode", false);
 		Management_branchManage_dataset.setFieldReadOnly("brattr", false);
 		Management_branchManage_dataset.setFieldReadOnly("otherAreaFlag", false);
