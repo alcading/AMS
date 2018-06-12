@@ -107,7 +107,7 @@ public class DszhQueryOutput extends BaseUpdate {
 			filePath = filePath + "[" + headOfficeJrjgbm + "]" + "[cams00100101]" + "[" + workDate
 					+ (new Random().nextInt(max) % (max + min + 1) + min) + "]";
 			File txtFile = new File(filePath + ".txt");
-			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(txtFile), "UTF-8"));
+			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(txtFile), "GB18030"));
 			bw.write(bf.toString());	
 	    bw.flush();
 	    bw.close();
