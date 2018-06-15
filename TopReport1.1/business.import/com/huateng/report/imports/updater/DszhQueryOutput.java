@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -19,6 +23,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.huateng.report.tool.FSearchTool;
 import com.huateng.commquery.result.MultiUpdateResultBean;
 import com.huateng.commquery.result.UpdateResultBean;
 import com.huateng.commquery.result.UpdateReturnBean;
@@ -50,9 +55,13 @@ public class DszhQueryOutput extends BaseUpdate {
 		@SuppressWarnings("unchecked")
 		List<AmsDszh> list = rootDAO.queryByQL2List(" from AmsDszh model where model.jlrq='" + jlrq + "'");
 		
+		/*
+		 * 导出文件名中的金融机构编码为总行的金融机构编码
+		 */
 		@SuppressWarnings("unchecked")
 		List Bctl_list = rootDAO.queryByQL2List("select A.brno, A.jrjgbm from BrnoJbcdLink A, Bctl B where A.brno = B.brno and B.brclass='1'");
 		String headOfficeJrjgbm = null;
+		
 		
 		for(int i = 0; i < Bctl_list.size(); i ++) {
 			 Object[] object = (Object[])Bctl_list.get(i);
@@ -77,8 +86,14 @@ public class DszhQueryOutput extends BaseUpdate {
 		
 		tx = session.beginTransaction();
 		
-		System.out.println(session.hashCode());
+		/*
+		 * 先将三张表全部查出放入一级缓存
+		 */
+		List<KXXB> kxxb_list = session.createQuery(" from KXXB").list();
+		List<LMCKXXB> lmckxxb_list = session.createQuery(" from LMCKXXB").list();
+		List<AmsDszh> amsdszh_list = session.createQuery(" from AmsDszh").list();
 		
+        
 		StringBuilder bf=new StringBuilder();
 		bf.append(
 				"存款人姓名(存款人子信息)|存款人身份证件种类(存款人子信息)|存款人身份证件号码(存款人子信息)|身份证件到期日(存款人子信息)|发证机关所在地的地区代码(存款人子信息)|存款人类别(存款人子信息)|存款人国籍(存款人子信息)|存款人性别(存款人子信息)|存款人邮编|存款人地址|存款人电话|代理人名称|代理人身份证件种类|代理人身份证件号码|代理人国籍|代理人电话|开户银行金融机构编码（不可变更）|账号（不可变更）|账户种类|介质号（介质子信息）|介质到期日（介质子信息）|账户介质（介质子信息）|介质注销日期(介质子信息)|介质状态（介质子信息）|账户类型|II、III类户绑定账户账号(绑定账户子信息)|II、III类户绑定账户开户银行金融机构编码(绑定账户子信息)|开户日期|销户日期(不可变)|账户状态|币种|是否为军人保障卡|是否为社会保障卡|核实结果|无法核实原因|处置方法|信息类型|开户渠道|备注|开通的非柜面交易渠道|是否为\"联名账户\"|开户地地区代码|预留字段4|预留字段5");
@@ -95,12 +110,17 @@ public class DszhQueryOutput extends BaseUpdate {
 			
 				 
 				try {
-					outPutFile(jlrq,sflmzh, zh,bf);
-				} catch (IOException e1) {
+					outPutFile(jlrq,sflmzh, zh,bf,lmckxxb_list, kxxb_list);
+					} catch (IOException e1) {
 					
 					e1.printStackTrace();
 				}
 		}
+		/*
+		 * 更新report_status
+		 */
+		rootDAO.executeSql("UPDATE AMS_DSZH SET REPORT_STATUS = '1' WHERE (REPORT_STATUS='0' OR REPORT_STATUS='3') AND JLRQ = '" + jlrq + "'");
+	
 		try {
 			int min = 10000;
 			int max = 99999;
@@ -118,21 +138,15 @@ public class DszhQueryOutput extends BaseUpdate {
 	}
 	
 
-	public static int outPutFile(String jlrq,String sflmzh, String zh,StringBuilder bf) throws IOException {
+	public static int outPutFile(String jlrq,String sflmzh, String zh,StringBuilder bf,List<LMCKXXB> lmckxxbList, List<KXXB> kxxbList) throws IOException {
 		
-		
-		HQLDAO dao = DAOUtils.getHQLDAO();
-		Transaction tx = null;
+		FSearchTool tool = null;
 		
 		Integer lmccount=0;
 		Integer counts=0;
 		AmsDszh amsDszh = new AmsDszh();
 		KXXB kxxb = new KXXB();
 		LMCKXXB lmckxxb = new LMCKXXB();
-		String sql = "FROM AmsDszh WHERE ZH="+ zh;
-		
-		System.out.println(session.hashCode());
-		System.out.println(session.isOpen());
 		
 		StringBuilder builder1 = new StringBuilder();
 		StringBuilder builder2 = new StringBuilder();
@@ -142,37 +156,11 @@ public class DszhQueryOutput extends BaseUpdate {
 		StringBuilder builder6 = new StringBuilder();
 		StringBuilder builder7 = new StringBuilder();
 		StringBuilder builder8 = new StringBuilder();
+		
 		try {
-			tx = session.beginTransaction();
-			AmsDszh s = (AmsDszh)session.get(AmsDszh.class, zh);  
-			s.setReport_status("1");
-			tx.commit();
-			
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}finally{
-		}
-		String sql_lmckxxb = "select COUNT(*) FROM LMCKXXB where zh=" + zh;
-		try {
-			tx = session.beginTransaction();
-			Query query = session.createQuery(sql_lmckxxb);
-			List lmckxxb_count = query.list();
-			tx.commit();
-			
-			for(int i = 0; i < lmckxxb_count.size(); i ++){
-				lmccount=Integer.parseInt(lmckxxb_count.get(i).toString());
-			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}finally{
-		}
-		String sql_lmckxxb1 = "from LMCKXXB where zh=" + zh;
-		try {
-			tx = session.beginTransaction();
-			Query query = session.createQuery(sql_lmckxxb1);
-			List<LMCKXXB> lmckxxb_temp = (List<LMCKXXB>)query.list();
-			tx.commit();
-			
+			tool = new FSearchTool(lmckxxbList, "zh");
+			List<Object> lmckxxb_temp = tool.searchTasks(zh);
+			lmccount = lmckxxb_temp.size();
 			
 			Iterator its=lmckxxb_temp.iterator();    
 			  while(its.hasNext()){   
@@ -374,284 +362,14 @@ public class DszhQueryOutput extends BaseUpdate {
 		try {
 			
 			
-			tx = session.beginTransaction();
-			Query query = session.createQuery(sql);
-			List<AmsDszh> amsdszh_list = query.list();
-			tx.commit();
+			amsDszh = (AmsDszh)session.get(AmsDszh.class, zh);
 			
-			
-			Iterator its=amsdszh_list.iterator();    
-			  while(its.hasNext()){    
-				  AmsDszh amsDszh_temp=(AmsDszh)its.next();   
-				String ckrxm = amsDszh_temp.getCkrxm();
-				if (ckrxm != null) {
-					amsDszh.setCkrxm(ckrxm);
-				} else {
-					amsDszh.setCkrxm("");
-				}
-				String ckrsfzjzl = amsDszh_temp.getCkrsfzjzl();
-				if (ckrsfzjzl != null) {
-					amsDszh.setCkrsfzjzl(ckrsfzjzl);
-				} else {
-					amsDszh.setCkrsfzjzl("");
-				}
-				String ckrsfzjhm = amsDszh_temp.getCkrsfzjhm();
-				if (ckrsfzjhm != null) {
-					amsDszh.setCkrsfzjhm(ckrsfzjhm);
-				} else {
-					amsDszh.setCkrsfzjhm("");
-				}
-				String sfzjdqr = amsDszh_temp.getSfzjdqr();
-				if (sfzjdqr != null) {
-					amsDszh.setSfzjdqr(sfzjdqr);
-				} else {
-					amsDszh.setSfzjdqr("");
-				}
-				String ckrlb = amsDszh_temp.getCkrlb();
-				if (ckrlb != null) {
-					amsDszh.setCkrlb(ckrlb);
-				} else {
-					amsDszh.setCkrlb("");
-				}
-				String ckrgjdq = amsDszh_temp.getCkrgjdq();
-				if (ckrgjdq != null) {
-					amsDszh.setCkrgjdq(ckrgjdq);
-				} else {
-					amsDszh.setCkrgjdq("");
-				}
-				String ckrxb = amsDszh_temp.getCkrxb();
-				if (ckrxb != null) {
-					amsDszh.setCkrxb(ckrxb);
-				} else {
-					amsDszh.setCkrxb("");
-				}
-				String ckryb = amsDszh_temp.getCkryb();
-				if (ckryb != null) {
-					amsDszh.setCkryb(ckryb);
-				} else {
-					amsDszh.setCkryb("");
-				}
-				String ckrdz = amsDszh_temp.getCkrdz();
-				if (ckrdz != null) {
-					amsDszh.setCkrdz(ckrdz);
-				} else {
-					amsDszh.setCkrdz("");
-				}
-				String ckrdh = amsDszh_temp.getCkrdh();
-				if (ckrdh != null) {
-					amsDszh.setCkrdh(ckrdh);
-				} else {
-					amsDszh.setCkrdh("");
-				}
-				String dlrmc = amsDszh_temp.getDlrmc();
-				if (dlrmc != null) {
-					amsDszh.setDlrmc(dlrmc);
-				} else {
-					amsDszh.setDlrmc("");
-				}
-				String dlrsfzjzl = amsDszh_temp.getDlrsfzjzl();
-				if (dlrsfzjzl != null) {
-					amsDszh.setDlrsfzjzl(dlrsfzjzl);
-				} else {
-					amsDszh.setDlrsfzjzl("");
-				}
-				String dlrsfzjhm = amsDszh_temp.getDlrsfzjhm();
-				if (dlrsfzjhm != null) {
-					amsDszh.setDlrsfzjhm(dlrsfzjhm);
-				} else {
-					amsDszh.setDlrsfzjhm("");
-				}
-				String dlrgjdq = amsDszh_temp.getDlrgjdq();
-				if (dlrgjdq != null) {
-					amsDszh.setDlrgjdq(dlrgjdq);
-				} else {
-					amsDszh.setDlrgjdq("");
-				}
-				String dlrdh = amsDszh_temp.getDlrdh();
-				if (dlrdh != null) {
-					amsDszh.setDlrdh(dlrdh);
-				} else {
-					amsDszh.setDlrdh("");
-				}
-				String jrjgbm = amsDszh_temp.getJrjgbm();
-				if (jrjgbm != null) {
-					amsDszh.setJrjgbm(jrjgbm);
-				} else {
-					amsDszh.setJrjgbm("");
-				}
-				String zh1 = amsDszh_temp.getZh();
-				if (zh1 != null) {
-					amsDszh.setZh(zh1);
-				} else {
-					amsDszh.setZh("");
-				}
-				String zhzl = amsDszh_temp.getZhzl();
-				if (zhzl != null) {
-					amsDszh.setZhzl(zhzl);
-				} else {
-					amsDszh.setZhzl("");
-				}
-				String zhlx = amsDszh_temp.getZhlx();
-				if (zhlx != null) {
-					amsDszh.setZhlx(zhlx);
-				} else {
-					amsDszh.setZhlx("");
-				}
-				String ylzhzh = amsDszh_temp.getYlzhzh();
-				if (ylzhzh != null) {
-					amsDszh.setYlzhzh(ylzhzh);
-				} else {
-					amsDszh.setYlzhzh("");
-				}
-				String ylzhjgbm = amsDszh_temp.getYlzhjgbm();
-				if (ylzhjgbm != null) {
-					amsDszh.setYlzhjgbm(ylzhjgbm);
-				} else {
-					amsDszh.setYlzhjgbm("");
-				}
-				String khrq = amsDszh_temp.getKhrq();
-				if (khrq != null) {
-					amsDszh.setKhrq(khrq);
-				} else {
-					amsDszh.setKhrq("");
-				}
-				String xhrq = amsDszh_temp.getXhrq();
-				if (xhrq != null) {
-					amsDszh.setXhrq(xhrq);
-				} else {
-					amsDszh.setXhrq("");
-				}
-				String zhzt = amsDszh_temp.getZhzt();
-				if (zhzt != null) {
-					amsDszh.setZhzt(zhzt);
-				} else {
-					amsDszh.setZhzt("");
-				}
-				String bz = amsDszh_temp.getBz();
-				if (bz != null) {
-					amsDszh.setBz(bz);
-				} else {
-					amsDszh.setBz("");
-				}
-				String sfjrbzk = amsDszh_temp.getSfjrbzk();
-				if (sfjrbzk != null) {
-					amsDszh.setSfjrbzk(sfjrbzk);
-				} else {
-					amsDszh.setSfjrbzk("");
-				}
-				String sfshbzk = amsDszh_temp.getSfshbzk();
-				if (sfshbzk != null) {
-					amsDszh.setSfshbzk(sfshbzk);
-				} else {
-					amsDszh.setSfshbzk("");
-				}
-				String hsjg = amsDszh_temp.getHsjg();
-				if (hsjg != null) {
-					amsDszh.setHsjg(hsjg);
-				} else {
-					amsDszh.setHsjg("");
-				}
-				String wfhsyy = amsDszh_temp.getWfhsyy();
-				if (wfhsyy != null) {
-					amsDszh.setWfhsyy(wfhsyy);
-				} else {
-					amsDszh.setWfhsyy("");
-				}
-				String czff = amsDszh_temp.getCzff();
-				if (czff != null) {
-					amsDszh.setCzff(czff);
-				} else {
-					amsDszh.setCzff("");
-				}
-				String xxlx = amsDszh_temp.getXxlx();
-				if (xxlx != null) {
-					amsDszh.setXxlx(xxlx);
-				} else {
-					amsDszh.setXxlx("");
-				}
-				String khqd = amsDszh_temp.getKhqd();
-				if (khqd != null) {
-					amsDszh.setKhqd(khqd);
-				} else {
-					amsDszh.setKhqd("");
-				}
-				String remarks = amsDszh_temp.getRemarks();
-				if (remarks != null) {
-					amsDszh.setRemarks(remarks);
-				} else {
-					amsDszh.setRemarks("");
-				}
-				String reserve4 = amsDszh_temp.getReserve4();
-				if (reserve4 != null) {
-					amsDszh.setReserve4(reserve4);
-				} else {
-					amsDszh.setReserve4("");
-				}
-				String reserve5 = amsDszh_temp.getReserve5();
-				if (reserve5 != null) {
-					amsDszh.setReserve5(reserve5);
-				} else {
-					amsDszh.setReserve5("");
-				}
-				String jlzt = amsDszh_temp.getJlzt();
-				if (jlzt != null) {
-					amsDszh.setJlzt(jlzt);
-				} else {
-					amsDszh.setJlzt("");
-				}
-				String jlrq1 = amsDszh_temp.getJlrq();
-				if (jlrq1 != null) {
-					amsDszh.setJlrq(jlrq1);
-				} else {
-					amsDszh.setJlrq("");
-				}
-				String fgmjyqd = amsDszh_temp.getFgmjyqd();
-				if (fgmjyqd != null) {
-					amsDszh.setFgmjyqd(fgmjyqd);
-				} else {
-					amsDszh.setFgmjyqd("");
-				}
-				String sflmzh1 = amsDszh_temp.getSflmzh();
-				if (sflmzh1 != null) {
-					amsDszh.setSflmzh(sflmzh1);
-				} else {
-					amsDszh.setSflmzh("");
-				}
-				String khdqdm = amsDszh_temp.getKhdqdm();
-				if (khdqdm != null) {
-					amsDszh.setKhdqdm(khdqdm);
-				} else {
-					amsDszh.setKhdqdm("");
-				}
-				String dqdm = amsDszh_temp.getDqdm();
-				if (dqdm != null) {
-					amsDszh.setDqdm(dqdm);
-				} else {
-					amsDszh.setDqdm("");
-				}
-				String sfzjdqr1 = amsDszh_temp.getSfzjdqr();
-				if (sfzjdqr1 != null) {
-					amsDszh.setSfzjdqr(sfzjdqr1);
-				} else {
-					amsDszh.setSfzjdqr("");
-				}
-			}
- 			String sql_kxxb = "SELECT count(*) FROM KXXB WHERE ZH=" + zh;
-			Integer count = 0;
-			tx = session.beginTransaction();
-			Query query_kxxbCount = session.createQuery(sql_kxxb);
-			List kxxb_count = query_kxxbCount.list();
-			tx.commit();
-			
-			
-			for(int i = 0; i < kxxb_count.size(); i ++){
-				count=Integer.parseInt(kxxb_count.get(i).toString());
-			}
-			String sql_kxxb0 = "from KXXB where zh=" + zh;
-			tx = session.beginTransaction();
-			Query query_kxxb = session.createQuery(sql_kxxb0);
-			List kxxb_list = query_kxxb.list();
-			tx.commit();
+			//将对象中的属性值null替换为""
+			nulltoNothing(amsDszh); 
+
+			tool = new FSearchTool(kxxbList, "zh");
+			List<Object> kxxb_list = tool.searchTasks(zh);
+			int count = kxxb_list.size();
 			
 			
 			StringBuilder builderkh = new StringBuilder();
@@ -799,7 +517,7 @@ public class DszhQueryOutput extends BaseUpdate {
 				kxxb.setXkrq(builderxkrq.toString());
 				kxxb.setKzt(builderkzt.toString());
 			}
-			if(lmccount>1){
+			if(lmccount>0){
 				lmckxxb.setCkrxm(builder1.toString());
 				lmckxxb.setCkrsfzjzl(builder2.toString());
 				lmckxxb.setCkrsfzjhm(builder3.toString());
@@ -844,4 +562,66 @@ public class DszhQueryOutput extends BaseUpdate {
 		int ret = 0;
 		return ret;
 	}
+
+	/**
+	 * 将对象中的属性值null替换为""
+	 * @param amsDszh
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	private static void nulltoNothing(AmsDszh amsDszh) throws IllegalAccessException, InvocationTargetException {
+		Field[] f=AmsDszh.class.getSuperclass().getDeclaredFields();
+		System.out.println("Test类里面的所有字段属性的个数为："+f.length+"个，分别为：");
+		Object result = null;
+		for(int i=0;i<f.length;i++){
+		    String attributeName=f[i].getName();
+		    System.out.println(attributeName);
+		    
+		        //将属性名的首字母变为大写，为执行set/get方法做准备
+		        String methodName=attributeName.substring(0,1).toUpperCase()+attributeName.substring(1);
+		        
+		        try{
+		        	
+		        	Method getMethod=AmsDszh.class.getSuperclass().getDeclaredMethod("get"+methodName);
+		            
+		            result=getMethod.invoke(amsDszh);
+		        	if(result == null) {
+		        		Method setMethod=AmsDszh.class.getSuperclass().getMethod("set"+methodName, String.class);
+		                setMethod.invoke(amsDszh,"");
+		        	}
+		            
+		        }catch (NoSuchMethodException e) {
+		            try {
+		                Method setMethod=AmsDszh.class.getMethod("set"+methodName,int.class);
+		                setMethod.invoke(amsDszh,"");
+		            } catch (Exception e2) {
+		                f[i].set(amsDszh,"");
+		            }
+
+		        }
+		}
+	}
+	
+	private static String[] getFiledName(Object o){    
+	    Field[] fields=o.getClass().getSuperclass().getDeclaredFields();    
+	    String[] fieldNames=new String[fields.length];    
+	    for(int i=0;i<fields.length;i++){    
+	          System.out.println(fields[i].getType());    
+	        fieldNames[i]=fields[i].getName();    
+	    }    
+	    return fieldNames;    
+	}    
+	
+	private static Object getFieldValueByName(String fieldName, Object o) {    
+	       try {      
+	           String firstLetter = fieldName.substring(0, 1).toUpperCase();      
+	           String getter = "get" + firstLetter + fieldName.substring(1);      
+	           Method method = o.getClass().getSuperclass().getMethod(getter, new Class[] {});      
+	           Object value = method.invoke(o, new Object[] {});      
+	           return value;      
+	       } catch (Exception e) {      
+	           
+	           return null;      
+	       }      
+	   }     
 }
