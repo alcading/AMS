@@ -52,8 +52,8 @@ public class DszhQueryOutput extends BaseUpdate {
 		String jlrq=updateResultBean.getParameter("jlrq");
 		
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-		@SuppressWarnings("unchecked")
-		List<AmsDszh> list = rootDAO.queryByQL2List(" from AmsDszh model where model.jlrq='" + jlrq + "'");
+//		List<AmsDszh> list = rootDAO.queryByQL2List(" from AmsDszh model where model.jlrq='" + jlrq + "'");
+		
 		
 		/*
 		 * 导出文件名中的金融机构编码为总行的金融机构编码
@@ -86,12 +86,10 @@ public class DszhQueryOutput extends BaseUpdate {
 		
 		tx = session.beginTransaction();
 		
-		/*
-		 * 先将三张表全部查出放入一级缓存
-		 */
+		
 		List<KXXB> kxxb_list = session.createQuery(" from KXXB").list();
 		List<LMCKXXB> lmckxxb_list = session.createQuery(" from LMCKXXB").list();
-		List<AmsDszh> amsdszh_list = session.createQuery(" from AmsDszh").list();
+		List<AmsDszh> list = session.createQuery(" from AmsDszh model where model.jlrq='" + jlrq + "'").list();
 		
         
 		StringBuilder bf=new StringBuilder();
@@ -99,6 +97,7 @@ public class DszhQueryOutput extends BaseUpdate {
 				"存款人姓名(存款人子信息)|存款人身份证件种类(存款人子信息)|存款人身份证件号码(存款人子信息)|身份证件到期日(存款人子信息)|发证机关所在地的地区代码(存款人子信息)|存款人类别(存款人子信息)|存款人国籍(存款人子信息)|存款人性别(存款人子信息)|存款人邮编|存款人地址|存款人电话|代理人名称|代理人身份证件种类|代理人身份证件号码|代理人国籍|代理人电话|开户银行金融机构编码（不可变更）|账号（不可变更）|账户种类|介质号（介质子信息）|介质到期日（介质子信息）|账户介质（介质子信息）|介质注销日期(介质子信息)|介质状态（介质子信息）|账户类型|II、III类户绑定账户账号(绑定账户子信息)|II、III类户绑定账户开户银行金融机构编码(绑定账户子信息)|开户日期|销户日期(不可变)|账户状态|币种|是否为军人保障卡|是否为社会保障卡|核实结果|无法核实原因|处置方法|信息类型|开户渠道|备注|开通的非柜面交易渠道|是否为\"联名账户\"|开户地地区代码|预留字段4|预留字段5");
 		bf.append("\r\n");
 		Iterator it = list.iterator();
+		int i = 0;
 		for(AmsDszh amsDszh:list) {
 			String sflmzh = amsDszh.getSflmzh();
 			jlrq = amsDszh.getJlrq();
@@ -158,6 +157,7 @@ public class DszhQueryOutput extends BaseUpdate {
 		StringBuilder builder8 = new StringBuilder();
 		
 		try {
+			
 			tool = new FSearchTool(lmckxxbList, "zh");
 			List<Object> lmckxxb_temp = tool.searchTasks(zh);
 			lmccount = lmckxxb_temp.size();
@@ -361,12 +361,10 @@ public class DszhQueryOutput extends BaseUpdate {
 		}
 		try {
 			
-			
 			amsDszh = (AmsDszh)session.get(AmsDszh.class, zh);
 			
 			//将对象中的属性值null替换为""
 			nulltoNothing(amsDszh); 
-
 			tool = new FSearchTool(kxxbList, "zh");
 			List<Object> kxxb_list = tool.searchTasks(zh);
 			int count = kxxb_list.size();
@@ -571,11 +569,11 @@ public class DszhQueryOutput extends BaseUpdate {
 	 */
 	private static void nulltoNothing(AmsDszh amsDszh) throws IllegalAccessException, InvocationTargetException {
 		Field[] f=AmsDszh.class.getSuperclass().getDeclaredFields();
-		System.out.println("Test类里面的所有字段属性的个数为："+f.length+"个，分别为：");
+//		System.out.println("Test类里面的所有字段属性的个数为："+f.length+"个，分别为：");
 		Object result = null;
 		for(int i=0;i<f.length;i++){
 		    String attributeName=f[i].getName();
-		    System.out.println(attributeName);
+//		    System.out.println(attributeName);
 		    
 		        //将属性名的首字母变为大写，为执行set/get方法做准备
 		        String methodName=attributeName.substring(0,1).toUpperCase()+attributeName.substring(1);
