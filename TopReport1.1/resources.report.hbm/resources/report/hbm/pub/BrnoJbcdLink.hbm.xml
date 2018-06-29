@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resources.east.data.pub">
+	<class
+		name="BrnoJbcdLink"
+		table="brno_jbcd_link"
+	>
+		<id
+			name="brNo"
+			type="string"
+			column="BRNO"
+		>
+		</id>
+
+		<property	name="jbCode"	column="JRJGBM"	type="string" />
+		
+	</class>
+</hibernate-mapping>

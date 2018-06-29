@@ -494,6 +494,16 @@
         <url-pattern>/btLoad</url-pattern>
     </servlet-mapping>
     
+    <!-- 非居民报文下载 -->
+    <servlet>
+        <servlet-name>FjmzhQueryLoad</servlet-name>
+        <servlet-class>com.huateng.report.imports.updater.FjmzhQueryLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FjmzhQueryLoad</servlet-name>
+        <url-pattern>/FjmLoad</url-pattern>
+    </servlet-mapping>
+    
 	<servlet>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
 		<servlet-class>

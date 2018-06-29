@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resources.east.data.pub">
+	<class
+		name="AmsFjmzhGR"
+		table="AMS_FJMZH_GR"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		    <id name="griAccID" type="string"	column="IACCID"></id>
+		    <property name="grGender"  column="SGENDER" type="string" />
+			<property name="grPhoneNo" column="SPHONENO" type="string" />
+			<property name="grIDType" column="SIDTYPE" type="string" />
+			<property name="grIDNumber" column="SIDNUMBER" type="string" />
+			<property name="grBirthDate" column="DBIRTHDATE"  type="string" />
+			<property name="grBirthCity" column="SBIRTHCITY" type="string" />
+			<property name="grBirthCountryCode" column="SBIRTHCOUNTRYCODE" type="string" />
+			<property name="grFormerCountryName" column="SFORMERCOUNTRYNAME" type="string" />
+			<property name="grIssuedBy" column="SISSUEDBY" type="string" />
+			<property name="grsinType" column="SINTYPE" type="string" />
+			<property name="grTIN" column="TIN" type="string" />
+			<property name="grExplanation" column="SEXPLANATION" type="string" />
+			<property name="grNationality" column="SNATIONALITY" type="string" />
+			
+			<!-- <property
+				name="ind_nationality"
+				column="IND_NATIONALITY"
+				type="string"
+			/>
+			<property
+				name="ind_birthinfo"
+				column="IND_BIRTHINFO"
+				type="java.util.Date"
+			/>
+			<property
+				name="org_name"
+				column="ORG_NAME"
+				type="string"
+			/>
+			<property
+				name="org_address"
+				column="ORG_ADDRESS"
+				type="string"
+			/>
+			<property
+				name="org_phoneno"
+				column="ORG_PHONENO"
+				type="string"
+			/>
+			<property
+				name="org_rescountrycode"
+				column="ORG_RESCOUNTRYCODE"
+				type="string"
+			/>
+			<property
+				name="org_tin"
+				column="ORG_TIN"
+				type="string"
+			/>
+			<property
+				name="org_explanation"
+				column="ORG_EXPLANATION"
+				type="string"
+			/>
+			<property
+				name="con_name"
+				column="CON_NAME"
+				type="string"
+			/>
+			<property
+				name="con_ctrlgpersontype"
+				column="CON_CTRLGPERSONTYPE"
+				type="string"
+			/>
+			<property
+				name="con_nationality"
+				column="CON_NATIONALITY"
+				type="string"
+			/>
+			<property
+				name="con_address"
+				column="CON_ADDRESS"
+				type="string"
+			/>
+			<property
+				name="con_rescountrycode"
+				column="CON_RESCOUNTRYCODE"
+				type="string"
+			/>
+			<property
+				name="con_tin"
+				column="CON_TIN"
+				type="string"
+			/>
+			<property
+				name="con_explanation"
+				column="CON_EXPLANATION"
+				type="string"
+			/>
+			<property
+				name="con_birthinfo"
+				column="CON_BIRTHINFO"
+				type="java.util.Date"
+			/>	 -->
+	</class>	
+</hibernate-mapping>
