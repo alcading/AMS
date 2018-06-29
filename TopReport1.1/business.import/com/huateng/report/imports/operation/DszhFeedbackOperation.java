@@ -25,7 +25,7 @@ public class DszhFeedbackOperation {
 		java.sql.Timestamp date_time = new java.sql.Timestamp(date.getTime());
 		
 		
-		String feedback_type = fileName.substring(51, 53);
+		String feedback_type = fileName.substring((fileName.length() - 6), (fileName.length() - 4));
 		String feedback_type_r = null;
 		if(feedback_type.equals("rf")) {
 			feedback_type_r = "0";

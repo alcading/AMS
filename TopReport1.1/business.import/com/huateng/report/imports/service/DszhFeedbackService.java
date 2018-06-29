@@ -87,7 +87,7 @@ public class DszhFeedbackService {
 			}
 			temp = line.split("\\|");
 			zh = temp[17];
-			result_code = temp[43];
+			result_code = temp[44];
 			
 			amsDszhFeedback_data.setFilename(filename);
 			amsDszhFeedback_data.setZh(zh);

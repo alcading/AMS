@@ -1,11 +1,14 @@
 package com.huateng.ebank.business.management.getter;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 import resource.bean.pub.DataDic;
 
 import com.huateng.common.DataFormat;
@@ -26,7 +29,6 @@ public class BranchManageQueryGetter extends BaseGetter {
 
 	public Result call() throws AppException {
 		try {
-			
 			this.setValue2DataBus(ReportConstant.QUERY_LOG_BUSI_NAME, "机构管理查询");
 			
 			/** 获取查询条件 */
@@ -62,6 +64,8 @@ public class BranchManageQueryGetter extends BaseGetter {
 			   }
 			hql +=("order by po.brclass,po.brcode");
 			List list = DAOUtils.getBctlDAO().queryByCondition(hql);
+			
+			
 			//mod by zhaozhiguo 2012/2/16 FPP-9 用户,岗位及机构的管理页面优化调整 end
 			int maxIndex = nextpage * everypage;
 

@@ -28,10 +28,10 @@ import com.huateng.report.imports.common.Constants;
 import com.huateng.report.utils.ReportUtils;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 import resources.east.data.pub.AmsFjmzhRB;
-import resources.east.data.pub.BrnoJbcdLink;
 /**
  * 非居民空数据报送
  * @author yueya
@@ -57,7 +57,7 @@ public class FjmzhQueryOutput extends BaseUpdate {
 		List<Bctl> bctl =  rootDAO.queryByQL2List(" from Bctl where brclass = '1'");
 		String brno = bctl.get(0).getBrno();
 		List<BrnoJbcdLink> brnoJL = rootDAO.queryByQL2List(" from BrnoJbcdLink where brNo = '"+brno+"'");
-		String jrjgbm = brnoJL.get(0).getJbCode();
+		String jrjgbm = brnoJL.get(0).getJrjgbm();
 		String rb = "";
 		AmsFjmzhRB fjmrb = fjmzhRb.get(0);
 		String newRb = "";

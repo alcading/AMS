@@ -55,7 +55,7 @@ private static final Logger logger = Logger.getLogger(DszhQueryUpdateAndSave.cla
 					delList.add(amsDszh);
 					break;
 				case UpdateResultBean.MODIFY:
-				if(amsDszh.isSelect()) {
+				if(amsDszh.getSelect()) {
 					String zh = amsDszh.getZh();
 					amsDszh.setZh(zh);
 					updateList.add(amsDszh);

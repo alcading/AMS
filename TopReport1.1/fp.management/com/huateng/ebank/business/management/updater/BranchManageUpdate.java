@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 
 import com.huateng.common.err.Module;
 import com.huateng.common.err.Rescode;
@@ -30,11 +31,14 @@ public class BranchManageUpdate extends BaseUpdate {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_branchManage");
 			
-			List updateList = new ArrayList();
+			List<Bctl> updateList = new ArrayList();
 			List insertList = new ArrayList();
 			List delList = new ArrayList();
 			
+			List<BrnoJbcdLink> brnoJbcdLink_list = new ArrayList();
+			
 			Bctl bean = new Bctl();
+			BrnoJbcdLink brnoJbcdLink = new BrnoJbcdLink();
 			while (updateResultBean.hasNext()) {
 				bean = new Bctl();
 				mapToObject(bean, updateResultBean.next());
@@ -47,6 +51,11 @@ public class BranchManageUpdate extends BaseUpdate {
 					break;
 				case UpdateResultBean.MODIFY:
 					updateList.add(bean);
+					
+					brnoJbcdLink.setBrno(updateList.get(0).getBrno());
+					brnoJbcdLink.setJrjgbm(updateList.get(0).getJrjgbm());
+					brnoJbcdLink_list.add(brnoJbcdLink);
+					
 					break;
 				default:
 					break;
@@ -56,6 +65,9 @@ public class BranchManageUpdate extends BaseUpdate {
 			context.setAttribute(BranchManageUpdateOperation.INSERT_LIST, insertList);
 			context.setAttribute(BranchManageUpdateOperation.UPDATE_LIST, updateList);
 			context.setAttribute(BranchManageUpdateOperation.DEL_LIST, delList);
+			
+			context.setAttribute(BranchManageUpdateOperation.BRNOJBCDLINK_LIST, brnoJbcdLink_list);
+			
 			OPCaller.call("Management.BranchManageUpdateOperation", context);
 			return updateReturnBean;
 		} catch (AppException appEx) {

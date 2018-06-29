@@ -1,25 +1,10 @@
 <#import "/templets/commonQuery/CommonQueryTagMacro.ftl" as CommonQueryMacro>
-<#import "/fpages/regonization/ftl/DszhQueryUpdate.ftl" as DszhQueryUpdate>
-<script src="templets/ui/js/jquery-1.8.2.min.js"></script>
+<#assign bean=JspTaglibs["/WEB-INF/struts-bean.tld"] />
 <@CommonQueryMacro.page title="个人结算账户">
 
 <@CommonQueryMacro.CommonQuery id="DszhQuery" init="true" submitMode="all" navigate="false">
 <table width="1349px">
-<!--
-	<tr>
-		
-		<td>
-			<@CommonQueryMacro.GroupBox id="guoup1" label="" expand="true">
-			<table frame=void class="grouptable" width="30%">
-				<tr>
-					<td align="center" class="labeltd">数据日期</td>
-					<td class="datatd"> <@CommonQueryMacro.SingleField fId="lbhdate"/></td>
-				</tr>
-			</table>
-			</@CommonQueryMacro.GroupBox>
-		</td>
-	</tr>
--->
+
 	<tr>
 		<td>
 			<@CommonQueryMacro.Interface id="interface" label="个人结算账户" btnNm="查询" colNm=8/>
@@ -38,21 +23,29 @@
 	</tr>
 </table>
 <iframe id="filedownloadfrm"  style="display: none;"></iframe>
-<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" >请先按数据日期查询,再导出报文</span></span>
+<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" ><@bean.message key="DszhQuery.message" /></span></span>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
 window.onload=function(){
 	var date = new Date();
     date.setTime(date.getTime()-24*60*60*1000);
-    var currentDate = date.getFullYear()+"-" + (date.getMonth()+1) + "-" + date.getDate();
-//	currentDate="2017-09-28";
+    if(date.getDate() < 10) {
+    	today_date = "0" + date.getDate();
+    }else {
+    	today_date = date.getDate();
+    }
+    var currentDate = date.getFullYear()+"-" + (date.getMonth()+1) + "-" + today_date;
+
     DszhQuery_interface_dataset.setValue("jlrq", currentDate);
 }
 
 
+
+
 //定位一行记录
 	function locate(zh) {
+	
 		var record = DszhQuery_dataset.find(["zh"],[zh]);
 		if(record) {
 			DszhQuery_dataset.setRecord(record);
@@ -72,6 +65,10 @@ function btLoad_onClickCheck(button){
 		return false;
   	}
 
+function btSave_onClickCheck(button){
+        alert("mkmk");
+		return false;
+  	}
 
 function btDel_onClickCheck(button) {
 	var rec = DszhQuery_dataset.firstUnit;
@@ -94,6 +91,7 @@ function btDel_onClickCheck(button) {
 
 function btMod_onClickCheck() {
 
+	alert(today_date);
 	var rec = DszhQuery_dataset.firstUnit;
 	
 	var f = false;

@@ -19,6 +19,7 @@ import org.hibernate.type.Type;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 
 import com.huateng.ebank.business.common.ErrorCode;
 import com.huateng.ebank.business.common.SystemConstant;
@@ -61,6 +62,39 @@ public class BctlDAO extends HibernateDaoSupport {
 				logger.debug("query(String) - end"); //$NON-NLS-1$
 			}
 			return returnBctl;
+		} catch (Exception e) {
+			logger.error("query(String)", e); //$NON-NLS-1$
+
+			ExceptionUtil.throwCommonException(e.getMessage(),
+					ErrorCode.ERROR_CODE_BCTL_SELECT, e);
+		}
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("query(String) - end"); //$NON-NLS-1$
+		}
+		return null;
+	}
+	
+	/**
+	 * 根据Hibernate ID查询记录，如果没有找到记录，则抛出异常
+	 * 保存金融机构编码到表brno_jbcd_link中
+	 * @param id
+	 * @return Bctl
+	 * @throws CommonException
+	 */
+	public BrnoJbcdLink queryBrno_jbcd_link(String id) throws CommonException {
+		this.getHibernateTemplate().setCacheQueries(true);
+		if (logger.isDebugEnabled()) {
+			logger.debug("query(String) - start"); //$NON-NLS-1$
+		}
+		try {
+//			Bctl returnBctl = (Bctl) this.getHibernateTemplate().load(
+//					Bctl.class, id);
+			BrnoJbcdLink returnBrnojbcdlink = (BrnoJbcdLink)this.getHibernateTemplate().get(BrnoJbcdLink.class, id);
+			if (logger.isDebugEnabled()) {
+				logger.debug("query(String) - end"); //$NON-NLS-1$
+			}
+			return returnBrnojbcdlink;
 		} catch (Exception e) {
 			logger.error("query(String)", e); //$NON-NLS-1$
 
@@ -317,6 +351,32 @@ public class BctlDAO extends HibernateDaoSupport {
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("update(Bctl) - end"); //$NON-NLS-1$
+		}
+	}
+	
+	/**
+	 * 更新brno_jbcd_link记录
+	 *
+	 * @param po
+	 * @throws CommonException
+	 */
+	public void updateBrno_jbcd_link(BrnoJbcdLink po) throws CommonException {
+		this.getHibernateTemplate().setCacheQueries(false);
+		if (logger.isDebugEnabled()) {
+			logger.debug("update(BrnoJbcdLink) - start"); //$NON-NLS-1$
+		}
+
+		try {
+			this.getHibernateTemplate().saveOrUpdate(po);
+		} catch (Exception e) {
+			logger.error("update(BrnoJbcdLink)", e); //$NON-NLS-1$
+
+			ExceptionUtil.throwCommonException(e.getMessage(),
+					ErrorCode.ERROR_CODE_BCTL_UPDATE, e);
+		}
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("update(BrnoJbcdLink) - end"); //$NON-NLS-1$
 		}
 	}
 

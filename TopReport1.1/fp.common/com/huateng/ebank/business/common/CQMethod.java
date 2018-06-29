@@ -11,6 +11,7 @@ import javax.servlet.ServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 import resource.bean.pub.DataDic;
 import resource.bean.pub.TlrInfo;
 import resource.bean.report.BiAreaOfChina;
@@ -934,4 +935,31 @@ public class CQMethod {
 		}
 	}
 
+	
+	/**
+	 * 机构查询中查询对应的金融机构编码
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getJrjgbm(ICommonQueryBaseBean element, String value,
+			ServletRequest request) throws HuatengException {
+		String jrjgbm = null;
+		System.out.println(value);
+		String hql = "from BrnoJbcdLink B where B.brno = " + value;
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		List<BrnoJbcdLink> list = rootdao.queryByQL2List(hql.toString());
+		if(list.size() != 0) {
+			jrjgbm = list.get(0).getJrjgbm();
+			if(jrjgbm == "" || jrjgbm == null) {
+				return "";
+			}
+		}else {
+			return "";
+		}
+		return jrjgbm;
+		
+	}
 }

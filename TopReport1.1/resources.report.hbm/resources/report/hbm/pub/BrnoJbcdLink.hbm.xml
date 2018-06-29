@@ -3,19 +3,26 @@
 	"-//Hibernate/Hibernate Mapping DTD//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 
-<hibernate-mapping package="resources.east.data.pub">
+<hibernate-mapping package="resource.bean.pub">
 	<class
 		name="BrnoJbcdLink"
 		table="brno_jbcd_link"
+		lazy="false"
 	>
+		<meta attribute="sync-DAO">false</meta>
 		<id
-			name="brNo"
+			name="brno"
 			type="string"
 			column="BRNO"
 		>
+			<generator class="assigned"/>
 		</id>
 
-		<property	name="jbCode"	column="JRJGBM"	type="string" />
-		
+		<property
+			name="jrjgbm"
+			column="JRJGBM"
+			type="string"
+			length="14"
+		/>
 	</class>
 </hibernate-mapping>

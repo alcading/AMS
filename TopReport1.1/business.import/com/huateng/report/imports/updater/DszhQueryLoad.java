@@ -55,20 +55,7 @@ public class DszhQueryLoad extends HttpServlet {
 			//filePath=filePath+File.separator+jlrq.substring(0,6)+File.separator+jlrq+File.separator;
 			filePath = filePath + File.separator + jlrq + File.separator;
 			File file = new File(filePath);
-			//String[] file1=file.list();
 			
-			//String fileName=file1[0];
-			
-			//PackZipUtil zipUtil = new PackZipUtil();
-			//String packName = jlrq;
-			//String zipPath = filePath;
-//			try {
-//				zipUtil.createZip(filePath, new String[] { packName }, zipPath);
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-			//inStream = new FileInputStream(filePath+fileName);
 			String sourceFilePath= filePath;
 			String zipFilePath = filePath;
 			String fileName = jlrq;
