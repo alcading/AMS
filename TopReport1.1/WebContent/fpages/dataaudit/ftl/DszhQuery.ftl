@@ -13,7 +13,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btFeedback,-,btLoad"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,zhzt,jlrq,ismodify,report_status"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btFeedback,-,btLoad,-,btMessageInfo"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,zhzt,jlrq,ismodify,report_status"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -28,6 +28,7 @@
 
 <script language="javascript">
 window.onload=function(){
+	
 	var date = new Date();
     date.setTime(date.getTime()-24*60*60*1000);
     if(date.getDate() < 10) {
@@ -65,11 +66,6 @@ function btLoad_onClickCheck(button){
 		return false;
   	}
 
-function btSave_onClickCheck(button){
-        alert("mkmk");
-		return false;
-  	}
-
 function btDel_onClickCheck(button) {
 	var rec = DszhQuery_dataset.firstUnit;
 	var f = false;
@@ -91,7 +87,6 @@ function btDel_onClickCheck(button) {
 
 function btMod_onClickCheck() {
 
-	alert(today_date);
 	var rec = DszhQuery_dataset.firstUnit;
 	
 	var f = false;

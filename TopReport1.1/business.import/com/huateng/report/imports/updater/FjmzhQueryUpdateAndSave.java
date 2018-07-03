@@ -51,7 +51,32 @@ public class FjmzhQueryUpdateAndSave extends BaseUpdate {
 				AmsFjmzh amsFjmzh=new AmsFjmzh();
 				Map map = updateResultBean.next();
 				mapToObject(amsFjmzh, map);
-				updateList.add(amsFjmzh);
+				switch (updateResultBean.getRecodeState()) {
+				case UpdateResultBean.INSERT:
+					insertList.add(amsFjmzh);
+					break;				
+				case UpdateResultBean.DELETE:
+					delList.add(amsFjmzh);
+					break;
+				case UpdateResultBean.MODIFY:
+//					String ind_idtype = amsFjmzh.getInd_idtype();
+//					String ind_idnumber = amsFjmzh.getInd_idnumber();
+//					AmsFjmzhId Id = new AmsFjmzhId();
+//					Id.setInd_idtype(ind_idtype);
+//					Id.setInd_idnumber(ind_idnumber);
+//					
+//					amsFjmzh.setId(Id);
+//					
+//					System.out.println(Id.getInd_idtype());
+//					System.out.println(Id.getInd_idnumber());
+					
+					updateList.add(amsFjmzh);
+					
+					break;
+				default:
+					break;
+				}
+
 			}
 			OperationContext oc = new OperationContext();
 			oc.setAttribute(FjmzhQueryUpdateOperation.IN_DEL, delList);

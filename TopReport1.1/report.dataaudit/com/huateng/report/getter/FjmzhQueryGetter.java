@@ -1,5 +1,7 @@
 package com.huateng.report.getter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import com.huateng.ebank.framework.web.commQuery.BaseGetter;
 import com.huateng.exception.AppException;
 
 import east.dao.BaseDao;
+import resources.east.data.pub.AmsDszh;
 import resources.east.data.pub.AmsFjmzh;
 
 @SuppressWarnings("unchecked")
@@ -19,23 +22,23 @@ public class FjmzhQueryGetter extends BaseGetter{
 	public Result call() throws AppException {
 		try {
 			Map para=this.getCommQueryServletRequest().getParameterMap();
-			String sAccountType = (String)para.get("sAccountType");
-			String rpStatus = (String)para.get("report_status");
-			String accountNumber = (String)para.get("accountNumber");
-			String sAccountHolderType = (String)para.get("sAccountHolderType");
-			if(sAccountType!=null && !"".equals(sAccountType)){
-				sAccountType = sAccountType.toUpperCase();
+			String ind_name = (String)para.get("ind_name");
+			String accountnumber = (String)para.get("accountnumber");
+			String ind_idtype = (String)para.get("ind_idtype");
+			String ind_idnumber = (String)para.get("ind_idnumber");
+			if(ind_name!=null && !"".equals(ind_name)){
+				ind_name = ind_name.toUpperCase();
 			}
-			if(rpStatus!=null && !"".equals(rpStatus)){
-				rpStatus = rpStatus.toUpperCase();
+			if(accountnumber!=null && !"".equals(accountnumber)){
+				accountnumber = accountnumber.toUpperCase();
 			}
-			if(accountNumber!=null && !"".equals(accountNumber)){
-				accountNumber = accountNumber.toUpperCase();
+			if(ind_idtype!=null && !"".equals(ind_idtype)){
+				ind_idtype = ind_idtype.toUpperCase();
 			}
-			if(sAccountHolderType!=null && !"".equals(sAccountHolderType)){
-				sAccountHolderType = sAccountHolderType.toUpperCase();
-			}
-			List<AmsFjmzh> list = BaseDao.queryFjmzh(sAccountType,accountNumber,sAccountHolderType,rpStatus);
+			if(ind_idnumber!=null && !"".equals(ind_idnumber)){
+				ind_idnumber = ind_idnumber.toUpperCase();
+			}			
+			List<AmsFjmzh> list = BaseDao.queryFjmzh(ind_name,accountnumber,ind_idtype,ind_idnumber);
 			ResultMng.fillResultByList(getCommonQueryBean(),
 					getCommQueryServletRequest(), list, getResult());
 			result.setContent(list);

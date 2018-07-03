@@ -26,27 +26,12 @@
     <bean id="DszhQueryLMUpdateOperation"
 		class="com.huateng.report.imports.operation.DszhQueryLMUpdateOperation">
 	</bean>
-	<bean id="DszhQueryKAUpdateOperation"
+	 <bean id="DszhQueryKAUpdateOperation"
 		class="com.huateng.report.imports.operation.DszhQueryKAUpdateOperation">
 	</bean>
 <!-- 非居民账户查询修改保存 -->
 	<bean id="FjmzhQueryUpdateOperation"
 		class="com.huateng.report.imports.operation.FjmzhQueryUpdateOperation">
-	</bean>
-	<bean id="FjmzhQueryGRUpdateOperation"
-		class="com.huateng.report.imports.operation.FjmzhQueryGRUpdateOperation">
-	</bean>
-	<bean id="FjmzhQueryJGUpdateOperation"
-		class="com.huateng.report.imports.operation.FjmzhQueryJGUpdateOperation">
-	</bean>
-	<bean id="FjmzhQueryKZRUpdateOperation"
-		class="com.huateng.report.imports.operation.FjmzhQueryKZRUpdateOperation">
-	</bean>
-	<bean id="FjmzhQueryDZUpdateOperation"
-		class="com.huateng.report.imports.operation.FjmzhQueryDZUpdateOperation">
-	</bean>
-	<bean id="FjmzhQueryXMUpdateOperation"
-		class="com.huateng.report.imports.operation.FjmzhQueryXMUpdateOperation">
 	</bean>
 
 		<!-- TT file -->

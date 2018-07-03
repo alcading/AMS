@@ -16,6 +16,10 @@ public class AmsDszh extends BaseAmsDszh implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = -2007963389690146692L;
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	/** default constructor */
 	public AmsDszh() {
 	}

@@ -157,19 +157,4 @@
 	<bean id="com.huateng.report.imports.service.FjmzhQueryService"
 		 class="com.huateng.report.imports.service.FjmzhQueryService">
 	</bean>
-	<bean id="com.huateng.report.imports.service.FjmzhGRQueryService"
-		 class="com.huateng.report.imports.service.FjmzhGRQueryService">
-	</bean>
-	<bean id="com.huateng.report.imports.service.FjmzhJGQueryService"
-		 class="com.huateng.report.imports.service.FjmzhJGQueryService">
-	</bean>
-	<bean id="com.huateng.report.imports.service.FjmzhKZRQueryService"
-		 class="com.huateng.report.imports.service.FjmzhKZRQueryService">
-	</bean>
-	<bean id="com.huateng.report.imports.service.FjmzhDZQueryService"
-		 class="com.huateng.report.imports.service.FjmzhDZQueryService">
-	</bean>
-	<bean id="com.huateng.report.imports.service.FjmzhXMQueryService"
-		 class="com.huateng.report.imports.service.FjmzhXMQueryService">
-	</bean>
 </beans>

@@ -2,7 +2,7 @@ package resources.east.data.pub;
 
 
 
-
+import resources.east.data.base.BaseAmsDszh;
 import resources.east.data.base.BaseAmsFjmzh;
 
 /**
@@ -21,6 +21,9 @@ public class AmsFjmzh extends BaseAmsFjmzh implements java.io.Serializable {
 	public AmsFjmzh() {
 	}
 	
-
-
+	
+	/** minimal constructor */
+	public AmsFjmzh(AmsFjmzhId id) {
+		super();
+	}
 }

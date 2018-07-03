@@ -494,16 +494,6 @@
         <url-pattern>/btLoad</url-pattern>
     </servlet-mapping>
     
-    <!-- 非居民报文下载 -->
-    <servlet>
-        <servlet-name>FjmzhQueryLoad</servlet-name>
-        <servlet-class>com.huateng.report.imports.updater.FjmzhQueryLoad</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FjmzhQueryLoad</servlet-name>
-        <url-pattern>/FjmLoad</url-pattern>
-    </servlet-mapping>
-    
 	<servlet>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
 		<servlet-class>
@@ -521,6 +511,7 @@
 		<servlet-name>FeedbackUpload</servlet-name>
 		<servlet-class>com.huateng.report.imports.servlet.FeedbackUpload</servlet-class>
 	</servlet>
+	
 
 	<servlet-mapping>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
@@ -534,7 +525,6 @@
 		<servlet-name>FeedbackUpload</servlet-name>
 		<url-pattern>/FeedbackUpload</url-pattern>
 	</servlet-mapping>
-
 
 	<!-- Define the pushlet servlet
 	<servlet>
