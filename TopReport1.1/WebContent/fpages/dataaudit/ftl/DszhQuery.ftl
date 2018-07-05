@@ -13,7 +13,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btFeedback,-,btLoad,-,btMessageInfo"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,zhzt,jlrq,ismodify,report_status"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btFeedback,-,btLoad"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,zhzt,jlrq,ismodify,report_status"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -55,10 +55,13 @@ window.onload=function(){
 
 
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
- function btSave_postSubmit(button) {
-	  	alert("导出成功");
-	  	
-	  } 
+
+function btSave_onClickCheck(button){
+		var jlrq = DszhQuery_dataset.getValue("jlrq");
+		var date = Todate(jlrq);
+		document.getElementById("filedownloadfrm").src ="${contextPath}/DszhQueryOutput?jlrq="+date;
+		return true;
+}
 
 function btLoad_onClickCheck(button){
         var jlrq = DszhQuery_dataset.getValue("jlrq");
@@ -153,5 +156,27 @@ function flushCurrentPage() {
 	DszhQuery_dataset.flushData(DszhQuery_dataset.pageIndex);
 }
 
+function Todate(num) {
+        num = num + "";
+        var date = "";
+        var month = new Array();
+        month["Jan"] = 1; month["Feb"] = 2; month["Mar"] = 3; month["Apr"] = 4; month["May"] = 5; month["Jun"] = 6;
+        month["Jul"] = 7; month["Aug"] = 8; month["Sep"] = 9; month["Oct"] = 10; month["Nov"] = 11; month["Dec"] = 12;
+        var week = new Array();
+        week["Mon"] = "一"; week["Tue"] = "二"; week["Wed"] = "三"; week["Thu"] = "四"; week["Fri"] = "五"; week["Sat"] = "六"; week["Sun"] = "日";
+        str = num.split(" ");
+        if(str[2] < 10) {
+        	str[2] = 0 + str[2];
+        }
+        date = str[5];
+        if(month[str[1]] < 10){
+        	date = date + "0" + month[str[1]] + str[2];
+        }else {
+        	date = date + month[str[1]] + str[2];
+        }
+        
+
+        return date;
+    }
 </script>
 </@CommonQueryMacro.page>

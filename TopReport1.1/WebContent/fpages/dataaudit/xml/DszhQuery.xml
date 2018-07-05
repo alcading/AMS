@@ -61,7 +61,7 @@
 		<Button id="btDel" name="btDel" desc="删除" 
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryDelete" show="" group="" txn=""  icon="icon-remove"/>
 		<Button id="btSave" name="btSave" desc="导出报文" 
-				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryOutput" show="" group="" txn=""  icon="icon-expout"/>
+				operation="" url="#" updateClass="" show="" group="" txn=""  icon="icon-expout"/>
         <Button id="btLoad" name="btLoad" desc="下载报文" 
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryLoad" show="" group="" txn=""  icon="icon-print"/>
        
