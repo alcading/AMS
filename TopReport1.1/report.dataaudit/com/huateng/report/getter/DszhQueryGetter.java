@@ -30,8 +30,9 @@ public class DszhQueryGetter extends BaseGetter{
 				getResult());
 			result.setContent(pageResult.getQueryResult());
 			result.getPage().setTotalPage(pageResult.getPageCount(getResult().getPage().getEveryPage()));
-			
 			result.init();
+			
+			
 			
 			return result;
 		}catch(AppException appEx){

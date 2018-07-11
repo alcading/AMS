@@ -494,6 +494,33 @@
         <url-pattern>/btLoad</url-pattern>
     </servlet-mapping>
     
+    <!-- 非居民报文下载 -->
+    <servlet>
+        <servlet-name>FjmzhQueryLoad</servlet-name>
+        <servlet-class>com.huateng.report.imports.updater.FjmzhQueryLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FjmzhQueryLoad</servlet-name>
+        <url-pattern>/FjmLoad</url-pattern>
+    </servlet-mapping>
+    <!-- 非居民报文导出(无数据) -->
+    <servlet>
+        <servlet-name>FjmzhQueryNoDataOutput</servlet-name>
+        <servlet-class>com.huateng.report.imports.updater.FjmzhQueryNoDataOutput</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FjmzhQueryNoDataOutput</servlet-name>
+        <url-pattern>/Fjmimport</url-pattern>
+    </servlet-mapping>
+    <!-- 非居民报文导出(有数据) -->
+    <servlet>
+        <servlet-name>FjmzhQueryOutput</servlet-name>
+        <servlet-class>com.huateng.report.imports.updater.FjmzhQueryOutput</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FjmzhQueryOutput</servlet-name>
+        <url-pattern>/Fjmimports</url-pattern>
+    </servlet-mapping>
 	<servlet>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
 		<servlet-class>
@@ -511,14 +538,6 @@
 		<servlet-name>FeedbackUpload</servlet-name>
 		<servlet-class>com.huateng.report.imports.servlet.FeedbackUpload</servlet-class>
 	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>DszhQueryOutput</display-name>
-		<servlet-name>DszhQueryOutput</servlet-name>
-		<servlet-class>com.huateng.report.imports.updater.DszhQueryOutput</servlet-class>
-	</servlet>
-	
 
 	<servlet-mapping>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
@@ -532,10 +551,7 @@
 		<servlet-name>FeedbackUpload</servlet-name>
 		<url-pattern>/FeedbackUpload</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DszhQueryOutput</servlet-name>
-		<url-pattern>/DszhQueryOutput</url-pattern>
-	</servlet-mapping>
+
 
 	<!-- Define the pushlet servlet
 	<servlet>

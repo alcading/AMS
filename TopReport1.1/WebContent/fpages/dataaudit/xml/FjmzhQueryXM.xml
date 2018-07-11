@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="非居民账户个人信息" navigate="非居民账户个人信息" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.FjmzhQueryXMGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示-->
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->
+		<Field id="select" desc="选择" edittype="checkbox" datatype="boolean" xpath="/select" />
+		<!-- 姓名信息 -->
+		<Field id="xiAccID" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/xiAccID" />
+		<Field id="xNameType" desc="姓名类型" edittype="select" translated="DATA_DIC.300032" datatype="string" size="10" require="false" xpath="/xNameType" />
+		<Field id="xLastName" desc="法定英文（拼音）姓" edittype="text" datatype="string" size="100" require="false" xpath="/xLastName" />
+		<Field id="xMiddleName" desc="英文中间名 " edittype="text" datatype="string" size="100" require="false" xpath="/xMiddleName" />
+		<Field id="xFirstName" desc="法定英文（拼音）名" edittype="text" datatype="string" size="100" require="false" xpath="/xFirstName" />
+		<Field id="xNameCN" desc="中文姓名" edittype="text" datatype="string" size="200" require="false" xpath="/xNameCN" />
+		<Field id="xPrecedingTitle" desc="PrecedingTitle" edittype="text" datatype="string" size="200" require="false" xpath="/xPrecedingTitle" />
+		<Field id="xTitle" desc="Title" edittype="text" datatype="string" size="200" require="false" xpath="/xTitle" />
+		<Field id="xNamePrefix" desc="NamePrefix" edittype="text" datatype="string" size="200" require="false" xpath="/xNamePrefix" />
+		<Field id="xGenerationIdentifier" desc="GenerationIdentifier" edittype="text" datatype="string" size="200" require="false" xpath="/xGenerationIdentifier" readonly="false" />
+		<Field id="xSuffix" desc="Suffix" edittype="text" datatype="string" size="200" require="false" xpath="/xSuffix" readonly="false" />
+		<Field id="xGeneralSuffix" desc="GeneralSuffix" edittype="text" datatype="string" size="200" require="false" xpath="/xGeneralSuffix" />
+		<Field id="xStyle" desc="姓名标识" edittype="select" translated="DATA_DIC.300035" datatype="string" size="2" readonly="true" require="false" xpath="/xStyle" />
+		<Field id="operation" desc="操作" />
+	</Fields>
+
+	<Where>
+	</Where>
+
+	<Operations>
+	
+		<Button id="btMod" name="btMod" desc="修改" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>
+				
+		<Button id="btNew" name="btNew" desc ="CurrencyManEntry.button.btNew" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add"/>
+		<Button id="btSave" name="btSave" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhAddXM"
+			url="/fpages/dataaudit/ftl/FjmzhQueryGR.ftl" txn="" />
+			
+		<Button id="btSaveEdit" name="btSaveEdit" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhUpdateXM"
+			url="" txn="" />
+		<Button id="btBack" name="btBack" desc="返回" operation=""
+			url="#" txn="" />		
+	</Operations>
+	
+	
+
+	<Script></Script>
+
+</CommQry>

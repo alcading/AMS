@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="非居民账户地址信息" navigate="非居民账户地址信息" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.FjmzhQueryDZGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示-->
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->
+		<Field id="select" desc="选择" edittype="checkbox" datatype="boolean" xpath="/select" />
+		<!-- 地址信息 -->
+		<Field id="diAccID" desc="账号" edittype="text" datatype="string" size="20" require="false" xpath="/diAccID" />
+		<Field id="slegalAddressType" desc="地址类型" edittype="select" translated="DATA_DIC.300033" datatype="string" size="7" require="false" xpath="/slegalAddressType" />
+		<Field id="sCountryCode" desc="国家代码" edittype="text" datatype="string" size="3" require="false" xpath="/sCountryCode" />
+		<Field id="sAddressEN_AddressFreeEN" desc="英文详细地址 " edittype="text" datatype="string" size="500" require="false" xpath="/sAddressEN_AddressFreeEN" />
+		<Field id="sAddressFixEN_CityEN" desc="所在城市" edittype="text" datatype="string" size="200" require="false" xpath="/sAddressFixEN_CityEN" />
+		<Field id="sAddressFixEN_Street" desc="街道" edittype="text" datatype="string" size="200" require="false" xpath="/sAddressFixEN_Street" />
+		<Field id="sAddressFixEN_BuildingIden" desc="楼号" edittype="text" datatype="string" size="100" require="false" xpath="/sAddressFixEN_BuildingIden" />
+		<Field id="sAddressFixEN_SuiteIdentifier" desc="房门号" edittype="text" datatype="string" size="100" require="false" xpath="/sAddressFixEN_SuiteIdentifier" />
+		<Field id="sAddressFixEN_FloorIdentifier" desc="楼层" edittype="text" datatype="string" size="100" require="false" xpath="/sAddressFixEN_FloorIdentifier" />
+		<Field id="sAddressFixEN_DistrictName" desc="区" edittype="text" datatype="string" size="200" require="false" xpath="/sAddressFixEN_DistrictName" readonly="false" />
+		<Field id="sAddressFixEN_POB" desc="邮箱" edittype="text" datatype="string" size="50" require="false" xpath="/sAddressFixEN_POB" readonly="false" />
+		<Field id="sAddressFixEN_PostCode" desc="邮编" edittype="text" datatype="string" size="50" require="false" xpath="/sAddressFixEN_PostCode" />
+		<Field id="sAddressFixEN_CountrySubentity" desc="CountrySubentity" edittype="text"  datatype="string" size="200" require="false" xpath="/sAddressFixEN_CountrySubentity" />
+		<Field id="sAddressCN_sAddressFreeCN" desc="中文详细地址" edittype="text"  datatype="string" size="1000" require="false" xpath="/sAddressCN_sAddressFreeCN" />
+		<Field id="sAddressFixCN_Province" desc="省级行政区划代码 " edittype="text" datatype="string" size="6" require="false" xpath="/sAddressFixCN_Province" />
+		<Field id="sAddressFixCN_CityCN" desc="地级市行政区划代码" edittype="text" datatype="string" size="6" require="false" xpath="/sAddressFixCN_CityCN" />
+		<Field id="sAddressFixCN_DistrictName" desc="县级行政区划代码" edittype="text" datatype="string" size="6" require="false" xpath="/sAddressFixCN_DistrictName" />
+		<Field id="sAddressFixCN_PostCode" desc="邮编" edittype="text" datatype="string" size="10" require="false" xpath="/sAddressFixCN_PostCode" />
+		<Field id="dStyle" desc="地址标识" edittype="select" translated="DATA_DIC.300034" datatype="string" size="2" readonly="true" require="false" xpath="/dStyle" />
+		<Field id="operation" desc="操作" />
+	</Fields>
+
+	<Where>
+	</Where>
+
+	<Operations>
+	
+		<Button id="btMod" name="btMod" desc="修改" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>
+				
+		<Button id="btNew" name="btNew" desc ="CurrencyManEntry.button.btNew" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add"/>
+		<Button id="btSave" name="btSave" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhAddDZ"
+			url="/fpages/dataaudit/ftl/FjmzhQueryGR.ftl" txn="" />
+			
+		<Button id="btSaveEdit" name="btSaveEdit" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhUpdateDZ"
+			url="" txn="" />
+		<Button id="btBack" name="btBack" desc="返回" operation=""
+			url="#" txn="" />		
+	</Operations>
+	
+	
+
+	<Script></Script>
+
+</CommQry>

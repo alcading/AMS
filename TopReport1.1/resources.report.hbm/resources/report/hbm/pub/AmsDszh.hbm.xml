@@ -262,13 +262,5 @@
 				length="255"
 				update="false"
 			/>
-			<set name="kxxb" inverse="true" cascade="none">
-				<key column="zh"></key>
-				<one-to-many class="resources.east.data.pub.KXXB" />
-			</set>
-			<set name="lmckxxb" inverse="true" cascade="none">
-				<key column="zh"></key>
-				<one-to-many class="resources.east.data.pub.LMCKXXB" />
-			</set>
 	</class>
 </hibernate-mapping>

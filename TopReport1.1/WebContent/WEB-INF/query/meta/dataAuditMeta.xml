@@ -19,12 +19,13 @@
 	<!-- 对私联名账户查询 -->
 	<Query id="DszhQueryLM" path="/fpages/dataaudit/xml/DszhQueryLM.xml"></Query>
 	<Query id="DszhQueryKA" path="/fpages/dataaudit/xml/DszhQueryKA.xml"></Query>
-	
-	<!-- 对私账户报文详情页 -->
-	<Query id="DszhMessageInfo" path="/fpages/dataaudit/xml/DszhMessageInfo.xml"></Query>
-	
 	<!-- 非居民账户数据查询 -->
 	<Query id="FjmzhQuery" path="/fpages/dataaudit/xml/FjmzhQuery.xml"></Query>
+	<Query id="FjmzhQueryGR" path="/fpages/dataaudit/xml/FjmzhQueryGR.xml"></Query>
+	<Query id="FjmzhQueryJG" path="/fpages/dataaudit/xml/FjmzhQueryJG.xml"></Query>
+	<Query id="FjmzhQueryKZR" path="/fpages/dataaudit/xml/FjmzhQueryKZR.xml"></Query>
+	<Query id="FjmzhQueryDZ" path="/fpages/dataaudit/xml/FjmzhQueryDZ.xml"></Query>
+	<Query id="FjmzhQueryXM" path="/fpages/dataaudit/xml/FjmzhQueryXM.xml"></Query>
 	<Query id="FjmzhQueryUpdate" path="/fpages/management/xml/FjmzhQueryUpdate.xml"></Query>
 	<Query id="FjmzhAdd" path="/fpages/management/xml/FjmzhAdd.xml"></Query>
 

@@ -16,13 +16,10 @@ import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
-import com.huateng.report.imports.operation.DszhQueryUpdateOperation;
 import com.huateng.report.imports.operation.FjmzhQueryUpdateOperation;
 
-import resources.east.data.pub.AmsDszh;
-import resources.east.data.pub.AmsDszhId;
+
 import resources.east.data.pub.AmsFjmzh;
-import resources.east.data.pub.AmsFjmzhId;
 
 public class FjmzhQueryDelete extends BaseUpdate {
 
@@ -46,7 +43,6 @@ public class FjmzhQueryDelete extends BaseUpdate {
 			List delList = new ArrayList();
 			List insertList = new ArrayList();
 
-
 			while (updateResultBean.hasNext()) {
 				AmsFjmzh amsFjmzh=new AmsFjmzh();
 				Map map = updateResultBean.next();
@@ -59,8 +55,12 @@ public class FjmzhQueryDelete extends BaseUpdate {
 					delList.add(amsFjmzh);
 					break;
 				case UpdateResultBean.MODIFY:
-					updateList.add(amsFjmzh);
-					
+					if(amsFjmzh.isSelect()) {
+						String accountNumber = amsFjmzh.getAccountNumber();
+						
+						amsFjmzh.setAccountNumber(accountNumber);
+						updateList.add(amsFjmzh);
+					}
 					break;
 				default:
 					break;
@@ -76,5 +76,6 @@ public class FjmzhQueryDelete extends BaseUpdate {
 
 
 	}
-
+	
+	
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="非居民账户个人信息" navigate="非居民账户个人信息" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.FjmzhQueryJGGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示-->
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->
+		<Field id="select" desc="选择" edittype="checkbox" datatype="boolean" xpath="/select" />
+		<!-- 机构信息 -->
+		<Field id="jgiAccID" desc="账号" edittype="text" datatype="string" size="32" require="false" readonly="true" xpath="/jgiAccID" />
+		<Field id="jgPhoneNo" desc="联系电话" edittype="text" datatype="string" size="20" require="false" xpath="/jgPhoneNo" />
+		<Field id="jgNameType" desc="姓名类型" edittype="select" translated="DATA_DIC.300031" datatype="string" size="10" require="false" xpath="/jgNameType" />
+		<Field id="jgOrganisationNameEN" desc="英文名称 " edittype="text" datatype="string" size="200" require="false" xpath="/jgOrganisationNameEN" />
+		<Field id="jgOrganisationNameCN" desc="中文名称" edittype="text" datatype="string" size="400" require="false" xpath="/jgOrganisationNameCN" />
+		<Field id="jgIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text" datatype="string" size="3" require="false" xpath="/jgIssuedBy" />
+		<Field id="jgsinType" desc="sinType" edittype="text" datatype="string" size="3" require="false" xpath="/jgsinType" />
+		<Field id="jgTIN" desc="纳税人识别号" edittype="text" datatype="string" size="200" require="false" xpath="/jgTIN" />
+		<Field id="jgExplanation" desc="原因" edittype="text" datatype="string" size="1000" require="false" xpath="/jgExplanation" />
+		<Field id="operation" desc="操作" />
+	</Fields>
+
+	<Where>
+	</Where>
+
+	<Operations>
+	
+		<Button id="btMod" name="btMod" desc="修改" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>
+		<Button id="btModDZ" name="btMod" desc="查看地址信息" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>
+		<Button id="btNew" name="btNew" desc ="CurrencyManEntry.button.btNew" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add"/>
+		<Button id="btSave" name="btSave" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhAddJG"
+			url="/fpages/dataaudit/ftl/FjmzhQueryGR.ftl" txn="" />
+			
+		<Button id="btSaveEdit" name="btSaveEdit" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhUpdateJG"
+			url="" txn="" />
+		<Button id="btBack" name="btBack" desc="返回" operation=""
+			url="#" txn="" />		
+	</Operations>
+	
+	
+
+	<Script></Script>
+
+</CommQry>

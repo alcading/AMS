@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->
+<!--  title:标题
+	navigate:导航信息
+	type:方式（sql|call)
+	interface:是否显示输入条件页面(true|false)
+	databusid:数据总线编号
+	transdataactionurl:数据整理URL
+	async:异步提交标志
+	pagesize:页面显示记录数(缺省为10)
+-->
+<CommQry title="非居民账户个人信息" navigate="非居民账户个人信息" type="call"
+	interface="false" pagesize="10" async="true" databusid=""
+	transdataactionurl="/trans/TransDataAction.do"
+	getterclassname="com.huateng.report.getter.FjmzhQueryGRGetter">
+	<Include id="BankParam" />
+
+	<Fields>
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示-->
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->
+		<Field id="select" desc="选择" edittype="checkbox" datatype="boolean" xpath="/select" />
+		<!-- 个人信息 -->
+		<Field id="griAccID" desc="账号" edittype="text" datatype="string" size="32" require="false" readonly="true" xpath="/griAccID" />
+		<Field id="grGender" desc="性别" edittype="select" translated="DATA_DIC.300023" datatype="string" size="2" require="false" xpath="/grGender" />
+		<Field id="grPhoneNo" desc="联系电话" edittype="text" datatype="string" size="20" require="false" xpath="/grPhoneNo" />
+		<Field id="grIDType" desc="身份证件类型 " edittype="select" translated="DATA_DIC.300022" datatype="string" size="2" require="false" xpath="/grIDType" />
+		<Field id="grIDNumber" desc="身份证件号码" edittype="text" datatype="string" size="30" require="false" xpath="/grIDNumber" />
+		<Field id="grBirthDate" desc="出生日期" edittype="text"  datatype="string" size="10" require="false" xpath="/grBirthDate" />
+		<Field id="grBirthCity" desc="出生城市" edittype="text"  datatype="string" size="200" require="false" xpath="/grBirthCity" />
+		<Field id="grBirthCountryCode" desc="出生国代码" edittype="text" datatype="string" size="3" require="false" xpath="/grBirthCountryCode" />
+		<Field id="grFormerCountryName" desc="出生国名称(英文)" edittype="text" datatype="string" size="200" require="false" xpath="/grFormerCountryName" />
+		<Field id="grIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text" datatype="string" size="3" require="false" xpath="/grIssuedBy" readonly="false" />
+		<Field id="grsinType" desc="sinType" edittype="select" translated="LIST:TIN,TIN" datatype="string" size="3" require="false" xpath="/grsinType" readonly="false" />
+		<Field id="grTIN" desc="纳税人识别号" edittype="text" translated="DATA_DIC.300030" datatype="string" size="200" require="false" xpath="/grTIN" />
+		<Field id="grExplanation" desc="原因" edittype="text"  datatype="string" size="1000" require="false" xpath="/grExplanation" />
+		<Field id="grNationality" desc="国籍" edittype="text"  datatype="string" size="3" require="false" xpath="/grNationality" />
+		<Field id="operation" desc="操作" />
+	</Fields>
+
+	<Where>
+	</Where>
+
+	<Operations>
+	
+		<Button id="btMod" name="btMod" desc="修改" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>
+		<Button id="btModDZ" name="btMod" desc="查看地址信息" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>
+		<Button id="btModXM" name="btMod" desc="查看姓名信息" 
+				operation="" url="#" show="" group="" txn=""  icon="icon-edit"/>		
+		<Button id="btNew" name="btNew" desc ="CurrencyManEntry.button.btNew" operation="addrecord" url="#" show="" group="" txn="" icon="icon-add"/>
+		<Button id="btSave" name="btSave" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhAddGR"
+			url="/fpages/dataaudit/ftl/FjmzhQueryGR.ftl" txn="" />
+			
+		<Button id="btSaveEdit" name="btSaveEdit" desc="CurrencyManEntry.button.btSave"
+			operation="asysubmit"
+			updateClass="com.huateng.report.imports.updater.FjmzhUpdateGR"
+			url="" txn="" />
+		<Button id="btBack" name="btBack" desc="返回" operation=""
+			url="#" txn="" />		
+	</Operations>
+	
+	
+
+	<Script></Script>
+
+</CommQry>

@@ -9,105 +9,25 @@
 		table="AMS_FJMZH"
 	>
 		<meta attribute="sync-DAO">false</meta>
-		<!-- <composite-id name="id" class="AmsFjmzhId">
-			<key-property
-				name="ind_idtype"
-				column="IND_IDTYPE"
-				type="string"
-			/>
-			<key-property
-				name="ind_idnumber"
-				column="IND_IDNUMBER"
-				type="string"
-			/>
-		</composite-id> -->
-		    <id
-			name="accountnumber"
-			type="string"
-			column="ACCOUNTNUMBER"
-		>
-		   </id>
-		    <property
-				name="ind_idtype"
-				column="IND_IDTYPE"
-				type="string"
-			/>
-			<property
-				name="ind_idnumber"
-				column="IND_IDNUMBER"
-				type="string"
-			/>
-			<property
-				name="closedaccount"
-				column="CLOSEDACCOUNT"
-				type="string"
-			/>
-			<property
-				name="duediligenceind"
-				column="DUEDILIGENCEIND"
-				type="string"
-			/>
-			<property
-				name="selfcertification"
-				column="SELFCERTIFICATION"
-				type="string"
-			/>
-			<property
-				name="accountbalance"
-				column="ACCOUNTBALANCE"
-				type="big_decimal"
-			/>
-			<property
-				name="accountholdertype"
-				column="ACCOUNTHOLDERTYPE"
-				type="string"
-			/>
-			<property
-				name="openingfiname"
-				column="OPENINGFINAME"
-				type="string"
-			/>
-			<property
-				name="payment"
-				column="PAYMENT"
-				type="big_decimal"
-			/>
-			<property
-				name="ind_name"
-				column="IND_NAME"
-				type="string"
-			/>
-			<property
-				name="ind_gender"
-				column="IND_GENDER"
-				type="string"
-			/>
-			<property
-				name="ind_address"
-				column="IND_ADDRESS"
-				type="string"
-			/>
-			<property
-				name="ind_phoneno"
-				column="IND_PHONENO"
-				type="string"
-			/>
-			<property
-				name="ind_rescountrycode"
-				column="IND_RESCOUNTRYCODE"
-				type="string"
-			/>
-			<property
-				name="ind_tin"
-				column="IND_TIN"
-				type="string"
-			/>
-			<property
-				name="ind_explanation"
-				column="IND_EXPLANATION"
-				type="string"
-			/>
-			<property
+		    <id name="accountNumber" type="string"	column="ACCOUNTNUMBER"></id>
+		    <property name="sClosedAccount"  column="SCLOSEDACCOUNT" type="string" />
+			<property name="sDueDiligenceInd" column="SDUEDILIGENCEIND" type="string" />
+			<property name="sSelfSertification" column="SSELFSERTIFICATION" type="string" />
+			<property name="iAccountBalance" column="IACCOUNTBALANCE" type="big_decimal" />
+			<property name="sACC_currCode" column="SACC_CURRCODE"  type="string" />
+			<property name="sAccountHolderType" column="SACCOUNTHOLDERTYPE" type="string" />
+			<property name="sOpeningFIName" column="SOPENINGFINAME" type="string" />
+			<property name="sAccountType" column="SACCOUNTTYPE" type="string" />
+			<property name="sPaymentType" column="SPAYMENTTYPE" type="string" />
+			<property name="iPaymentAmnt" column="IPAYMENTAMNT" type="big_decimal" />
+			<property name="sPaymentAmntCurr" column="SPAYMENTAMNTCURR" type="string" />
+			<property name="sResCountryCode" column="SRESCOUNTRYCODE" type="string" />
+			<property name="sIssuedBy" column="SISSUEDBY" type="string" />
+			<property name="sinType" column="SINTYPE" type="string" />
+			<property name="TIN" column="TIN" type="string" />
+			
+			<property name="report_status" column="REPORT_STATUS" type="string" />
+			<!-- <property
 				name="ind_nationality"
 				column="IND_NATIONALITY"
 				type="string"
@@ -186,6 +106,6 @@
 				name="con_birthinfo"
 				column="CON_BIRTHINFO"
 				type="java.util.Date"
-			/>	
+			/>	 -->
 	</class>	
 </hibernate-mapping>
