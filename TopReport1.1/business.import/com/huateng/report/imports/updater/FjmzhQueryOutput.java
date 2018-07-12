@@ -755,13 +755,13 @@ public class FjmzhQueryOutput extends HttpServlet{
 			if (!file.exists()) {
 				file.mkdir();
 			}
-			String path = file + File.separator + fileName + ".XML";
+			String path = file + File.separator + fileName + ".xml";
 			StandaloneWriter xmlWriter = new StandaloneWriter(new PrintStream(path), format);
 
 			xmlWriter.write(doc);
 			xmlWriter.close();
-			FjmzhUtil.saveMessageInfo(fileName + ".XML");
-			returnInfo=FjmzhUtil.MESSAGEINFO+fileName+".XML";
+			FjmzhUtil.saveMessageInfo(fileName + ".xml");
+			returnInfo=FjmzhUtil.MESSAGEINFO+fileName+".xml";
 		}
 		catch(Exception e){
 			e.printStackTrace();
