@@ -14,6 +14,10 @@ import java.io.Serializable;
 
 public abstract class BaseBctl  implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static String REF = "Bctl";
 	public static String PROP_LAST_UPD_FUNC = "lastUpdFunc";
 	public static String PROP_BRNO = "brno";
@@ -119,8 +123,13 @@ public abstract class BaseBctl  implements Serializable {
 	private java.lang.String lastUpdFunc;
 	private java.util.Date lastUpdDate;
 	private java.util.Date timestamps;
-
-
+	private java.lang.String jrjgbm; 
+	public java.lang.String getJrjgbm() {
+		return jrjgbm;
+	}
+	public void setJrjgbm(java.lang.String jrjgbm) {
+		this.jrjgbm = jrjgbm;
+	}
 
 	/**
 	 * Return the unique identifier of this class

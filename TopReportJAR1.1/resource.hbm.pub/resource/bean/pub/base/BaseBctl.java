@@ -14,6 +14,10 @@ import java.io.Serializable;
 
 public abstract class BaseBctl  implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static String REF = "Bctl";
 	public static String PROP_STATUS = "status";
 	public static String PROP_LAST_UPD_TLR = "lastUpdTlr";
@@ -107,7 +111,7 @@ public abstract class BaseBctl  implements Serializable {
 	private java.lang.String misc;
 	private java.lang.String lastUpdTlr;
 	private java.lang.String lastUpdFunc;
-	private java.util.Date lastUpdDate;
+	private java.lang.String lastUpdDate;
 	private java.util.Date timestamps;
 	private java.lang.String brtype;
 	private java.lang.String billMailAddr;
@@ -118,7 +122,15 @@ public abstract class BaseBctl  implements Serializable {
 	private boolean lock;
 	private java.lang.String st;
 	private boolean del;
+    private java.lang.String jrjgbm;
 
+	public java.lang.String getJrjgbm() {
+		return jrjgbm;
+	}
+
+	public void setJrjgbm(java.lang.String jrjgbm) {
+		this.jrjgbm = jrjgbm;
+	}
 
 	public boolean isLock() {
 		return lock;
@@ -543,25 +555,21 @@ public abstract class BaseBctl  implements Serializable {
 	/**
 	 * Return the value associated with the column: LAST_UPD_DATE
 	 */
-	public java.util.Date getLastUpdDate () {
-		return lastUpdDate;
-	}
-
-	/**
-	 * Set the value related to the column: LAST_UPD_DATE
-	 * @param lastUpdDate the LAST_UPD_DATE value
-	 */
-	public void setLastUpdDate (java.util.Date lastUpdDate) {
-		this.lastUpdDate = lastUpdDate;
-	}
-
-
+	
 
 	/**
 	 * Return the value associated with the column: TIMESTAMPS
 	 */
 	public java.util.Date getTimestamps () {
 		return timestamps;
+	}
+
+	public java.lang.String getLastUpdDate() {
+		return lastUpdDate;
+	}
+
+	public void setLastUpdDate(java.lang.String lastUpdDate) {
+		this.lastUpdDate = lastUpdDate;
 	}
 
 	/**

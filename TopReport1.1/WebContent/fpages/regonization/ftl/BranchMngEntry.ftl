@@ -26,7 +26,7 @@
       		<@CommonQueryMacro.FloatWindow id="signWindow" label="" width="" resize="true" defaultZoom="normal" minimize="false" maximize="false" closure="true" float="true" exclusive="true" position="center" show="false" >
       			<div align="center">
       				<@CommonQueryMacro.Group id="group1" label="机构信息维护"
-        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag" colNm=4/>
+        			  fieldStr="brno,brname,address,postno,teleno,brclass,blnUpBrcode,blnManageBrcode,brattr,otherAreaFlag,jrjgbm" colNm=4/>
         			 </br>
       				<@CommonQueryMacro.Button id= "btSave"/>
       			</div>
@@ -68,7 +68,7 @@
 		Management_branchManage_dataset.setFieldReadOnly("postno", false);
 		Management_branchManage_dataset.setFieldReadOnly("teleno", false);
 		Management_branchManage_dataset.setFieldReadOnly("brclass", false);
-		Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode", true);
+		Management_branchManage_dataset.setFieldReadOnly("blnUpBrcode", false);
 		Management_branchManage_dataset.setFieldReadOnly("blnManageBrcode", false);
 		Management_branchManage_dataset.setFieldReadOnly("brattr", false);
 		Management_branchManage_dataset.setFieldReadOnly("otherAreaFlag", false);
@@ -95,7 +95,7 @@
 		subwindow_signWindow.show();
 	}
 	
-	function datatable1_opr_f(cell, value, record)
+	function datatable1_opr_onRefresh(cell, value, record)
 	{
 	
 		if (record) {//当存在记录时

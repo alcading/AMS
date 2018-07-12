@@ -12,7 +12,7 @@ import resources.east.data.pub.EastGrhqckfhzmxjlTmpId;
 
 public abstract class BaseAmsFjmzh implements java.io.Serializable {
 
-	public BaseAmsFjmzh(AmsFjmzhId id, String accountnumber, String closedaccount, String duediligenceind,
+	public BaseAmsFjmzh(String accountnumber, String closedaccount, String duediligenceind,
 			String selfcertification, BigDecimal accountbalance, String accountholdertype, String openingfiname,
 			BigDecimal payment, String ind_name, String ind_gender, String ind_address, String ind_phoneno,
 			String ind_idtype, String ind_idnumber, String ind_rescountrycode, String ind_tin, String ind_explanation,
@@ -20,7 +20,7 @@ public abstract class BaseAmsFjmzh implements java.io.Serializable {
 			String org_rescountrycode, String org_tin, String org_explanation, String con_name,
 			String con_ctrlgpersontype, String con_nationality, String con_address, String con_rescountrycode,
 			String con_tin, String con_explanation, Date con_birthinfo) {
-		this.id = id;
+		
 		this.accountnumber = accountnumber;
 		this.closedaccount = closedaccount;
 		this.duediligenceind = duediligenceind;
@@ -59,13 +59,7 @@ public abstract class BaseAmsFjmzh implements java.io.Serializable {
     public BaseAmsFjmzh(){
     	
     }
-	public BaseAmsFjmzh(AmsFjmzhId id) {
-		this.id = id;
-	}
 
-	public AmsFjmzhId getId() {
-		return id;
-	}
 	public String getAccountnumber() {
 		return accountnumber;
 	}
@@ -164,9 +158,6 @@ public abstract class BaseAmsFjmzh implements java.io.Serializable {
 	}
 	public Date getCon_birthinfo() {
 		return con_birthinfo;
-	}
-	public void setId(AmsFjmzhId id) {
-		this.id = id;
 	}
 	public void setAccountnumber(String accountnumber) {
 		this.accountnumber = accountnumber;

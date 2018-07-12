@@ -51,8 +51,9 @@
 		<Field id="address" desc="机构地址" status="F" method="None"
 			primary="false" type="String" require="true" size="100"
 			default="false" xpath="/address" tip="机构地址" />
-			
-			
+		<Field id="jrjgbm" desc="金融机构编码" status="F" method="com.huateng.ebank.business.common.CQMethod.getJrjgbm" size="14"
+			primary="false" type="String" require="true" default=""
+			xpath="/brno" tip="金融机构编码" />	
 				<!-- 根据对比需求增加的字段 -->
 			
 			<Field id="st" desc="记录状态" status="F" require="false" edittype="select"
@@ -82,7 +83,7 @@
 			method="None" readonly="false" type="String" size="20" default=""
 			edittype="select" translated="CQ:AllBranchSelect"
 			fieldmap="blnUpBrcode=brcode;blnUpBrcodeName=brcodeTypeName"
-			viewField="brcodeTypeName" xpath="/blnUpBrcode" require="true"
+			viewField="brcodeTypeName" xpath="/blnUpBrcode" require="false"
 			tip="上级机构" />
 
 		<Field id="blnUpBrcodeName" desc="上级机构" status="F"

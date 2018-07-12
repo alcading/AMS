@@ -15,11 +15,23 @@
 				column="ZH"
 				type="string"
 			/>
-		
+			
 			<property
 				name="ckrxm"
 				column="CKRXM"
 				type="string"
+			/>
+			<property
+				name="ckrsfzjzl"
+				column="CKRSFZJZL"
+				type="string"
+				length="14"
+			/>
+			<property
+				name="ckrsfzjhm"
+				column="CKRSFZJHM"
+				type="string"
+				length="154"
 			/>
 			<property
 				name="sfzjdqr"
@@ -96,7 +108,7 @@
 				column="ZHZL"
 				type="string"
 			/>
-			<property
+			<!--<property
 				name="kh"
 				column="KH"
 				type="string"
@@ -120,7 +132,7 @@
 				name="kzt"
 				column="KZT"
 				type="string"
-			/>
+			/>-->
 			<property
 				name="zhlx"
 				column="ZHLX"
@@ -200,21 +212,7 @@
 				name="jlzt"
 				column="JLZT"
 				type="string"
-			/>
-			<property
-				name="reserve1"
-				column="RESERVE1"
-				type="string"
-			/>
-			<property
-				name="reserve2"
-				column="RESERVE2"
-				type="string"
-			/>
-			<property
-				name="reserve3"
-				column="RESERVE3"
-				type="string"
+				update="false"
 			/>
 			<property
 				name="reserve4"
@@ -236,6 +234,41 @@
 				column="ISMODIFY"
 				type="string"
 			/>
-			
-	</class>	
+			<property
+				name="fgmjyqd"
+				column="FGMJYQD"
+				type="string"
+			/>
+			<property
+				name="sflmzh"
+				column="SFLMZH"
+				type="string"
+			/>
+			<property
+				name="khdqdm"
+				column="KHDQDM"
+				type="string"
+			/>
+			<property
+				name="report_status"
+				column="REPORT_STATUS"
+				type="string"
+				length="2"
+			/>
+			<property
+				name="jgdm"
+				column="JGDM"
+				type="string"
+				length="255"
+				update="false"
+			/>
+			<set name="kxxb" inverse="true" cascade="none">
+				<key column="zh"></key>
+				<one-to-many class="resources.east.data.pub.KXXB" />
+			</set>
+			<set name="lmckxxb" inverse="true" cascade="none">
+				<key column="zh"></key>
+				<one-to-many class="resources.east.data.pub.LMCKXXB" />
+			</set>
+	</class>
 </hibernate-mapping>

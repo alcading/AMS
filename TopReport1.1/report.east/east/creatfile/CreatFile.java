@@ -239,8 +239,9 @@ public class CreatFile {
 	
 	public static void writeFile(String tableName, String workdate, Map sqlMap, Map tableInfoMap ,DefautValueVO defautValue
 			, String filePath, Bctl bctl)throws Exception{
-		String fileName=null;	
-		fileName = filePath + bctl.getFinanceCode().trim()+"-" + tableName + "-" + ToolUtils.formatDate(workdate);
+		String fileName=null;
+		long workdate1=System.currentTimeMillis();
+		fileName = filePath + "["+bctl+"]"+"["+workdate1+"]";
 		File txtFile = new File(fileName + ".txt");
 		//BufferedWriter bw = new BufferedWriter(new FileWriter(txtFile));
 		BufferedWriter bw = new BufferedWriter (new OutputStreamWriter (new FileOutputStream (txtFile), "UTF-8"));
@@ -251,17 +252,17 @@ public class CreatFile {
         
 		//log文件
 		//BufferedWriter flagFileWriter = new BufferedWriter(new FileWriter(fileName + ".log"));
-		BufferedWriter flagFileWriter = new BufferedWriter (new OutputStreamWriter (new FileOutputStream (fileName + ".log"), "UTF-8"));
-		flagFileWriter.write(txtFile.getName() + "\n" );
-		flagFileWriter.write(txtFile.length() + "\n" );
-		Calendar calendar=Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		flagFileWriter.write(sdf.format(calendar.getTime())+"\n");
-		flagFileWriter.write("Y".trim()+"\n");
-		flagFileWriter.write(counts);
-		flagFileWriter.close();
-
-		System.out.println(tableName + "file***over,sum:"+ count +"！");
+//		BufferedWriter flagFileWriter = new BufferedWriter (new OutputStreamWriter (new FileOutputStream (fileName + ".log"), "UTF-8"));
+//		flagFileWriter.write(txtFile.getName() + "\n" );
+//		flagFileWriter.write(txtFile.length() + "\n" );
+//		Calendar calendar=Calendar.getInstance();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		flagFileWriter.write(sdf.format(calendar.getTime())+"\n");
+//		flagFileWriter.write("Y".trim()+"\n");
+//		flagFileWriter.write(counts);
+//		flagFileWriter.close();
+//
+//		System.out.println(tableName + "file***over,sum:"+ count +"！");
 		//end=System.currentTimeMillis();
 		//System.out.println("end===time(s):["+(end-start)/1000+"]!");
 	}

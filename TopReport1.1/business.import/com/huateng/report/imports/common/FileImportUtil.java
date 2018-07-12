@@ -99,6 +99,17 @@ public class FileImportUtil {
 		return FileImportService.getInstance().getDefaultImportPath()
 				+ File.separator + workdate + File.separator;
 	}
+	
+	/**
+	 * 账户管理系统反馈文件导入目录
+	 * @param workdate
+	 * @return
+	 * @throws CommonException
+	 */
+	public static String getFeedbackFilePath() throws CommonException {
+		return FileImportService.getInstance().getDefaultImportPath()
+				+ File.separator;
+	}
 
 	public static String getCurTime() throws CommonException {
 		return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());

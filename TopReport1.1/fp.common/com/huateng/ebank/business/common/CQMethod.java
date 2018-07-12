@@ -11,6 +11,7 @@ import javax.servlet.ServletRequest;
 import org.apache.commons.lang.StringUtils;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 import resource.bean.pub.DataDic;
 import resource.bean.pub.TlrInfo;
 import resource.bean.report.BiAreaOfChina;
@@ -22,6 +23,8 @@ import resource.bean.report.SubFileInfo;
 import resource.bean.report.SysCurrency;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
+import resources.east.data.pub.AmsDszh;
+import resources.east.data.pub.Ams_jyjgdm;
 
 import com.huateng.commquery.config.bean.base.ICommonQueryBaseBean;
 import com.huateng.ebank.business.common.service.BctlService;
@@ -898,5 +901,65 @@ public class CQMethod {
 //			}
 //		}
 //	}
+	
+	/**
+	 * 查询个人结算报文反馈错误码及说明
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getCheckResult(ICommonQueryBaseBean element, String value,
+			ServletRequest request) throws HuatengException {
+		
+		Ams_jyjgdm cur = new Ams_jyjgdm();
+		StringBuffer result = new StringBuffer();
+		
+		String[] result_code = value.split(";");
+		StringBuffer hql = new StringBuffer("from Ams_jyjgdm cur where ");
+		for(int i = 0; i < result_code.length - 1; i ++) {
+			hql.append("cur.jgdm='"+ result_code[i] +"' or ");
+		}
+		hql.append("cur.jgdm='"+ result_code[result_code.length - 1] + "'");
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		List list = rootdao.queryByQL2List(hql.toString());
+		if (list == null || list.isEmpty()) {
+			return "";
+		} else {
+			for(int i = 0; i < list.size(); i ++) {
+				cur = (Ams_jyjgdm)list.get(i);
+				result.append(cur.getJgdm() + ":" + cur.getJgnr() + "\n");
+			}
+			return result.toString();
+		}
+	}
 
+	
+	/**
+	 * 机构查询中查询对应的金融机构编码
+	 * @param element
+	 * @param value
+	 * @param request
+	 * @return
+	 * @throws HuatengException
+	 */
+	public static String getJrjgbm(ICommonQueryBaseBean element, String value,
+			ServletRequest request) throws HuatengException {
+		String jrjgbm = null;
+		System.out.println(value);
+		String hql = "from BrnoJbcdLink B where B.brno = " + value;
+		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
+		List<BrnoJbcdLink> list = rootdao.queryByQL2List(hql.toString());
+		if(list.size() != 0) {
+			jrjgbm = list.get(0).getJrjgbm();
+			if(jrjgbm == "" || jrjgbm == null) {
+				return "";
+			}
+		}else {
+			return "";
+		}
+		return jrjgbm;
+		
+	}
 }

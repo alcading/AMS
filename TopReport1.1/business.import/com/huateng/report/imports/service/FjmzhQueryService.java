@@ -10,7 +10,6 @@ import com.huateng.ebank.framework.util.ApplicationContextUtils;
 
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
-import resources.east.data.pub.AmsDszh;
 import resources.east.data.pub.AmsFjmzh;
 
 public class FjmzhQueryService {
@@ -33,52 +32,30 @@ public class FjmzhQueryService {
 
 	public void saveDelUpdata(List delList,List insertList,List updateList) throws CommonException{
 		ROOTDAO  rootDAO = ROOTDAOUtils.getROOTDAO();
-
+		AmsFjmzh newwrd = null;
 		//新增
-		/*
+		
 		for(Iterator it = insertList.iterator();it.hasNext();)
 		{
-			BiImportFileConfig newwrd = (BiImportFileConfig) it.next();
-			if(newwrd.getBatchNo() == null) {
-				newwrd.setBatchNo(0);
-			}
-			if(newwrd.getSeqNo() == null) {
-				newwrd.setSeqNo(0);
-			}
+			newwrd = (AmsFjmzh) it.next();
 			rootDAO.save(newwrd);
 		}
-		*/
+		
 		//修改
-		AmsFjmzh newwrd = null;
+		
 		for(Iterator it = updateList.iterator();it.hasNext();)
 		{
 			newwrd = (AmsFjmzh) it.next();
-//			AmsDszh list = rootDAO.query(newwrd.getClass(), newwrd.getId());
-//			System.out.println(newwrd.getClass());
-//			if(list!=null && !"".equals(list)) {
-				rootDAO.update(newwrd);
-//			}
+			rootDAO.update(newwrd);
 			
 		}
 		//删除
-		/*
+		
 		for(Iterator it = delList.iterator();it.hasNext();)
 		{
-			BiImportFileConfig newwrd = (BiImportFileConfig) it.next();
-			String importidFileid=newwrd.getId();
-//			List delimportList=rootDAO.queryByCondition("importFileId='"+importidFileid+"'", "BiImportFieldConfig");
-			List delimportList=rootDAO.queryByCondition("from BiImportFieldConfig b where b.importFileId = '"+importidFileid+"'");
-			List delxmlList=rootDAO.queryByCondition("from BiImportXmlConfig b where b.guid ='"+importidFileid+"'");
-			for(int i=0;i<delimportList.size();i++){
-				BiImportFieldConfig delimport=(BiImportFieldConfig)delimportList.get(i);
-				rootDAO.delete(delimport);
-			}	
-			for(int i=0;i<delxmlList.size();i++){
-				BiImportXmlConfig delxml=(BiImportXmlConfig)delxmlList.get(i);
-				rootDAO.delete(delxml);
-			}	
+			newwrd = (AmsFjmzh) it.next();
 			rootDAO.delete(newwrd);
 		}
-		*/
+		
 	}
 }

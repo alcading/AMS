@@ -78,8 +78,8 @@ function nextEvent(strName){
 	<tr style="line-height: 26px;height: 26px">
 		<td align="right" style="padding-right: 8px;color: #ffffee;font-family:Arial,Helvetica,sans-serif;font-size: 12px; ">只供授权用户登入</td>
 	</tr>
-	<tr valign="top" height="232px">
-		<td align="center"><img src="<%=request.getContextPath() %>/login/images/login_top.gif" border="0"/></td>
+	<tr>
+		<td><div style="border: 1px solid transparent; line-height: 232px; text-align: center; margin: auto; font-size: 80px; height: 232px; width:50%; background: url(<%=request.getContextPath() %>/login/images/login_top.gif) no-repeat">集中账户管理系统</div></td>
 	</tr>
 	<tr height="60px"><td></td></tr>
 	<tr height="100%">

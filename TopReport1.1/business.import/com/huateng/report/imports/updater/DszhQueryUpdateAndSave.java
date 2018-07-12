@@ -1,6 +1,8 @@
 package com.huateng.report.imports.updater;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -42,23 +44,28 @@ public class DszhQueryUpdateAndSave extends BaseUpdate {
 			List<AmsDszh> updateList = new ArrayList<AmsDszh>();
 			List delList = new ArrayList();
 			List insertList = new ArrayList();
-
-
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			String createdate = sdf.format(date);
+			
 			while (updateResultBean.hasNext()) {
 				AmsDszh amsDszh=new AmsDszh();
 				Map map = updateResultBean.next();
 				mapToObject(amsDszh, map);
 				switch (updateResultBean.getRecodeState()) {
 				case UpdateResultBean.INSERT:
+					amsDszh.setJlrq(createdate);
 					insertList.add(amsDszh);
 					break;				
 				case UpdateResultBean.DELETE:
 					delList.add(amsDszh);
 					break;
 				case UpdateResultBean.MODIFY:
-					String zh = amsDszh.getZh();
-					
-					amsDszh.setZh(zh);
+//					String zh = amsDszh.getZh();
+//					
+//					amsDszh.setZh(zh);
+//					amsDszh.setCzff(amsDszh.getCzff().replaceAll(",", ";"));
+//					amsDszh.setFgmjyqd(amsDszh.getFgmjyqd().replaceAll(",", ";"));
 					
 					updateList.add(amsDszh);
 					

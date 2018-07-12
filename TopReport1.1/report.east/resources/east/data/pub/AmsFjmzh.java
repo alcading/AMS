@@ -24,9 +24,6 @@ public class AmsFjmzh extends BaseAmsFjmzh implements java.io.Serializable {
 	
 	/** minimal constructor */
 	public AmsFjmzh(AmsFjmzhId id) {
-		super(id);
+		super();
 	}
-
-
-
 }

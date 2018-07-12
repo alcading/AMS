@@ -141,6 +141,18 @@
 	<bean id="com.huateng.report.imports.service.DszhQueryService"
 		 class="com.huateng.report.imports.service.DszhQueryService">
 	</bean>
+	
+	<!-- 对私账户反馈报文 -->
+	<bean id="com.huateng.report.imports.service.DszhFeedbackService"
+		 class="com.huateng.report.imports.service.DszhFeedbackService">
+	</bean>
+	
+	<bean id="com.huateng.report.imports.service.DszhQueryLMService"
+		 class="com.huateng.report.imports.service.DszhQueryLMService">
+	</bean>
+	<bean id="com.huateng.report.imports.service.DszhQueryKAService"
+		 class="com.huateng.report.imports.service.DszhQueryKAService">
+	</bean>
 	<!-- 非居民账户查询修改保存 -->
 	<bean id="com.huateng.report.imports.service.FjmzhQueryService"
 		 class="com.huateng.report.imports.service.FjmzhQueryService">

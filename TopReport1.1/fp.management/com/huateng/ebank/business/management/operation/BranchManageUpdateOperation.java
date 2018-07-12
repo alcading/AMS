@@ -8,10 +8,13 @@
  */
 package com.huateng.ebank.business.management.operation;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import resource.bean.pub.Bctl;
+import resource.bean.pub.BrnoJbcdLink;
 import resource.dao.pub.BctlDAO;
 
 import com.huateng.common.log.HtLog;
@@ -35,6 +38,7 @@ public class BranchManageUpdateOperation extends BaseOperation {
 	public static final String INSERT_LIST = "INSERT_LIST";
 	public static final String UPDATE_LIST = "UPDATE_LIST";
 	public static final String DEL_LIST = "DEL_LIST";
+	public static final String BRNOJBCDLINK_LIST = "BRNOJBCDLINK_LIST";
 	
 	public void beforeProc(OperationContext context) throws CommonException {
 
@@ -45,11 +49,15 @@ public class BranchManageUpdateOperation extends BaseOperation {
         List insertList = (List) context.getAttribute(INSERT_LIST);
         List updateList = (List) context.getAttribute(UPDATE_LIST);
         List delList = (List) context.getAttribute(DEL_LIST);
+        List brnoJbcdLink_list = (List) context.getAttribute(BRNOJBCDLINK_LIST);
+        
        // BctlService bctlService = BctlService.getInstance();
         //bctlService.bctlInfo(insertList, updateList, delList);
         AddEntityValue(insertList);
         UpdateEntityValue(updateList);
-
+        
+        UpdateBrnoJbcdLink(brnoJbcdLink_list);
+        
 	}
 public void AddEntityValue(List list) throws CommonException{
 	for(Iterator  it=list.iterator();it.hasNext();){
@@ -67,7 +75,9 @@ public void AddEntityValue(List list) throws CommonException{
 			bean.setBrcode(commonService .getBrcodeID());
 			bean.setStatus(SystemConstant.FLAG_ON);
 			bean.setLastUpdTlr(GlobalInfo.getCurrentInstance().getTlrno());
-			bean.setLastUpdDate(DateUtil.getCurrentDate());
+		    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String dateString = formatter.format(DateUtil.getCurrentDate());
+			bean.setLastUpdDate(dateString);
 			//modified by xuhong 20150331 机构信息直接导入 begin
 //			bean.setSt(ReportEnum.REPORT_ST1.CR.value);
 //			bean.setLock(true);
@@ -155,6 +165,21 @@ public void AddEntityValue(List list) throws CommonException{
 		GlobalInfo  gi=GlobalInfo.getCurrentInstance();
 		gi.addBizLog("Updater.log", new String[]{gi.getTlrno(),gi.getBrcode(),"执行更新机构管理信息"});
 		htlog.info("Updater.log", new String[]{gi.getBrcode(),gi.getTlrno(),"执行更新机构管理信息"});
+	}
+	
+	/**
+	 * 保存金融机构编码到表brno_jbcd_link中
+	 */
+	public void UpdateBrnoJbcdLink(List list) throws CommonException{
+		for(Iterator  it=list.iterator();it.hasNext();){
+			BrnoJbcdLink bean = (BrnoJbcdLink) it.next();
+			
+			BctlDAO dao = BaseDAOUtils.getBctlDAO();
+			BrnoJbcdLink bctlModify = dao.queryBrno_jbcd_link(bean.getBrno());
+			
+			dao.getHibernateTemplate().evict(bctlModify);
+			dao.updateBrno_jbcd_link(bean);
+			}
 	}
 	
 
