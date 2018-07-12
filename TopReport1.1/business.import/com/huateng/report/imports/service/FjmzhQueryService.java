@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.huateng.ebank.business.common.PageQueryCondition;
+import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
 
@@ -78,6 +80,25 @@ public class FjmzhQueryService {
 			rootDAO.delete(newwrd);
 		}
 		
+	}
+	
+	/**
+	 * 分页服务
+	 * @param pageIndex
+	 * @param maxRows
+	 * @param hql
+	 * @return
+	 * @throws CommonException
+	 */
+	public PageQueryResult pageQueryByHql(int pageIndex,int maxRows,String hql) throws CommonException {
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		PageQueryResult pageQueryResult = null;
+		PageQueryCondition queryCondition = new PageQueryCondition();
+		queryCondition.setQueryString(hql);
+		queryCondition.setPageIndex(pageIndex);
+		queryCondition.setPageSize(maxRows);
+		pageQueryResult = rootDAO.pageQueryByQL(queryCondition);
+		return pageQueryResult;
 	}
 	
 	public String sqldz(String accountNumber){

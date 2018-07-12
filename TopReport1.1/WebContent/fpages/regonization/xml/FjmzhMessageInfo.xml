@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+	
+<!--  用于直接生成SQL语句，支持同步和异步提交 -->	
+<!--  title:标题	
+	navigate:导航信息	
+	type:方式（sql|call)	
+	interface:是否显示输入条件页面(true|false)	
+	databusid:数据总线编号	
+	transdataactionurl:数据整理URL	
+	async:异步提交标志	
+	pagesize:页面显示记录数(缺省为10)	
+-->	
+<CommQry title="个人结算账户报文信息" navigate="个人结算账户报文信息" type="call"	
+	interface="false" pagesize="10" async="true" databusid=""	
+	transdataactionurl="/trans/TransDataAction.do"	
+	getterclassname="com.huateng.report.getter.FjmzhMessageInfoGetter">	
+	<Include id="BankParam" />	
+		
+	
+	<Fields>	
+		<!-- status :F-基本信息中显示  N-不显示 D-详细信息中显示 A-基本、详细信息中都显示  -->	
+		<!-- primary : true-作为表单项记录上传　false-不作为表单项上传 -->	
+			
+		<Field id="miId" desc="ID" edittype="text" datatype="int" size="20" require="false" xpath="/miId" />	
+		<Field id="messageType" desc="报文类型" edittype="text" datatype="string" size="20" require="false" xpath="/messageType" />	
+		<Field id="messageName" desc="报文名称" edittype="text" datatype="string" size="80" require="false" xpath="/messageName" />	
+		<Field id="importDate" desc="导出日期" edittype="date" datatype="date" size="10" require="false" xpath="/importDate" />	
+		<Field id="reserve" desc="预留字段" edittype="date" datatype="date" size="10" require="false" xpath="/reserve" />
+		<Field id="operation" desc="操作" />	
+	</Fields>	
+	<Parameters>	
+	</Parameters>	
+	<Where>	
+		<TextBox id="messageName" desc="报文名称" datatype="string" index="1" size="80" />	
+		<TextBox id="importDate" desc="导出日期" datatype="date" index="2" size="10" />	
+	</Where>	
+	
+	<Operations>
+		<Button id="btBack" name="btBack" desc="返回上一层" operation=""
+			url="#" txn="" icon="icon-back"/>	
+		<Button id="btDownload" name="btDownload" desc="下载" 	
+				operation="url" updateClass="com.huateng.report.imports.updater.FjmzhQueryLoad" url="#" show="" group="" txn=""  icon=""/>	
+	</Operations>	
+		
+		
+	
+	<Script >	
+		
+	</Script>	
+	
+</CommQry> 

@@ -54,15 +54,14 @@
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryOutput" show="" group="" txn=""  icon="icon-remove"/>
 		<Button id="btImport" name="btSave" desc="无数据导出"
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryOutput" show="" group="" txn=""  icon="icon-remove"/>
-    	<Button id="btLoad" name="btLoad" desc="下载报文" 
-				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryLoad" show="" group="" txn=""  icon="icon-remove"/>
 		<Button id="btAdd" name="btAdd" desc="添加" 
 				operation="href" url="/fpages/regonization/ftl/FjmzhAdd.ftl" show="" group="" txn=""  icon="icon-add"/>
 		<Button id="btMod" name="btMod" desc="修改" 
 				operation="" url="" show="" group="" txn=""  icon="icon-edit"/>
 		<Button id="btDel" name="btDel" desc="删除" 
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryDelete" show="" group="" txn=""  icon="icon-remove"/>
-				
+		<Button id="btMessageInfo" name="btMessageInfo" desc="报文详情" 
+				operation="href" url="/fpages/regonization/ftl/FjmzhMessageInfo.ftl" show="" group="" txn=""  icon="icon-add"/>
 	</Operations>
 	
 	

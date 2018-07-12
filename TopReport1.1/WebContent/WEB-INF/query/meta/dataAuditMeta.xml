@@ -28,6 +28,7 @@
 	<Query id="FjmzhQueryXM" path="/fpages/dataaudit/xml/FjmzhQueryXM.xml"></Query>
 	<Query id="FjmzhQueryUpdate" path="/fpages/management/xml/FjmzhQueryUpdate.xml"></Query>
 	<Query id="FjmzhAdd" path="/fpages/management/xml/FjmzhAdd.xml"></Query>
+	<Query id="FjmzhMessageInfo" path="/fpages/regonization/xml/FjmzhMessageInfo.xml"></Query>
 
 	<!-- 数据分析详细 -->
 	<Query id="dataDetailEntry" path="/fpages/dataaudit/xml/DataDetailEntry.xml" />

@@ -21,6 +21,7 @@ import org.dom4j.Namespace;
 import org.dom4j.QName;
 import org.dom4j.io.OutputFormat;
 
+import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.tool.FjmzhUtil;
 import com.huateng.report.utils.ReportUtils;
@@ -34,6 +35,7 @@ import resources.east.data.pub.AmsFjmzhDZ;
 import resources.east.data.pub.AmsFjmzhGR;
 import resources.east.data.pub.AmsFjmzhJG;
 import resources.east.data.pub.AmsFjmzhKZR;
+import resources.east.data.pub.AmsFjmzhMessageInfo;
 import resources.east.data.pub.AmsFjmzhRB;
 import resources.east.data.pub.AmsFjmzhXM;
 
@@ -58,6 +60,11 @@ public class FjmzhQueryOutput extends HttpServlet{
 		//rootDAO.queryByHqlMax(hql)
 		try {
 			List<AmsFjmzh> fjmzh = rootDAO.queryByQL2List(" from AmsFjmzh where report_status in ('0','3')");
+			if(fjmzh.size()<1){
+				response.setCharacterEncoding("GB18030");
+				response.getWriter().write("<script type='text/javascript'>alert('没有可导出的数据!');</script>");
+				return;
+			}
 			List<AmsFjmzhRB> fjmzhRb = rootDAO.queryByQL2List(" from AmsFjmzhRB");
 			List<Bctl> bctl =  rootDAO.queryByQL2List(" from Bctl where brclass = '1'");
 			String brno = bctl.get(0).getBrno();
@@ -91,8 +98,10 @@ public class FjmzhQueryOutput extends HttpServlet{
 	/**
 	 * 生成非居民无数据报送xml文件
 	 * @param 
+	 * @throws IOException 
 	 */
-	private void writeXML(String jrjgbm,String messageRefId,List<AmsFjmzh> fjmzh) {
+	private void writeXML(String jrjgbm,String messageRefId,List<AmsFjmzh> fjmzh) throws IOException {
+		String returnInfo = null;
 		try{
 			//创建新文件
 			Document doc = DocumentHelper.createDocument();
@@ -751,10 +760,15 @@ public class FjmzhQueryOutput extends HttpServlet{
 
 			xmlWriter.write(doc);
 			xmlWriter.close();
+			FjmzhUtil.saveMessageInfo(fileName + ".XML");
+			returnInfo=FjmzhUtil.MESSAGEINFO+fileName+".XML";
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-	}
+		response.setCharacterEncoding("GB18030");
+		response.getWriter().write("<script type='text/javascript'>alert('导出成功!"+returnInfo+"');</script>");
 		
+	}
+	
 }

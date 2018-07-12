@@ -13,7 +13,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btImport,-,btLoad"  fieldStr="select,accountNumber,sAccountType,report_status,sSelfSertification,iAccountBalance,sACC_currCode,sAccountHolderType,sOpeningFIName"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btImport,-,btMessageInfo"  fieldStr="select,accountNumber,sAccountType,report_status,sSelfSertification,iAccountBalance,sACC_currCode,sAccountHolderType,sOpeningFIName"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -37,11 +37,11 @@ function btSave_onClickCheck(button){
 	if(a<1){
 		return confirm("列表中未查询出数据,已经为您选择无数据报送,是否确认?"); 
 		document.getElementById("filedownloadfjm").src ="${contextPath}/Fjmimport?sAccountType="+sAccountType;
-		alert("导出成功");
+		//alert("导出成功");
 		return false;
 	}
 	document.getElementById("filedownloadfjm").src ="${contextPath}/Fjmimports?sAccountType="+sAccountType;
-	alert("导出成功");
+	//alert("导出成功");
 	return false;
 }
 
@@ -52,7 +52,7 @@ function btImport_onClickCheck(button){
 		return false;
 	}
 	document.getElementById("filedownloadfjm").src ="${contextPath}/Fjmimport?sAccountType="+sAccountType;
-	alert("导出成功");
+	//alert("导出成功");
 	return false;
 }
 

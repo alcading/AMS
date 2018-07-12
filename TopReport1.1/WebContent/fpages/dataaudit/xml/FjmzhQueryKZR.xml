@@ -57,8 +57,8 @@
 			operation="asysubmit"
 			updateClass="com.huateng.report.imports.updater.FjmzhUpdateKZR"
 			url="" txn="" />
-		<Button id="btBack" name="btBack" desc="返回" operation=""
-			url="#" txn="" />		
+		<Button id="btBack" name="btBack" desc="返回上一层" operation=""
+			url="#" txn="" icon="icon-back"/>		
 	</Operations>
 	
 	

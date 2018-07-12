@@ -2,76 +2,59 @@ package com.huateng.report.imports.updater;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.utils.ReportUtils;
+
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
+import resources.east.data.pub.AmsFjmzh;
+import resources.east.data.pub.AmsFjmzhMessageInfo;
 public class FjmzhQueryLoad extends HttpServlet {
-	private String headerValue = "";
-	private InputStream inStream = null;
-	private HttpServletResponse response = null;
-	private HttpServletRequest request = null;
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.request=request;
-		this.response=response;	
-		String sAccountType = request.getParameter("sAccountType");
-		if("".equals(sAccountType) || sAccountType==null){
-			sAccountType = "N";
+		String fileName = request.getParameter("messageName");
+		String workDate = null;
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		List<AmsFjmzhMessageInfo> messageInfo;
+		try {
+			messageInfo = rootDAO.queryByQL2List(" from AmsFjmzhMessageInfo where messageName= '"+fileName+"'");
+			workDate = messageInfo.get(0).getImportDate();
+		} catch (CommonException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		long currentTime = System.currentTimeMillis();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		Date dates = new Date(currentTime);
-		String workDate = formatter.format(dates);
 		String filePath = ReportUtils.getSysParamsValue(Constants.PARAM_DIR, Constants.PARAM_DIR_0107, "");
 		filePath = filePath + File.separator + workDate + File.separator;
-		//File file = new File(filePath);
-		String sourceFilePath= filePath;
-		String zipFilePath = filePath;
-		String fileName = workDate;
-		FileToZip.fileToZip(sourceFilePath, zipFilePath, fileName); 
-		inStream = new FileInputStream(zipFilePath+fileName + ".zip");
-		fileName=fileName+".zip";
-		setResponse(fileName);
-		download();
 		
-		//super.doGet(request, response);
-	}
-	private void setResponse(String fileName) {
-		try {
-			fileName = new String(fileName.getBytes("GBK"), "8859_1");
-			//contentType = ResponseContentType.getContentType(fileName);
-			headerValue = "attachment;   filename=" + fileName;
-			response.setContentType("application/x-msdownload");
-			//response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition", headerValue);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	private void download() {
-		try {
-			PrintWriter pwriter = response.getWriter();
-			int by =-1;
-			while ((by=inStream.read()) != -1) {
-				pwriter.write(by);
-			}
-			
-			inStream.close();
-			pwriter.flush();
-			pwriter.close();
-		} catch (IOException e) {}
+		File file = new File(filePath + fileName);
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition","attachment;filename=" + fileName);
+		response.setContentLength((int) file.length());
+		FileInputStream fis = null;
+		try {	
+		        fis = new FileInputStream(file);	
+		        byte[] buffer = new byte[1024];
+		        int count = 0;	
+		        while ((count = fis.read(buffer)) > 0) {	
+		        	response.getOutputStream().write(buffer, 0, count);	
+		        }
+			}catch (Exception e) {	
+		        e.printStackTrace();	
+		    } finally {	
+		    	response.getOutputStream().flush();	
+		    	response.getOutputStream().close();	
+		        fis.close();	
+	    }
+		
+		
 	}
 	
 }

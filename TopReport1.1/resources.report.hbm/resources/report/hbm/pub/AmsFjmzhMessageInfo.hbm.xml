@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="resources.east.data.pub">
+	<class
+		name="AmsFjmzhMessageInfo"
+		table="AMS_FJMZH_MESSAGE_INFO"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		    <id name="miId" type="int"	column="MIID">
+		    	<generator class="increment" />
+		    </id>
+		    <property name="messageType"  column="MESSAGETYPE" type="string" />
+			<property name="messageName" column="MESSAGENAME" type="string" />
+			<property name="importDate" column="IMPORTDATE" type="string" />
+			<property name="reserve" column="RESERVE" type="big_decimal" />
+	</class>	
+</hibernate-mapping>

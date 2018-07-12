@@ -7,8 +7,12 @@ import java.util.Date;
 import java.util.Random;
 
 import com.huateng.ebank.business.common.SystemConstant;
+import com.huateng.ebank.framework.exceptions.CommonException;
 
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
 import resources.east.data.pub.AmsFjmzhDZ;
+import resources.east.data.pub.AmsFjmzhMessageInfo;
 
 public class FjmzhUtil {
 	
@@ -23,7 +27,18 @@ public class FjmzhUtil {
     public static final String PAYMENTTYPE = "CRS502";
     public static final String CAMS = "cams01300101";
     public static final String INTYPE = "TIN";
+    public static final String MESSAGETYPE = "非居民涉税账户报文";
+    public static final String MESSAGEINFO="  报文名称:";
 	
+    public static void saveMessageInfo(String MessageName) throws CommonException{
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		AmsFjmzhMessageInfo messageinfo = new AmsFjmzhMessageInfo();
+		messageinfo.setMessageName(MessageName);
+		messageinfo.setMessageType(MESSAGETYPE);
+		messageinfo.setImportDate(getyymmdd(new Date()));
+		rootDAO.save(messageinfo);
+	}
+    
     /**
      * 返回yyyy-MM-dd格式的字符串
      *
@@ -36,6 +51,18 @@ public class FjmzhUtil {
     	String day = date.substring(6);
     	date = year+"-"+month+"-"+day;
         return date;
+    }
+    
+    /**
+     * 返回yyyyMMdd格式的字符串
+     *
+     * @param date
+     * @return
+     */
+    public static String getyymmdd(Date date) {
+    	SimpleDateFormat nyr = new SimpleDateFormat("yyyyMMdd");
+ 	    String date1 = nyr.format(date);
+        return date1;
     }
     
     /**

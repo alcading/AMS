@@ -84,8 +84,10 @@ public class FjmzhQueryNoDataOutput extends HttpServlet{
 	/**
 	 * 生成非居民无数据报送xml文件
 	 * @param al
+	 * @throws IOException 
 	 */
-	private void writeXML(String jrjgbm,String messageRefId) {
+	private void writeXML(String jrjgbm,String messageRefId) throws IOException {
+		String returnInfo = null;
 		try{
 			//创建新文件
 			Document doc = DocumentHelper
@@ -138,10 +140,14 @@ public class FjmzhQueryNoDataOutput extends HttpServlet{
 
 			xmlWriter.write(doc);
 			xmlWriter.close();
+			FjmzhUtil.saveMessageInfo(fileName + ".XML");
+			returnInfo=FjmzhUtil.MESSAGEINFO+fileName+".XML";
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		response.setCharacterEncoding("GB18030");
+		response.getWriter().write("<script type='text/javascript'>alert('导出成功!"+returnInfo+"');</script>");
 	}
 	
 }
