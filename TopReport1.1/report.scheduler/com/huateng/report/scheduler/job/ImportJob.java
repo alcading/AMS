@@ -9,15 +9,15 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import com.huateng.ebank.monitor.globalInfo.service.GlobalInfoService;
+import com.huateng.report.common.service.ReportCommonService;
+import com.huateng.report.imports.batch.StartCamsBatch;
+import com.huateng.report.utils.ReportEnum;
+import com.huateng.report.utils.ReportUtils;
+
 import resource.bean.report.ReportJobConfig;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
-
-import com.huateng.ebank.monitor.globalInfo.service.GlobalInfoService;
-import com.huateng.report.common.service.ReportCommonService;
-import com.huateng.report.imports.batch.ImportJobTask;
-import com.huateng.report.utils.ReportEnum;
-import com.huateng.report.utils.ReportUtils;
 
 
 /**
@@ -50,8 +50,8 @@ public class ImportJob implements Job {
 					startTm = new Date();
 					serContext.setAttribute(BOP_IMPORT_ISFIN, false);
 					log.info("==定时导入文件begin==");
-					ImportJobTask importJobTask = new ImportJobTask();
-					importJobTask.doBiz();
+					StartCamsBatch startCamsBatch = new StartCamsBatch();
+					startCamsBatch.doBiz();
 					log.info("==定时导入文件end==");
 					endTm = new Date();
 					result = ReportEnum.REPORT_RESULT.SUCCESS.value;

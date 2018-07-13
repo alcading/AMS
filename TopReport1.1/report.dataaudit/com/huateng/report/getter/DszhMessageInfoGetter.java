@@ -51,7 +51,7 @@ public class DszhMessageInfoGetter extends BaseGetter {
 		String messagename = (String)para.get("messagename");
 		String datadate = (String)para.get("datadate");
 		String borndate = (String)para.get("borndate");
-		String messagestatus = (String)para.get("messagestatus");
+//		String messagestatus = (String)para.get("messagestatus");
 		
 		StringBuffer hql = new StringBuffer();
 		
@@ -65,11 +65,11 @@ public class DszhMessageInfoGetter extends BaseGetter {
 			hql.append(" and A.datadate = '"+datadate.trim()+"' ");
 		}
 		if(StringUtils.isNotBlank(borndate)){
-			hql.append(" and A.borndate = '"+borndate.trim()+"' ");
+			hql.append(" and A.borndate like '%"+borndate.trim()+"%' ");
 	    }
-		if(StringUtils.isNotBlank(messagestatus)){
-			hql.append(" and A.messagestatus = '"+messagestatus.trim()+"' ");
-		}
+//		if(StringUtils.isNotBlank(messagestatus)){
+//			hql.append(" and A.messagestatus = '"+messagestatus.trim()+"' ");
+//		}
 		if(StringUtils.isNotBlank(messagename)){
 			hql.append(" and A.messagename like '%"+messagename.trim()+"%' ");
 		}

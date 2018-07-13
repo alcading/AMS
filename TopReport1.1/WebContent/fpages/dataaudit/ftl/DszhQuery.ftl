@@ -13,7 +13,7 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btFeedback,-,btLoad"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,zhzt,jlrq,ismodify,report_status"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btAdd,-,btMod,-,btDel,-,btFeedback,-,btMessageInfo"  fieldStr="select[40],xxlx,ckrxm,ckrsfzjzl,ckrsfzjhm,jrjgbm,zh,zhzl,zhzt,jlrq,ismodify,report_status"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
@@ -37,12 +37,8 @@ window.onload=function(){
     	today_date = date.getDate();
     }
     var currentDate = date.getFullYear()+"-" + (date.getMonth()+1) + "-" + today_date;
-
     DszhQuery_interface_dataset.setValue("jlrq", currentDate);
 }
-
-
-
 
 //定位一行记录
 	function locate(zh) {
@@ -60,8 +56,12 @@ function btSave_onClickCheck(button){
 		var jlrq = DszhQuery_dataset.getValue("jlrq");
 		var date = Todate(jlrq);
 		document.getElementById("filedownloadfrm").src ="${contextPath}/DszhQueryOutput?jlrq="+date;
-		return true;
+		return false;
 }
+ function btSave_postSubmit(button) {
+	  	alert("导出成功");
+	  	
+	  } 
 
 function btLoad_onClickCheck(button){
         var jlrq = DszhQuery_dataset.getValue("jlrq");

@@ -14,21 +14,33 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar=""  fieldStr="messagetype,messagename,datadate,borndate,messagestatus,operation"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar=""  fieldStr="messagetype,messagename,datadate,borndate,messagestatus"  width="100%" hasFrame="true" height="300" readonly="true"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<br/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<@CommonQueryMacro.Button id="btBack"/>
 		</td>
 	</tr>
 </table>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
+/*
 function datatable1_operation_onRefresh(cell,value,record) {
 		if(record) {
-			cell.innerHTML="<center><a href=\"JavaScript:Delete()\">删除</a>&nbsp;<a href=\"JavaScript:Send()\">发送</a></center>";
+			cell.innerHTML="<center><a href=\"JavaScript:Send()\">发送</a></center>";
 			
 		}else {//当不存在记录时
 		 cell.innerHTML="&nbsp;";
 		}	
 	}
+*/
 function datatable1_messagename_onRefresh(cell,value,record) {
 		if(record!=null) {
 		
@@ -59,12 +71,25 @@ function Download(datadate,messagename){
     }); 
 }
 */
-function Send(){
-	alert("send");
-}
-function Delete(){
-	alert("delete");
-}
+function btBack_onClick(button) {
+
+	var date = new Date();
+    date.setTime(date.getTime()-24*60*60*1000);
+    if(date.getDate() < 10) {
+    	today_date = "0" + date.getDate();
+    }else {
+    	today_date = date.getDate();
+    }
+    
+    if((date.getMonth() + 1) < 10) {
+    	var month = "0" + (date.getMonth() + 1);
+    }else {
+    	var month = date.getMonth() + 1;
+    }
+    var currentDate = date.getFullYear() + month + today_date;
+    
+	window.location.href="${contextPath}/fpages/dataaudit/ftl/DszhQuery.ftl?jlrq="+currentDate;
+	}
 
  function Todate(num) {
         num = num + "";
@@ -75,6 +100,9 @@ function Delete(){
         var week = new Array();
         week["Mon"] = "一"; week["Tue"] = "二"; week["Wed"] = "三"; week["Thu"] = "四"; week["Fri"] = "五"; week["Sat"] = "六"; week["Sun"] = "日";
         str = num.split(" ");
+        if(str[2] < 10) {
+        	str[2] = 0 + str[2];
+        }
         date = str[5];
         if(month[str[1]] < 10){
         	date = date + "0" + month[str[1]] + str[2];

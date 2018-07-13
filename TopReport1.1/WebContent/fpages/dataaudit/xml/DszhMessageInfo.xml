@@ -25,7 +25,7 @@
 		<Field id="messagetype" desc="报文类型" edittype="text" datatype="string" size="20" require="false" xpath="/messagetype" />
 		<Field id="messagename" desc="报文名称" edittype="text" datatype="string" size="80" require="false" xpath="/messagename" />
 		<Field id="datadate" desc="数据日期" edittype="date" datatype="date" size="10" require="false" xpath="/datadate" />
-		<Field id="borndate" desc="生成日期" edittype="timestamp" datatype="timestamp" size="10" require="false" xpath="/borndate" />
+		<Field id="borndate" desc="导出日期" edittype="timestamp" datatype="timestamp" size="10" require="false" xpath="/borndate" />
 		<Field id="messagestatus" desc="报送状态" edittype="select" datatype="string" translated="DATA_DIC.300030" size="10" require="false" xpath="/messagestatus" readonly="false" />
 		<Field id="operation" desc="操作" />
 	</Fields>
@@ -35,13 +35,16 @@
 		<TextBox id="messagename" desc="报文名称" datatype="string" index="1" size="80" />
 		<TextBox id="datadate" desc="数据日期" datatype="date" index="2" size="10" />
 		<TextBox id="borndate" desc="生成日期" datatype="date" index="3" size="10" />
-		<Option id="messagestatus" desc="报送状态" datatype="string" translated="DATA_DIC.300030" index="4" size="20" />
+		<!-- <Option id="messagestatus" desc="报送状态" datatype="string" translated="DATA_DIC.300030" index="4" size="20" /> -->
 		
 	</Where>
 
 	<Operations>
 		<Button id="btDownload" name="btDownload" desc="下载" 
 				operation="url" updateClass="com.huateng.report.imports.updater.DszhQueryLoad" url="#" show="" group="" txn=""  icon=""/>
+		
+		<Button id="btBack" name="btBack" desc="返回" 
+				operation="" updateClass="" url="#" show="" group="" txn=""  icon=""/>
 	</Operations>
 	
 	

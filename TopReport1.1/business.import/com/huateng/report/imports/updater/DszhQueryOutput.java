@@ -152,6 +152,10 @@ public class DszhQueryOutput extends HttpServlet {
 				for(KXXB kk:amsDszh.getKxxb()) {
 					nulltoNothingkk(kk);
 				}
+				
+				for(LMCKXXB lmck:amsDszh.getLmckxxb()) {
+					nulltoNothinglmck(lmck);
+				}
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -241,9 +245,6 @@ public class DszhQueryOutput extends HttpServlet {
 				} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			
-			//清空session缓存，防止数据过大内存溢出
-			session.clear();
 		}
 		
 		
@@ -268,7 +269,14 @@ public class DszhQueryOutput extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		//保存报文相关信息
+//		//保存报文相关信息
+//		try {
+//			saveMessageInfo(jlrq, workDate, filename);
+//		} catch (CommonException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		try {
 			saveMessageInfo(jlrq, workDate, filename);
 		} catch (CommonException e) {
@@ -360,6 +368,38 @@ public class DszhQueryOutput extends HttpServlet {
 		}
 	}    
 	
+	private static void nulltoNothinglmck(LMCKXXB kk) throws IllegalAccessException, InvocationTargetException {
+		Field[] f=LMCKXXB.class.getSuperclass().getDeclaredFields();
+		Object result = null;
+		for(int i=0;i<f.length;i++){
+		    String attributeName=f[i].getName();
+//		    System.out.println(attributeName);
+		    
+		        //将属性名的首字母变为大写，为执行set/get方法做准备
+		        String methodName=attributeName.substring(0,1).toUpperCase()+attributeName.substring(1);
+		        
+		        try{
+		        	
+		        	Method getMethod=LMCKXXB.class.getSuperclass().getDeclaredMethod("get"+methodName);
+		            
+		            result=getMethod.invoke(kk);
+		        	if(result == null) {
+		        		Method setMethod=LMCKXXB.class.getSuperclass().getMethod("set"+methodName, String.class);
+		                setMethod.invoke(kk,"");
+		        	}
+		            
+		        }catch (NoSuchMethodException e) {
+		            try {
+		                Method setMethod=LMCKXXB.class.getMethod("set"+methodName,int.class);
+		                setMethod.invoke(kk,"");
+		            } catch (Exception e2) {
+		                f[i].set(kk,"");
+		            }
+
+		        }
+		}
+	}    
+	
 	/**
 	 * 保存报文信息
 	 * @param jlrq
@@ -374,7 +414,7 @@ public class DszhQueryOutput extends HttpServlet {
 		amsDszhMessageInfo.setMessagetype("集中账户报文");
 		amsDszhMessageInfo.setDatadate(jlrq);
 		amsDszhMessageInfo.setBorndate(workDate);
-		amsDszhMessageInfo.setMessagestatus("0");
+		amsDszhMessageInfo.setMessagestatus("-");
 		amsDszhMessageInfo.setMessagename(filename + ".txt");
 		rootDAO.save(amsDszhMessageInfo);
 	}

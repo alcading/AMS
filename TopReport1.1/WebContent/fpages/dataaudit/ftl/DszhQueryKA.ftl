@@ -52,8 +52,7 @@
 			cell.innerHTML="<center><a href=\"JavaScript:showDetailKA('"+kh+"')\">修改</a></center>";
 		}else {//当不存在记录时
 		 cell.innerHTML="&nbsp;";
-		}
-			
+		}	
 	}
 
 

@@ -17,7 +17,6 @@ public abstract class BaseLMCKXXB implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7981634766426960189L;
 	private String ckrxm;
 	private String ckrsfzjzl;
 	private String ckrsfzjhm;
