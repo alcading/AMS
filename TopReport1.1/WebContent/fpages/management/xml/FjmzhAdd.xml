@@ -22,13 +22,13 @@
 		<Field id="sDueDiligenceInd" desc="是否新开客户" edittype="select" translated="DATA_DIC.300019" datatype="string" size="20" require="false" xpath="/sDueDiligenceInd" />
 		<Field id="sSelfSertification" desc="是否取得自证声明 " edittype="select" translated="DATA_DIC.300020" datatype="string" size="20" require="false" xpath="/sSelfSertification" />
 		<Field id="iAccountBalance" desc="账户余额" edittype="text" datatype="string" size="20" require="false" xpath="/iAccountBalance" />
-		<Field id="sACC_currCode" desc="指定货币代码" edittype="select" translated="DATA_DIC.300030" datatype="string" size="20" require="false" xpath="/sACC_currCode" />
+		<Field id="sACC_currCode" desc="指定货币代码" edittype="select" translated="DATA_DIC.300036" datatype="string" size="20" require="false" xpath="/sACC_currCode" />
 		<Field id="sAccountHolderType" desc="账户持有人类别" edittype="select" translated="DATA_DIC.300021" datatype="string" size="20" require="false" xpath="/sAccountHolderType" />
 		<Field id="sOpeningFIName" desc="开户银行金融机构编码" edittype="text" datatype="string" size="20" require="false" xpath="/sOpeningFIName" />
 		<Field id="sAccountType" desc="账户数据类型" edittype="select" translated="DATA_DIC.300019" datatype="string" size="20" require="false" xpath="/sAccountType" />
 		<Field id="sPaymentType" desc="收入类型" edittype="select" translated="LIST:CRS502,利息" datatype="string" size="20" require="false" xpath="/sPaymentType" readonly="false" />
 		<Field id="iPaymentAmnt" desc="账户收入金额" edittype="text" datatype="string" size="20" require="false" xpath="/iPaymentAmnt" readonly="false" />
-		<Field id="sPaymentAmntCurr" desc="账户收入币种" edittype="select" translated="DATA_DIC.300030" datatype="string" size="20" require="false" xpath="/sPaymentAmntCurr" />
+		<Field id="sPaymentAmntCurr" desc="账户收入币种" edittype="select" translated="DATA_DIC.300036" datatype="string" size="20" require="false" xpath="/sPaymentAmntCurr" />
 		<Field id="sResCountryCode" desc="税收居民国（地区）代码" edittype="text"  datatype="string" size="20" require="false" xpath="/sResCountryCode" />
 		<Field id="sIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text"  datatype="string" size="20" require="false" xpath="/sIssuedBy" />
 		<Field id="sinType" desc="sinType " edittype="select" translated="LIST:TIN,TIN" datatype="string" size="20" require="false" xpath="/sinType" />
@@ -46,7 +46,7 @@
 		<Field id="grFormerCountryName" desc="出生国名称(英文)" edittype="text" datatype="string" size="200" require="false" xpath="/grFormerCountryName" />
 		<Field id="grIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text" datatype="string" size="3" require="false" xpath="/grIssuedBy" readonly="false" />
 		<Field id="grsinType" desc="sinType" edittype="select" translated="LIST:TIN,TIN" datatype="string" size="3" require="false" xpath="/grsinType" readonly="false" />
-		<Field id="grTIN" desc="纳税人识别号" edittype="text" translated="DATA_DIC.300030" datatype="string" size="200" require="false" xpath="/grTIN" />
+		<Field id="grTIN" desc="纳税人识别号" edittype="text" datatype="string" size="200" require="false" xpath="/grTIN" />
 		<Field id="grExplanation" desc="未取得纳税人识别号说明" edittype="text"  datatype="string" size="1000" require="false" xpath="/grExplanation" />
 		<Field id="grNationality" desc="国籍" edittype="text"  datatype="string" size="3" require="false" xpath="/grNationality" />
 		<!-- 机构信息 -->

@@ -22,7 +22,7 @@
 	</tr>
 </table>
 <iframe id="filedownloadfjm"  style="display: none;"></iframe>
-<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" ><@bean.message key="FjmzhQuery.message" /></span></span>
+<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" >请先选择数据类型,再导出报文</span></span>
 
 </@CommonQueryMacro.CommonQuery>
 <script language="javascript"> 
@@ -31,13 +31,6 @@ function btSave_onClickCheck(button){
 	var sAccountType = FjmzhQuery_interface_dataset.getValue("sAccountType");
 	if(sAccountType == null || sAccountType == ""){
     	alert("导出数据文件数据类型为必选项！");
-		return false;
-	}
-	var a = FjmzhQuery_dataset.length;
-	if(a<1){
-		return confirm("列表中未查询出数据,已经为您选择无数据报送,是否确认?"); 
-		document.getElementById("filedownloadfjm").src ="${contextPath}/Fjmimport?sAccountType="+sAccountType;
-		//alert("导出成功");
 		return false;
 	}
 	document.getElementById("filedownloadfjm").src ="${contextPath}/Fjmimports?sAccountType="+sAccountType;

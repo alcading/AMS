@@ -25,13 +25,13 @@
 		<Field id="sDueDiligenceInd" desc="是否新开客户" edittype="select" translated="DATA_DIC.300019" datatype="string" size="20" require="false" xpath="/sDueDiligenceInd" />
 		<Field id="sSelfSertification" desc="是否取得自证声明 " edittype="select" translated="DATA_DIC.300020" datatype="string" size="20" require="false" xpath="/sSelfSertification" />
 		<Field id="iAccountBalance" desc="账户余额" edittype="text" datatype="string" size="20" require="false" xpath="/iAccountBalance" />
-		<Field id="sACC_currCode" desc="指定货币代码" edittype="select" translated="DATA_DIC.300030" datatype="string" size="20" require="false" xpath="/sACC_currCode" />
+		<Field id="sACC_currCode" desc="指定货币代码" edittype="select" translated="DATA_DIC.300036" datatype="string" size="20" require="false" xpath="/sACC_currCode" />
 		<Field id="sAccountHolderType" desc="账户持有人类别" edittype="select" translated="DATA_DIC.300021" datatype="string" size="20" require="false" xpath="/sAccountHolderType" />
 		<Field id="sOpeningFIName" desc="开户银行金融机构编码" edittype="text" datatype="string" size="20" require="false" xpath="/sOpeningFIName" />
 		<Field id="sAccountType" desc="账户数据类型" edittype="select" translated="DATA_DIC.300019" datatype="string" size="20" require="false" xpath="/sAccountType" />
 		<Field id="sPaymentType" desc="收入类型" edittype="select" translated="LIST:CRS502,利息" datatype="string" size="20" require="false" xpath="/sPaymentType" readonly="false" />
 		<Field id="iPaymentAmnt" desc="账户收入金额" edittype="text" datatype="string" size="20" require="false" xpath="/iPaymentAmnt" readonly="false" />
-		<Field id="sPaymentAmntCurr" desc="账户收入币种" edittype="select" translated="DATA_DIC.300030" datatype="string" size="20" require="false" xpath="/sPaymentAmntCurr" />
+		<Field id="sPaymentAmntCurr" desc="账户收入币种" edittype="select" translated="DATA_DIC.300036" datatype="string" size="20" require="false" xpath="/sPaymentAmntCurr" />
 		<Field id="sResCountryCode" desc="税收居民国（地区）代码" edittype="text"  datatype="string" size="20" require="false" xpath="/sResCountryCode" />
 		<Field id="sIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text"  datatype="string" size="20" require="false" xpath="/sIssuedBy" />
 		<Field id="sinType" desc="sinType " edittype="select" translated="LIST:TIN" datatype="string" size="20" require="false" xpath="/sinType" />
@@ -51,9 +51,9 @@
 
 	<Operations>
 		<Button id="btSave" name="btSave" desc="导出报文"
-				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryOutput" show="" group="" txn=""  icon="icon-remove"/>
+				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryOutput" show="" group="" txn=""  icon="icon-expout"/>
 		<Button id="btImport" name="btSave" desc="无数据导出"
-				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryOutput" show="" group="" txn=""  icon="icon-remove"/>
+				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryOutput" show="" group="" txn=""  icon="icon-expout"/>
 		<Button id="btAdd" name="btAdd" desc="添加" 
 				operation="href" url="/fpages/regonization/ftl/FjmzhAdd.ftl" show="" group="" txn=""  icon="icon-add"/>
 		<Button id="btMod" name="btMod" desc="修改" 
@@ -61,7 +61,7 @@
 		<Button id="btDel" name="btDel" desc="删除" 
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.FjmzhQueryDelete" show="" group="" txn=""  icon="icon-remove"/>
 		<Button id="btMessageInfo" name="btMessageInfo" desc="报文详情" 
-				operation="href" url="/fpages/regonization/ftl/FjmzhMessageInfo.ftl" show="" group="" txn=""  icon="icon-add"/>
+				operation="href" url="/fpages/regonization/ftl/FjmzhMessageInfo.ftl" show="" group="" txn=""  icon="icon-ok"/>
 	</Operations>
 	
 	

@@ -32,7 +32,7 @@
 		<Field id="grFormerCountryName" desc="出生国名称(英文)" edittype="text" datatype="string" size="200" require="false" xpath="/grFormerCountryName" />
 		<Field id="grIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text" datatype="string" size="3" require="false" xpath="/grIssuedBy" readonly="false" />
 		<Field id="grsinType" desc="sinType" edittype="select" translated="LIST:TIN,TIN" datatype="string" size="3" require="false" xpath="/grsinType" readonly="false" />
-		<Field id="grTIN" desc="纳税人识别号" edittype="text" translated="DATA_DIC.300030" datatype="string" size="200" require="false" xpath="/grTIN" />
+		<Field id="grTIN" desc="纳税人识别号" edittype="text" datatype="string" size="200" require="false" xpath="/grTIN" />
 		<Field id="grExplanation" desc="原因" edittype="text"  datatype="string" size="1000" require="false" xpath="/grExplanation" />
 		<Field id="grNationality" desc="国籍" edittype="text"  datatype="string" size="3" require="false" xpath="/grNationality" />
 		<Field id="operation" desc="操作" />
