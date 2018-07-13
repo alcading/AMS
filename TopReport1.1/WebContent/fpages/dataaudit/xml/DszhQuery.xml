@@ -61,18 +61,22 @@
 		<Button id="btDel" name="btDel" desc="删除" 
 				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryDelete" show="" group="" txn=""  icon="icon-remove"/>
 		<Button id="btSave" name="btSave" desc="导出报文" 
-				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryOutput" show="" group="" txn=""  icon="icon-remove"/>
+				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryOutput" show="" group="" txn=""  icon="icon-expout"/>
         <Button id="btLoad" name="btLoad" desc="下载报文" 
-				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryLoad" show="" group="" txn=""  icon="icon-remove"/>
+				operation="asysubmit" url="#" updateClass="com.huateng.report.imports.updater.DszhQueryLoad" show="" group="" txn=""  icon="icon-print"/>
        
 		<Button id="btFeedback" name="btFeedback" desc="反馈报文处理" 
-				operation="" url="#"  show="" group="" txn=""  icon="icon-search"/>
+				operation="" url="#"  show="" group="" txn=""  icon="icon-tip"/>
+		
+		<Button id="btMessageInfo" name="btMessageInfo" desc="报文下载" 
+				operation="href" url="/fpages/dataaudit/ftl/DszhMessageInfo.ftl"  show="" group="" txn=""  icon="icon-ok"/>
 
 	</Operations>
 	
 	
 
 	<Script >
+	
 	</Script>
 
 </CommQry>

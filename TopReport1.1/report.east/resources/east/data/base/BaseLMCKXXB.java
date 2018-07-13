@@ -17,7 +17,6 @@ public abstract class BaseLMCKXXB implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7981634766426960189L;
 	private String ckrxm;
 	private String ckrsfzjzl;
 	private String ckrsfzjhm;
@@ -26,6 +25,8 @@ public abstract class BaseLMCKXXB implements java.io.Serializable {
 	private String dqdm;
 	private String ckrlb;
 	private String ckrgjdq;
+	private String ckrxb;
+	private String zh;
 	public BaseLMCKXXB(String ckrxm, String ckrsfzjzl, String ckrsfzjhm, String sfzjdqr, String dqdm, String ckrlb,
 			String ckrgjdq, String ckrxb, String zh) {
 		super();
@@ -111,11 +112,17 @@ public abstract class BaseLMCKXXB implements java.io.Serializable {
 	public void setZh(String zh) {
 		this.zh = zh;
 	}
-	private String ckrxb;
-	private String zh;
+	
 	// Constructors
 
 	/** default constructor */
 	public BaseLMCKXXB() {
+	}
+
+	@Override
+	public String toString() {
+		return "BaseLMCKXXB [ckrxm=" + ckrxm + ", ckrsfzjzl=" + ckrsfzjzl + ", ckrsfzjhm=" + ckrsfzjhm + ", sfzjdqr="
+				+ sfzjdqr + ", dqdm=" + dqdm + ", ckrlb=" + ckrlb + ", ckrgjdq=" + ckrgjdq + ", ckrxb=" + ckrxb
+				+ ", zh=" + zh + "]";
 	}
 }

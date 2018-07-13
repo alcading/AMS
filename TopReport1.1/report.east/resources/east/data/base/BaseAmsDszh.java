@@ -1,9 +1,9 @@
 package resources.east.data.base;
 
-import java.math.BigDecimal;
-
-import resources.east.data.pub.AmsDszhId;
-import resources.east.data.pub.EastGrhqckfhzmxjlTmpId;
+import java.util.HashSet;
+import java.util.Set;
+import resources.east.data.pub.KXXB;
+import resources.east.data.pub.LMCKXXB;
 
 /**
  * AbstractEastGrhqckfhzmxjlTmp entity provides the base persistence definition
@@ -75,6 +75,21 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	private String report_status;
 	private String jgdm;
 	
+	private Set<KXXB> kxxb = new HashSet<KXXB>();
+	private Set<LMCKXXB> lmckxxb = new HashSet<LMCKXXB>();
+	
+	public Set<LMCKXXB> getLmckxxb() {
+		return lmckxxb;
+	}
+	public void setLmckxxb(Set<LMCKXXB> lmckxxb) {
+		this.lmckxxb = lmckxxb;
+	}
+	public Set<KXXB> getKxxb() {
+		return kxxb;
+	}
+	public void setKxxb(Set<KXXB> kxxb) {
+		this.kxxb = kxxb;
+	}
 	public boolean getSelect() {
 		return select;
 	}
@@ -547,6 +562,20 @@ public abstract class BaseAmsDszh implements java.io.Serializable {
 	public void setJgdm(String jgdm) {
 		this.jgdm = jgdm;
 
+	}
+	@Override
+	public String toString() {
+		return "BaseAmsDszh [select=" + select + ", ckrxm=" + ckrxm + ", ckrsfzjzl=" + ckrsfzjzl + ", ckrsfzjhm="
+				+ ckrsfzjhm + ", sfzjdqr=" + sfzjdqr + ", dqdm=" + dqdm + ", ckrlb=" + ckrlb + ", ckrgjdq=" + ckrgjdq
+				+ ", ckrxb=" + ckrxb + ", ckryb=" + ckryb + ", ckrdz=" + ckrdz + ", ckrdh=" + ckrdh + ", dlrmc=" + dlrmc
+				+ ", dlrsfzjzl=" + dlrsfzjzl + ", dlrsfzjhm=" + dlrsfzjhm + ", dlrgjdq=" + dlrgjdq + ", dlrdh=" + dlrdh
+				+ ", jrjgbm=" + jrjgbm + ", zh=" + zh + ", zhzl=" + zhzl + ", zhlx=" + zhlx + ", ylzhzh=" + ylzhzh
+				+ ", ylzhjgbm=" + ylzhjgbm + ", khrq=" + khrq + ", xhrq=" + xhrq + ", zhzt=" + zhzt + ", bz=" + bz
+				+ ", sfjrbzk=" + sfjrbzk + ", sfshbzk=" + sfshbzk + ", hsjg=" + hsjg + ", wfhsyy=" + wfhsyy + ", czff="
+				+ czff + ", xxlx=" + xxlx + ", khqd=" + khqd + ", remarks=" + remarks + ", jlzt=" + jlzt + ", reserve4="
+				+ reserve4 + ", reserve5=" + reserve5 + ", jlrq=" + jlrq + ", ismodify=" + ismodify + ", fgmjyqd="
+				+ fgmjyqd + ", sflmzh=" + sflmzh + ", report_status=" + report_status + ", jgdm=" + jgdm + ", kxxb="
+				+ kxxb + ", lmckxxb=" + lmckxxb + ", khdqdm=" + khdqdm + "]";
 	}
 
 }

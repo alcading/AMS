@@ -17,7 +17,6 @@ public abstract class BaseKXXB implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7981634766426960189L;
 	private String zh;
 	private String kh;
 	private String kdqr;
@@ -73,4 +72,9 @@ public abstract class BaseKXXB implements java.io.Serializable {
 	}
 	private String xkrq;
 	private String kzt;
+	@Override
+	public String toString() {
+		return "BaseKXXB [zh=" + zh + ", kh=" + kh + ", kdqr=" + kdqr + ", zhjz=" + zhjz + ", xkrq=" + xkrq + ", kzt="
+				+ kzt + "]";
+	}
 }

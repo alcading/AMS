@@ -19,5 +19,6 @@ public class LMCKXXB extends BaseLMCKXXB implements java.io.Serializable {
 
 	/** default constructor */
 	public LMCKXXB() {
+		
 	}
 }

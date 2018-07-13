@@ -26,7 +26,7 @@
     <bean id="DszhQueryLMUpdateOperation"
 		class="com.huateng.report.imports.operation.DszhQueryLMUpdateOperation">
 	</bean>
-	<bean id="DszhQueryKAUpdateOperation"
+	 <bean id="DszhQueryKAUpdateOperation"
 		class="com.huateng.report.imports.operation.DszhQueryKAUpdateOperation">
 	</bean>
 <!-- 非居民账户查询修改保存 -->

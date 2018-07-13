@@ -538,6 +538,14 @@
 		<servlet-name>FeedbackUpload</servlet-name>
 		<servlet-class>com.huateng.report.imports.servlet.FeedbackUpload</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<description>
+		</description>
+		<display-name>DszhQueryOutput</display-name>
+		<servlet-name>DszhQueryOutput</servlet-name>
+		<servlet-class>com.huateng.report.imports.updater.DszhQueryOutput</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ProcessImageByProcNameServlet</servlet-name>
@@ -550,6 +558,11 @@
 	<servlet-mapping>
 		<servlet-name>FeedbackUpload</servlet-name>
 		<url-pattern>/FeedbackUpload</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DszhQueryOutput</servlet-name>
+		<url-pattern>/DszhQueryOutput</url-pattern>
 	</servlet-mapping>
 
 
