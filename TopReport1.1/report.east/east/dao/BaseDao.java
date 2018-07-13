@@ -27,6 +27,11 @@ import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
 import resources.east.data.pub.AmsDszh;
 import resources.east.data.pub.AmsFjmzh;
+import resources.east.data.pub.AmsFjmzhDZ;
+import resources.east.data.pub.AmsFjmzhGR;
+import resources.east.data.pub.AmsFjmzhJG;
+import resources.east.data.pub.AmsFjmzhKZR;
+import resources.east.data.pub.AmsFjmzhXM;
 import resources.east.data.pub.KXXB;
 import resources.east.data.pub.LMCKXXB;
 import east.utils.tools.DBUtil;
@@ -489,13 +494,13 @@ public class BaseDao {
 	}
 
 	/**
-	 * 查询非居民 账户信息 /cx add in 2018/1/5
+	 * 查询非居民 账户基本信息 /cz update in 2018/6/7
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<AmsFjmzh> queryFjmzh(String ind_name, String accountnumber, String ind_idtype,
-			String ind_idnumber) throws Exception {
+	public static List<AmsFjmzh> queryFjmzh(String sAccountType, String accountNumber, String sAccountHolderType, String rpStatus)
+			throws Exception {
 
 		Connection conn = DBUtil.getConnection();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -505,18 +510,20 @@ public class BaseDao {
 		// Map<String, String> map = null;
 		try {
 
-			String sql = "select ACCOUNTNUMBER, CLOSEDACCOUNT, DUEDILIGENCEIND, SELFCERTIFICATION, ACCOUNTBALANCE, ACCOUNTHOLDERTYPE, OPENINGFINAME, PAYMENT, IND_NAME, IND_IDTYPE, IND_IDNUMBER from AMS_FJMZH where 1=1";
-			if (ind_idtype != null && !"".equals(ind_idtype)) {
-				sql += "and ind_idtype like '%" + ind_idtype + "%'";
+			String sql = "select ACCOUNTNUMBER, IACCOUNTBALANCE, IPAYMENTAMNT, REPORT_STATUS, SACC_CURRCODE, SACCOUNTHOLDERTYPE"
+					+ ", SACCOUNTTYPE, SCLOSEDACCOUNT, SDUEDILIGENCEIND, SINTYPE, SISSUEDBY, SOPENINGFINAME, SPAYMENTAMNTCURR"
+					+ ", SPAYMENTTYPE, SRESCOUNTRYCODE, SSELFSERTIFICATION, TIN from AMS_FJMZH where 1=1";
+			if (sAccountHolderType != null && !"".equals(sAccountHolderType)) {
+				sql += "and SACCOUNTHOLDERTYPE = '" + sAccountHolderType + "'";
 			}
-			if (ind_idnumber != null && !"".equals(ind_idnumber)) {
-				sql += "and ind_idnumber='" + ind_idnumber + "'";
+			if (accountNumber != null && !"".equals(accountNumber)) {
+				sql += "and ACCOUNTNUMBER = '" + accountNumber + "'";
 			}
-			if (ind_name != null && !"".equals(ind_name)) {
-				sql += "and ind_name = '" + ind_name + "'";
+			if (rpStatus != null && !"".equals(rpStatus)) {
+				sql += "and REPORT_STATUS = '" + rpStatus + "'";
 			}
-			if (accountnumber != null && !"".equals(accountnumber)) {
-				sql += "and accountnumber = '" + accountnumber + "'";
+			if (sAccountType != null && !"".equals(sAccountType)) {
+				sql += "and SACCOUNTTYPE = '" + sAccountType + "'";
 			}
 			pstmt = conn.prepareStatement(sql);
 			int paramNum = pstmt.getParameterMetaData().getParameterCount();
@@ -529,17 +536,23 @@ public class BaseDao {
 				while (rs.next()) {
 					// map = new HashMap<String, String>();
 					AmsFjmzh ad = new AmsFjmzh();
-					ad.setAccountnumber(rs.getString("ACCOUNTNUMBER"));
-					ad.setClosedaccount(rs.getString("CLOSEDACCOUNT"));
-					ad.setDuediligenceind(rs.getString("DUEDILIGENCEIND"));
-					ad.setSelfcertification(rs.getString("SELFCERTIFICATION"));
-					ad.setAccountbalance(rs.getBigDecimal("ACCOUNTBALANCE"));
-					ad.setAccountholdertype(rs.getString("ACCOUNTHOLDERTYPE"));
-					ad.setOpeningfiname(rs.getString("OPENINGFINAME"));
-					ad.setPayment(rs.getBigDecimal("PAYMENT"));
-					ad.setInd_name(rs.getString("IND_NAME"));
-					ad.setInd_idtype(rs.getString("IND_IDTYPE"));
-					ad.setInd_idnumber(rs.getString("IND_IDNUMBER"));
+					ad.setAccountNumber(rs.getString("ACCOUNTNUMBER"));
+					ad.setiAccountBalance(rs.getBigDecimal("IACCOUNTBALANCE"));
+					ad.setiPaymentAmnt(rs.getBigDecimal("IPAYMENTAMNT"));
+					ad.setReport_status(rs.getString("REPORT_STATUS"));
+					ad.setsACC_currCode(rs.getString("SACC_CURRCODE"));
+					ad.setsAccountHolderType(rs.getString("SACCOUNTHOLDERTYPE"));
+					ad.setsAccountType(rs.getString("SACCOUNTTYPE"));
+					ad.setsClosedAccount(rs.getString("SCLOSEDACCOUNT"));
+					ad.setsDueDiligenceInd(rs.getString("SDUEDILIGENCEIND"));
+					ad.setSinType(rs.getString("SINTYPE"));
+					ad.setsIssuedBy(rs.getString("SISSUEDBY"));
+					ad.setsOpeningFIName(rs.getString("SOPENINGFINAME"));
+					ad.setsPaymentAmntCurr(rs.getString("SPAYMENTAMNTCURR"));
+					ad.setsPaymentType(rs.getString("SPAYMENTTYPE"));
+					ad.setsResCountryCode(rs.getString("SRESCOUNTRYCODE"));
+					ad.setsSelfSertification(rs.getString("SSELFSERTIFICATION"));
+					ad.setTIN(rs.getString("TIN"));
 
 					list.add(ad);
 
@@ -553,6 +566,315 @@ public class BaseDao {
 		return list;
 
 	}
+	
+	/**
+	 * 查询非居民 账户个人信息 /cz update in 2018/6/19
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsFjmzhGR> queryFjmzhGR(String griAccID)
+			throws Exception {
+
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsFjmzhGR> list = new ArrayList<AmsFjmzhGR>();
+		// Map<String, String> map = null;
+		try {
+
+			String sql = "select * from AMS_FJMZH_GR where 1=1";
+			if (griAccID != null && !"".equals(griAccID)) {
+				sql += "and IACCID = '" + griAccID + "'";
+			}
+			
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if (rs != null) {
+
+				while (rs.next()) {
+					// map = new HashMap<String, String>();
+					AmsFjmzhGR ad = new AmsFjmzhGR();
+					ad.setGrBirthCity(rs.getString("SBIRTHCITY"));
+					ad.setGrBirthCountryCode(rs.getString("SBIRTHCOUNTRYCODE"));
+					ad.setGrBirthDate(rs.getString("DBIRTHDATE"));
+					ad.setGrExplanation(rs.getString("SEXPLANATION"));
+					ad.setGrFormerCountryName(rs.getString("SFORMERCOUNTRYNAME"));
+					ad.setGrGender(rs.getString("SGENDER"));
+					ad.setGriAccID(rs.getString("IACCID"));
+					ad.setGrIDNumber(rs.getString("SIDNUMBER"));
+					ad.setGrIDType(rs.getString("SIDTYPE"));
+					ad.setGrIssuedBy(rs.getString("SISSUEDBY"));
+					ad.setGrNationality(rs.getString("SNATIONALITY"));
+					ad.setGrPhoneNo(rs.getString("SPHONENO"));
+					ad.setGrsinType(rs.getString("SINTYPE"));
+					ad.setGrTIN(rs.getString("TIN"));
+
+					list.add(ad);
+
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally {
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+
+	}
+	
+	/**
+	 * 查询非居民 账户机构信息 /cz update in 2018/6/19
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsFjmzhJG> queryFjmzhJG(String griAccID)
+			throws Exception {
+
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsFjmzhJG> list = new ArrayList<AmsFjmzhJG>();
+		// Map<String, String> map = null;
+		try {
+
+			String sql = "select * from AMS_FJMZH_JG where 1=1";
+			if (griAccID != null && !"".equals(griAccID)) {
+				sql += "and IACCID = '" + griAccID + "'";
+			}
+			
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if (rs != null) {
+
+				while (rs.next()) {
+					// map = new HashMap<String, String>();
+					AmsFjmzhJG ad = new AmsFjmzhJG();
+					ad.setJgExplanation(rs.getString("SEXPLANATION"));
+					ad.setJgiAccID(rs.getString("IACCID"));
+					ad.setJgIssuedBy(rs.getString("SISSUEDBY"));
+					ad.setJgNameType(rs.getString("SNAMETYPE"));
+					ad.setJgOrganisationNameCN(rs.getString("SORGANISATIONNAMECN"));
+					ad.setJgOrganisationNameEN(rs.getString("SORGANISATIONNAMEEN"));
+					ad.setJgPhoneNo(rs.getString("SPHONENO"));
+					ad.setJgsinType(rs.getString("SINTYPE"));
+					ad.setJgTIN(rs.getString("TIN"));
+
+					list.add(ad);
+
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally {
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+
+	}
+	
+	/**
+	 * 查询非居民 账户控制人信息 /cz update in 2018/6/19
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsFjmzhKZR> queryFjmzhKZR(String kzriAccID)
+			throws Exception {
+
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsFjmzhKZR> list = new ArrayList<AmsFjmzhKZR>();
+		// Map<String, String> map = null;
+		try {
+
+			String sql = "select * from AMS_FJMZH_KZR where 1=1";
+			if (kzriAccID != null && !"".equals(kzriAccID)) {
+				sql += "and IACCID = '" + kzriAccID + "'";
+			}
+			
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if (rs != null) {
+
+				while (rs.next()) {
+					// map = new HashMap<String, String>();
+					AmsFjmzhKZR ad = new AmsFjmzhKZR();
+					ad.setKzrBirthCity(rs.getString("SBIRTHCITY"));
+					ad.setKzrBirthCountryCode(rs.getString("SBIRTHCOUNTRYCODE"));
+					ad.setKzrCtrlgPersonType(rs.getString("SCTRLGPERSONTYPE"));
+					ad.setKzrdBirthDate(rs.getString("DBIRTHDATE"));
+					ad.setKzrExplanation(rs.getString("SEXPLANATION"));
+					ad.setKzrFormerCountryName(rs.getString("SFORMERCOUNTRYNAME"));
+					ad.setKzriAccID(rs.getString("IACCID"));
+					ad.setKzrIssuedBy(rs.getString("SISSUEDBY"));
+					ad.setKzrNationality(rs.getString("SNATIONALITY"));
+					ad.setKzrResCountryCode(rs.getString("SRESCOUNTRYCODE"));
+					ad.setKzrsinType(rs.getString("SINTYPE"));
+					ad.setKzrTIN(rs.getString("TIN"));
+
+					list.add(ad);
+
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally {
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+
+	}
+
+	/**
+	 * 查询非居民 账户地址信息 /cz update in 2018/6/19
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsFjmzhDZ> queryFjmzhDZ(String griAccID,String dStyle)
+			throws Exception {
+
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsFjmzhDZ> list = new ArrayList<AmsFjmzhDZ>();
+		// Map<String, String> map = null;
+		try {
+
+			String sql = "select * from AMS_FJMZH_DZ where 1=1";
+			if (griAccID != null && !"".equals(griAccID)) {
+				sql += "and IACCID = '" + griAccID + "'";
+			}
+			
+			if (dStyle != null && !"".equals(dStyle)) {
+				sql += "and SSTYLE = '" + dStyle + "'";
+			}
+			
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if (rs != null) {
+
+				while (rs.next()) {
+					// map = new HashMap<String, String>();
+					AmsFjmzhDZ ad = new AmsFjmzhDZ();
+					ad.setsAddressCN_sAddressFreeCN(rs.getString("ADDRESSCN_SADDRESSFREECN"));
+					ad.setsAddressEN_AddressFreeEN(rs.getString("ADDRESSEN_ADDRESSFREEEN"));
+					ad.setDiAccID(rs.getString("IACCID"));
+					ad.setdStyle(rs.getString("SSTYLE"));
+					ad.setsAddressFixCN_CityCN(rs.getString("SADDRESSFIXCN_CITYCN"));
+					ad.setsAddressFixCN_DistrictName(rs.getString("SADDRESSFIXCN_DISTRICTNAME"));
+					ad.setsAddressFixCN_PostCode(rs.getString("SADDRESSFIXCN_POSTCODE"));
+					ad.setsAddressFixCN_Province(rs.getString("SADDRESSFIXCN_PROVINCE"));
+					ad.setsAddressFixEN_BuildingIden(rs.getString("SADDRESSFIXEN_BUILDINGIDEN"));
+					ad.setsAddressFixEN_CityEN(rs.getString("SADDRESSFIXEN_CITYEN"));
+					ad.setsAddressFixEN_CountrySubentity(rs.getString("SADDRESSFIXEN_COUNTRYSUBENTITY"));
+					ad.setsAddressFixEN_DistrictName(rs.getString("SADDRESSFIXEN_DISTRICTNAME"));
+					ad.setsAddressFixEN_FloorIdentifier(rs.getString("SADDRESSFIXEN_FLOORIDENTIFIER"));
+					ad.setsAddressFixEN_POB(rs.getString("SADDRESSFIXEN_POB"));
+					ad.setsAddressFixEN_PostCode(rs.getString("SADDRESSFIXEN_POSTCODE"));
+					ad.setsAddressFixEN_Street(rs.getString("SADDRESSFIXEN_STREET"));
+					ad.setsAddressFixEN_SuiteIdentifier(rs.getString("SADDRESSFIXEN_SUITEIDENTIFIER"));
+					ad.setsCountryCode(rs.getString("SCOUNTRYCODE"));
+					ad.setSlegalAddressType(rs.getString("SLEGALADDRESSTYPE"));
+
+					list.add(ad);
+
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally {
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+
+	}
+
+	/**
+	 * 查询非居民 账户姓名信息 /cz update in 2018/6/19
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static List<AmsFjmzhXM> queryFjmzhXM(String griAccID,String xStyle)
+			throws Exception {
+
+		Connection conn = DBUtil.getConnection();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AmsFjmzhXM> list = new ArrayList<AmsFjmzhXM>();
+		// Map<String, String> map = null;
+		try {
+
+			String sql = "select * from AMS_FJMZH_XM where 1=1";
+			if (griAccID != null && !"".equals(griAccID)) {
+				sql += "and IACCID = '" + griAccID + "'";
+			}
+			if (xStyle != null && !"".equals(xStyle)) {
+				sql += "and SSTYLE = '" + xStyle + "'";
+			}
+			pstmt = conn.prepareStatement(sql);
+			int paramNum = pstmt.getParameterMetaData().getParameterCount();
+
+			rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int count = rsmd.getColumnCount();
+			if (rs != null) {
+
+				while (rs.next()) {
+					// map = new HashMap<String, String>();
+					AmsFjmzhXM ad = new AmsFjmzhXM();
+					ad.setxFirstName(rs.getString("SFIRSTNAME"));
+					ad.setxGeneralSuffix(rs.getString("SGENERALSUFFIX"));
+					ad.setxGenerationIdentifier(rs.getString("SGENERATIONIDENTIFIER"));
+					ad.setXiAccID(rs.getString("IACCID"));
+					ad.setxLastName(rs.getString("SLASTNAME"));
+					ad.setxMiddleName(rs.getString("SMIDDLENAME"));
+					ad.setxNameCN(rs.getString("SNAMECN"));
+					ad.setxNamePrefix(rs.getString("SNAMEPREFIX"));
+					ad.setxNameType(rs.getString("SNAMETYPE"));
+					ad.setxPrecedingTitle(rs.getString("SPRECEDINGTITLE"));
+					ad.setxStyle(rs.getString("SSTYLE"));
+					ad.setxSuffix(rs.getString("SSUFFIX"));
+					ad.setxTitle(rs.getString("STITLE"));
+
+					list.add(ad);
+
+				}
+			}
+		} catch (SQLException e) {
+			throw new Exception("tableName:[] query! error!" + e.getMessage(), e);
+		} finally {
+			DBUtil.close(conn, pstmt, rs);
+		}
+		return list;
+
+	}
+
 
 	/**
 	 * 查询对私账户信息 /cx add in 2018/1/5
@@ -792,7 +1114,7 @@ public class BaseDao {
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int count = rsmd.getColumnCount();
 			if (rs != null) {
-
+				
 				while (rs.next()) {
 					// map = new HashMap<String, String>();
 					KXXB ad = new KXXB();
@@ -843,39 +1165,23 @@ public class BaseDao {
 				while (rs.next()) {
 					// map = new HashMap<String, String>();
 					AmsFjmzh ad = new AmsFjmzh();
-					ad.setAccountnumber(rs.getString("ACCOUNTNUMBER"));
-					ad.setClosedaccount(rs.getString("CLOSEDACCOUNT"));
-					ad.setDuediligenceind(rs.getString("DUEDILIGENCEIND"));
-					ad.setSelfcertification(rs.getString("SELFCERTIFICATION"));
-					ad.setAccountbalance(rs.getBigDecimal("ACCOUNTBALANCE"));
-					ad.setAccountholdertype(rs.getString("ACCOUNTHOLDERTYPE"));
-					ad.setOpeningfiname(rs.getString("OPENINGFINAME"));
-					ad.setPayment(rs.getBigDecimal("PAYMENT"));
-					ad.setInd_name(rs.getString("IND_NAME"));
-					ad.setInd_gender(rs.getString("IND_GENDER"));
-					ad.setInd_address(rs.getString("IND_ADDRESS"));
-					ad.setInd_phoneno(rs.getString("IND_PHONENO"));
-					ad.setInd_idtype(rs.getString("IND_IDTYPE"));
-					ad.setInd_idnumber(rs.getString("IND_IDNUMBER"));
-					ad.setInd_rescountrycode(rs.getString("IND_RESCOUNTRYCODE"));
-					ad.setInd_tin(rs.getString("IND_TIN"));
-					ad.setInd_explanation(rs.getString("IND_EXPLANATION"));
-					ad.setInd_nationality(rs.getString("IND_NATIONALITY"));
-					ad.setInd_birthinfo(rs.getDate("IND_BIRTHINFO"));
-					ad.setOrg_name(rs.getString("ORG_NAME"));
-					ad.setOrg_address(rs.getString("ORG_ADDRESS"));
-					ad.setOrg_phoneno(rs.getString("ORG_PHONENO"));
-					ad.setOrg_rescountrycode(rs.getString("ORG_RESCOUNTRYCODE"));
-					ad.setOrg_tin(rs.getString("ORG_TIN"));
-					ad.setOrg_explanation(rs.getString("ORG_EXPLANATION"));
-					ad.setCon_name(rs.getString("CON_NAME"));
-					ad.setCon_ctrlgpersontype(rs.getString("CON_CTRLGPERSONTYPE"));
-					ad.setCon_nationality(rs.getString("CON_NATIONALITY"));
-					ad.setCon_address(rs.getString("CON_ADDRESS"));
-					ad.setCon_rescountrycode(rs.getString("CON_RESCOUNTRYCODE"));
-					ad.setCon_tin(rs.getString("CON_TIN"));
-					ad.setCon_explanation(rs.getString("CON_EXPLANATION"));
-					ad.setCon_birthinfo(rs.getDate("CON_BIRTHINFO"));
+					ad.setAccountNumber(rs.getString("ACCOUNTNUMBER"));
+					ad.setiAccountBalance(rs.getBigDecimal("IACCOUNTBALANCE"));
+					ad.setiPaymentAmnt(rs.getBigDecimal("IPAYMENTAMNT"));
+					ad.setReport_status(rs.getString("REPORT_STATUS"));
+					ad.setsACC_currCode(rs.getString("SACC_CURRCODE"));
+					ad.setsAccountHolderType(rs.getString("SACCOUNTHOLDERTYPE"));
+					ad.setsAccountType(rs.getString("SACCOUNTTYPE"));
+					ad.setsClosedAccount(rs.getString("SCLOSEDACCOUNT"));
+					ad.setsDueDiligenceInd(rs.getString("SDUEDILIGENCEIND"));
+					ad.setSinType(rs.getString("SINTYPE"));
+					ad.setsIssuedBy(rs.getString("SISSUEDBY"));
+					ad.setsOpeningFIName(rs.getString("SOPENINGFINAME"));
+					ad.setsPaymentAmntCurr(rs.getString("SPAYMENTAMNTCURR"));
+					ad.setsPaymentType(rs.getString("SPAYMENTTYPE"));
+					ad.setsResCountryCode(rs.getString("SRESCOUNTRYCODE"));
+					ad.setsSelfSertification(rs.getString("SSELFSERTIFICATION"));
+					ad.setTIN(rs.getString("TIN"));
 
 					list.add(ad);
 				}

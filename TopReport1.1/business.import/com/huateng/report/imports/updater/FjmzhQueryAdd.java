@@ -16,13 +16,9 @@ import com.huateng.ebank.framework.operation.OPCaller;
 import com.huateng.ebank.framework.operation.OperationContext;
 import com.huateng.ebank.framework.web.commQuery.BaseUpdate;
 import com.huateng.exception.AppException;
-import com.huateng.report.imports.operation.DszhQueryUpdateOperation;
 import com.huateng.report.imports.operation.FjmzhQueryUpdateOperation;
 
-import resources.east.data.pub.AmsDszh;
-import resources.east.data.pub.AmsDszhId;
 import resources.east.data.pub.AmsFjmzh;
-import resources.east.data.pub.AmsFjmzhId;
 
 public class FjmzhQueryAdd extends BaseUpdate {
 
@@ -40,32 +36,21 @@ public class FjmzhQueryAdd extends BaseUpdate {
 			UpdateReturnBean updateReturnBean = new UpdateReturnBean();
 			UpdateResultBean updateResultBean = multiUpdateResultBean
 					.getUpdateResultBeanByID("FjmzhAdd");
+			
+			String accNumb = request.getParameter("");
+			
 
-
-			List<AmsFjmzh> updateList = new ArrayList<AmsFjmzh>();
+			List<AmsFjmzh> insertList = new ArrayList<AmsFjmzh>();
 			List delList = new ArrayList();
-			List insertList = new ArrayList();
+			List updateList = new ArrayList();
 
-
+			
 			while (updateResultBean.hasNext()) {
 				AmsFjmzh amsFjmzh=new AmsFjmzh();
 				Map map = updateResultBean.next();
 				mapToObject(amsFjmzh, map);
-				switch (updateResultBean.getRecodeState()) {
-				case UpdateResultBean.INSERT:
-					insertList.add(amsFjmzh);
-					break;				
-				case UpdateResultBean.DELETE:
-					delList.add(amsFjmzh);
-					break;
-				case UpdateResultBean.MODIFY:
-					
-					updateList.add(amsFjmzh);
-					
-					break;
-				default:
-					break;
-				}
+				amsFjmzh.setReport_status("0");
+				insertList.add(amsFjmzh);
 
 			}
 			OperationContext oc = new OperationContext();
