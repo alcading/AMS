@@ -762,6 +762,7 @@ public class FjmzhQueryOutput extends HttpServlet{
 			xmlWriter.close();
 			FjmzhUtil.saveMessageInfo(fileName + ".xml");
 			returnInfo=FjmzhUtil.MESSAGEINFO+fileName+".xml";
+			FjmzhUtil.modifyState(fjmzh);
 		}
 		catch(Exception e){
 			e.printStackTrace();

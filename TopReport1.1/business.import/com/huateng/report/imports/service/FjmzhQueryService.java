@@ -9,6 +9,7 @@ import com.huateng.ebank.business.common.PageQueryCondition;
 import com.huateng.ebank.business.common.PageQueryResult;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ApplicationContextUtils;
+import com.huateng.report.tool.FjmzhUtil;
 
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
@@ -49,6 +50,7 @@ public class FjmzhQueryService {
 		for(Iterator it = updateList.iterator();it.hasNext();)
 		{
 			newwrd = (AmsFjmzh) it.next();
+			newwrd.setReport_status(FjmzhUtil.NOTSUBMITTED);
 			rootDAO.update(newwrd);
 			
 		}

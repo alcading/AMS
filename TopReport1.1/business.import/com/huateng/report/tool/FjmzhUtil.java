@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import com.huateng.ebank.business.common.SystemConstant;
@@ -11,6 +12,7 @@ import com.huateng.ebank.framework.exceptions.CommonException;
 
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
+import resources.east.data.pub.AmsFjmzh;
 import resources.east.data.pub.AmsFjmzhDZ;
 import resources.east.data.pub.AmsFjmzhMessageInfo;
 
@@ -29,6 +31,8 @@ public class FjmzhUtil {
     public static final String INTYPE = "TIN";
     public static final String MESSAGETYPE = "非居民涉税账户报文";
     public static final String MESSAGEINFO="  报文名称:";
+    public static final String SUBMITTED="1";
+    public static final String NOTSUBMITTED ="0";
 	
     public static void saveMessageInfo(String MessageName) throws CommonException{
 		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
@@ -38,6 +42,16 @@ public class FjmzhUtil {
 		messageinfo.setImportDate(getyymmdd(new Date()));
 		rootDAO.save(messageinfo);
 	}
+    
+    public static void modifyState(List<AmsFjmzh> list) throws CommonException{
+    	ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+    	if(list.size()>0){
+    		for (AmsFjmzh fjmzh : list) {
+				fjmzh.setReport_status(SUBMITTED);
+				rootDAO.update(fjmzh);
+			}
+    	}
+    }
     
     /**
      * 返回yyyy-MM-dd格式的字符串
