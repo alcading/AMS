@@ -37,18 +37,28 @@ public class DszhFeedbackOperation {
 		 * 读取上传文件获得失败成功条数
 		 */
 		DszhFeedbackService dszhFeedbackService = DszhFeedbackService.getInstance();
-		String readStr = dszhFeedbackService.readFeedback(path, fileName);
-		String [] Temp = readStr.split("\\|");
-		int success_num = Integer.valueOf(Temp[0]);
-		int fail_num = Integer.valueOf(Temp[1]);
-		
+		//读取成功失败条数
 		AmsDszhFeedback amsDszhFeedback = new AmsDszhFeedback();
-		amsDszhFeedback.setDate(date_time); //或者将date_time换成new java.sql.Timestamp(Calendar.getInstance().getTime().getTime())
-		amsDszhFeedback.setFile_name(fileName);
-		amsDszhFeedback.setFeedback_type(feedback_type_r);
-		amsDszhFeedback.setSuccess_num(success_num);
-		amsDszhFeedback.setFail_num(fail_num);
+
+		if(fileName.indexOf("err") >= 0) {
+			amsDszhFeedback.setDate(date_time); //或者将date_time换成new java.sql.Timestamp(Calendar.getInstance().getTime().getTime())
+			amsDszhFeedback.setFile_name(fileName);
+			amsDszhFeedback.setFeedback_type("2");
+			amsDszhFeedback.setSuccess_num(null);
+			amsDszhFeedback.setFail_num(null);
+			
+		}else {
+			String readStr = dszhFeedbackService.readFeedback(path, fileName);
+			String [] Temp = readStr.split("\\|");
+			int success_num = Integer.valueOf(Temp[0]);
+			int fail_num = Integer.valueOf(Temp[1]);
 		
+			amsDszhFeedback.setDate(date_time); //或者将date_time换成new java.sql.Timestamp(Calendar.getInstance().getTime().getTime())
+			amsDszhFeedback.setFile_name(fileName);
+			amsDszhFeedback.setFeedback_type(feedback_type_r);
+			amsDszhFeedback.setSuccess_num(success_num);
+			amsDszhFeedback.setFail_num(fail_num);
+		}
 		/*
 		 * 读取账号以及错误校验代码并保存
 		 */

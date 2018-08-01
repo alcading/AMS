@@ -134,6 +134,7 @@ private void delUserRel(String tlrno,List<TlrBctlRel> bctls,List<TlrRoleRel> rol
 	 * com.huateng.ebank.framework.operation.IOperation#execute(com.huateng.
 	 * ebank.framework.operation.OperationContext)
 	 */
+	@SuppressWarnings("deprecation")
 	public void execute(OperationContext context) throws CommonException {
 		// GlobalInfo就相当于一个session
 		GlobalInfo globalInfo = GlobalInfo.getCurrentInstance();
@@ -207,7 +208,9 @@ private void delUserRel(String tlrno,List<TlrBctlRel> bctls,List<TlrRoleRel> rol
 			}
 			else{
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
+			@SuppressWarnings("unchecked")
 			List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
+			@SuppressWarnings("unchecked")
 			List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
 			if (tlrInfoDAO.query(tlrInfo.getTlrno()) == null) {
 				tlrInfo.setStatus(SystemConstant.TLR_NO_STATE_LOGOUT);
@@ -270,8 +273,11 @@ private void delUserRel(String tlrno,List<TlrBctlRel> bctls,List<TlrRoleRel> rol
 			}
 			} else if ("modify".equals(context.getAttribute(CMD))){
 			TlrInfo tlrInfo = (TlrInfo) context.getAttribute(IN_TLRINFO);
+			@SuppressWarnings("unchecked")
 			List<Bctl> bctls = (List<Bctl>) context.getAttribute(IN_BCTLLIST);
+			@SuppressWarnings("unchecked")
 			List<RoleInfo> roles = (List<RoleInfo>) context.getAttribute(IN_ROLELIST);
+			@SuppressWarnings("unchecked")
 			List<TlrMngRelBean> tlrs = (List<TlrMngRelBean>) context.getAttribute(IN_TLRLLIST);
 			//授权机构
 			RepList<TlrBctlRel> bctlRellist = new RepList<TlrBctlRel>();

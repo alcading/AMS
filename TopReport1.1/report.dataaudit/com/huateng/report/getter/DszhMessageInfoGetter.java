@@ -74,6 +74,8 @@ public class DszhMessageInfoGetter extends BaseGetter {
 			hql.append(" and A.messagename like '%"+messagename.trim()+"%' ");
 		}
 		
+		hql.append(" order by A.borndate");
+		
 		return DszhQueryService.getInstance().pageQueryByHql(pageIndex, pageSize, hql.toString());
 		
 	}

@@ -53,15 +53,67 @@ window.onload=function(){
 $('#DszhQuery_interface_dataset_btnSubmit').after($('#button-tools'));
 
 function btSave_onClickCheck(button){
-		var jlrq = DszhQuery_dataset.getValue("jlrq");
-		var date = Todate(jlrq);
-		document.getElementById("filedownloadfrm").src ="${contextPath}/DszhQueryOutput?jlrq="+date;
+		
+		loading();
+		exportTxt();
 		return false;
 }
- function btSave_postSubmit(button) {
-	  	alert("导出成功");
-	  	
-	  } 
+
+function exportTxt(){
+
+	var jlrq = DszhQuery_dataset.getValue("jlrq");
+	var date = Todate(jlrq);
+    $.ajax({
+        url:"/TopReport1.1/DszhQueryOutput",
+        type:"get",
+        async:true,   //是否为异步请求
+        cache:false,  //是否缓存结果
+        data:{jlrq:date},
+        dataType:"text",
+        success:function (data) {
+        	alert(data);
+        	loaded()
+        },
+        error:function (err) {
+            alert("失败");
+        }
+    }); 
+}
+//遮罩层
+function loading() {
+    var mask_bg = document.createElement("div");
+    mask_bg.id = "mask_bg";
+    mask_bg.style.position = "absolute";
+    mask_bg.style.top = "30%";
+    mask_bg.style.left = "35%";
+    mask_bg.style.width = "15%";
+    mask_bg.style.height = "10%";
+    mask_bg.style.backgroundColor = "#000";
+    mask_bg.style.opacity = 0.9;
+    mask_bg.style.zIndex = 10001;
+    document.body.appendChild(mask_bg);
+ 
+    var mask_msg = document.createElement("div");
+    mask_msg.style.position = "absolute";
+    mask_msg.style.top = "35%";
+    mask_msg.style.left = "0%";
+    mask_msg.style.width = "100%";
+    mask_msg.style.backgroundColor = "white";
+    mask_msg.style.border = "#336699 1px solid";
+    mask_msg.style.textAlign = "center";
+    mask_msg.style.fontSize = "1.1em";
+    mask_msg.style.fontWeight = "bold";
+    mask_msg.style.padding = "0.5em 0em 0.5em 0em";
+    mask_msg.style.zIndex = 10002;
+    mask_msg.innerText = "正在执行,请稍后...";
+    mask_bg.appendChild(mask_msg);
+}
+//关闭遮罩层
+function loaded() {
+    var mask_bg = document.getElementById("mask_bg");
+    if (mask_bg != null)
+        mask_bg.parentNode.removeChild(mask_bg);
+}
 
 function btLoad_onClickCheck(button){
         var jlrq = DszhQuery_dataset.getValue("jlrq");

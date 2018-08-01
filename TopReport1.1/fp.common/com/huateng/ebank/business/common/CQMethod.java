@@ -925,7 +925,10 @@ public class CQMethod {
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List list = rootdao.queryByQL2List(hql.toString());
 		if (list == null || list.isEmpty()) {
-			return "";
+			for(int j = 0; j < result_code.length; j ++) {
+				result.append(result_code[j] + "\n");
+			}
+			return result.toString();
 		} else {
 			for(int i = 0; i < list.size(); i ++) {
 				cur = (Ams_jyjgdm)list.get(i);
@@ -948,7 +951,7 @@ public class CQMethod {
 			ServletRequest request) throws HuatengException {
 		String jrjgbm = null;
 		System.out.println(value);
-		String hql = "from BrnoJbcdLink B where B.brno = " + value;
+		String hql = "from BrnoJbcdLink B where B.brno = '" + value + "'";
 		ROOTDAO rootdao = ROOTDAOUtils.getROOTDAO();
 		List<BrnoJbcdLink> list = rootdao.queryByQL2List(hql.toString());
 		if(list.size() != 0) {

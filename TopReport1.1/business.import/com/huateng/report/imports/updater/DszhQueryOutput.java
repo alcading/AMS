@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,8 +69,8 @@ public class DszhQueryOutput extends HttpServlet {
 			System.out.println("没有可导出数据");
 			session.close();
 			try {
-				response.setCharacterEncoding("GB18030");
-				response.getWriter().write("<script type='text/javascript'>alert('没有可导出的数据!');</script>");
+				response.setCharacterEncoding("utf-8");
+				response.getWriter().write("没有可导出的数据!");
 				return;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -283,8 +284,8 @@ public class DszhQueryOutput extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.setCharacterEncoding("GB18030");
-		response.getWriter().write("<script type='text/javascript'>alert('导出成功!');</script>");
+		response.setCharacterEncoding("utf-8");
+		response.getWriter().write("导出成功!");
 	}
 
 	/**

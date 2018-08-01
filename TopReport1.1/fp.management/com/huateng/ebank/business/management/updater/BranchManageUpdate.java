@@ -32,7 +32,7 @@ public class BranchManageUpdate extends BaseUpdate {
 			UpdateResultBean updateResultBean = multiUpdateResultBean.getUpdateResultBeanByID("Management_branchManage");
 			
 			List<Bctl> updateList = new ArrayList();
-			List insertList = new ArrayList();
+			List<Bctl> insertList = new ArrayList();
 			List delList = new ArrayList();
 			
 			List<BrnoJbcdLink> brnoJbcdLink_list = new ArrayList();

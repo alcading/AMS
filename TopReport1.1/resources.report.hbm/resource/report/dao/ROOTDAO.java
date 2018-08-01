@@ -15,6 +15,8 @@ import com.huateng.ebank.business.common.SystemConstant;
 import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.ebank.framework.util.ExceptionUtil;
 
+import resources.east.data.pub.AmsDszh;
+
 public class ROOTDAO extends resource.dao.base.HQLDAO {
 
 	private static final Logger log = Logger.getLogger(ROOTDAO.class);
@@ -273,5 +275,23 @@ public class ROOTDAO extends resource.dao.base.HQLDAO {
 	public int executeSql(String sql){
 		org.hibernate.SQLQuery queryObject = getSession().createSQLQuery(sql);
 		return queryObject.executeUpdate();
+	}
+
+	public void saveOrUpdateAll(List list) {
+		this.getHibernateTemplate().setCacheQueries(false);
+
+		if (log.isDebugEnabled()) {
+			log.debug("saveOrUpdate(Object) - start"); //$NON-NLS-1$
+		}
+		Object reObj = null;
+		
+		this.getHibernateTemplate().saveOrUpdateAll(list);
+		
+
+		if (log.isDebugEnabled()) {
+			log.debug("saveOrUpdate(Object) - end"); //$NON-NLS-1$
+		}
+
+		
 	}
 }

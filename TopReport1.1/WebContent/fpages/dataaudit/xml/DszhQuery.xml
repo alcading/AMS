@@ -39,7 +39,7 @@
 	</Fields>
 
 	<Parameters>
-		<!-- <Parameter id="jlrq" desc="时间参数" value="20170929" /> -->
+
 	</Parameters>
 	<Where>
 		<TextBox id="ckrxm" desc="存款人姓名" datatype="string" index="1" size="20" />
