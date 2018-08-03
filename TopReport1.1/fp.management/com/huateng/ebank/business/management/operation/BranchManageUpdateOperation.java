@@ -16,6 +16,8 @@ import java.util.List;
 import resource.bean.pub.Bctl;
 import resource.bean.pub.BrnoJbcdLink;
 import resource.dao.pub.BctlDAO;
+import resource.report.dao.ROOTDAO;
+import resource.report.dao.ROOTDAOUtils;
 
 import com.huateng.common.log.HtLog;
 import com.huateng.common.log.HtLogFactory;
@@ -44,6 +46,7 @@ public class BranchManageUpdateOperation extends BaseOperation {
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void execute(OperationContext context) throws CommonException {
 		BctlDAO bctlDao = BaseDAOUtils.getBctlDAO();
         List insertList = (List) context.getAttribute(INSERT_LIST);
@@ -66,13 +69,23 @@ public void AddEntityValue(List list) throws CommonException{
 		
 		BctlDAO dao = BaseDAOUtils.getBctlDAO();
 		CommonService commonService = CommonService.getInstance();
+		
 		List lis = dao.queryByCondition("po.brno = '" + bean.getBrno()
 				+ "'" + " and po.status = " + SystemConstant.VALID_FLAG_VALID);
+		
+		int lisBrCode = 0;
+		String brCode = null;
+		
+		do {
+			brCode = commonService.getBrcodeID();
+			lisBrCode = dao.queryByCondition("po.brcode = '" + brCode
+					+ "'").size();
+		}while(lisBrCode > 0);
 
 		if (lis.size() > 0) {//已存在不能添加
 			ExceptionUtil.throwCommonException("机构代码重复",ErrorCode.ERROR_CODE_BCTL_INSERT);
 		}else{
-			bean.setBrcode(commonService .getBrcodeID());
+			bean.setBrcode(brCode);
 			bean.setStatus(SystemConstant.FLAG_ON);
 			bean.setLastUpdTlr(GlobalInfo.getCurrentInstance().getTlrno());
 		    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -170,16 +183,10 @@ public void AddEntityValue(List list) throws CommonException{
 	/**
 	 * 保存金融机构编码到表brno_jbcd_link中
 	 */
-	public void UpdateBrnoJbcdLink(List list) throws CommonException{
-		for(Iterator  it=list.iterator();it.hasNext();){
-			BrnoJbcdLink bean = (BrnoJbcdLink) it.next();
-			
-			BctlDAO dao = BaseDAOUtils.getBctlDAO();
-			BrnoJbcdLink bctlModify = dao.queryBrno_jbcd_link(bean.getBrno());
-			
-			dao.getHibernateTemplate().evict(bctlModify);
-			dao.updateBrno_jbcd_link(bean);
-			}
+	public void UpdateBrnoJbcdLink(List<BrnoJbcdLink> list) throws CommonException{
+		BrnoJbcdLink brnoJbcdLink = list.get(0);
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		rootDAO.saveOrUpdate(brnoJbcdLink);
 	}
 	
 
