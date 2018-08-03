@@ -10,12 +10,11 @@
 	>
 		<meta attribute="sync-DAO">false</meta>
 		<id
-				name="id"
-				column="id"
-				type="int"
-		>
-			<generator class="increment" />
-		</id>
+			name="file_name"
+			column="file_name"
+			type="string"
+			length="255"
+		/>
 		<property
 			name="date"
 			column="input_date"
@@ -28,13 +27,6 @@
 			type="string"
 			not-null="true"
 			length="1"
-		/>
-		<property
-			name="file_name"
-			column="file_name"
-			type="string"
-			not-null="false"
-			length="255"
 		/>
 		<property
 			name="success_num"

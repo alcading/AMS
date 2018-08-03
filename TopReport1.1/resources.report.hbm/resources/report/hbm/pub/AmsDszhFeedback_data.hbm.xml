@@ -10,25 +10,17 @@
 	>
 		<meta attribute="sync-DAO">false</meta>
 		<id
-				name="id"
-				column="id"
-				type="int"
-		>
-			<generator class="increment" />
-		</id>
+			name="zh"
+			column="zh"
+			type="string"
+			length="32"
+		/>
 		<property
 			name="filename"
 			column="file_name"
 			type="string"
 			not-null="true"
 			length="255"
-		/>
-		<property
-			name="zh"
-			column="zh"
-			type="string"
-			not-null="true"
-			length="32"
 		/>
 		<property
 			name="jgdm"

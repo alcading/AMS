@@ -10,20 +10,12 @@ public class BaseAmsDszhFeedback implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	private Timestamp date;
 	private String feedback_type;
 	private String file_name;
 	private Integer success_num;
 	private Integer fail_num;
 	
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public Timestamp getDate() {
 		return date;
 	}

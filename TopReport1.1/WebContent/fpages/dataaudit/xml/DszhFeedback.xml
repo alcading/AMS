@@ -22,6 +22,7 @@
 		<Field id="file_name" desc="反馈报文名称" edittype="text"  datatype="string" size="20" require="false" xpath="/file_name" />
 		<Field id="success_num" desc="校验成功条数" edittype="text"  datatype="string" size="20" require="false" xpath="/success_num" />
 		<Field id="fail_num" desc="校验错误条数" edittype="text"  datatype="string" size="20" require="false" xpath="/fail_num" />
+		
 	</Fields>
 
 	<Parameters></Parameters>

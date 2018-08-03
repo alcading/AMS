@@ -132,7 +132,7 @@ public class DszhFeedbackService {
 	 */
 	public void saveFeedback(AmsDszhFeedback amsDszhFeedback) throws CommonException {
 		rootDAO = ROOTDAOUtils.getROOTDAO();
-		rootDAO.save(amsDszhFeedback);
+		rootDAO.saveOrUpdate(amsDszhFeedback);
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class DszhFeedbackService {
 	 */
 	public void saveFeedback(AmsDszhFeedback_data amsDszhFeedback_data) throws CommonException {
 		rootDAO = ROOTDAOUtils.getROOTDAO();
-		rootDAO.save(amsDszhFeedback_data);
+		rootDAO.saveOrUpdate(amsDszhFeedback_data);
 	}
 	
 	/**

@@ -45,6 +45,11 @@ public class BranchManageUpdate extends BaseUpdate {
 				switch (updateResultBean.getRecodeState()) {
 				case UpdateResultBean.INSERT:
 					insertList.add(bean);
+					
+					brnoJbcdLink.setBrno(insertList.get(0).getBrno());
+					brnoJbcdLink.setJrjgbm(insertList.get(0).getJrjgbm());
+					brnoJbcdLink_list.add(brnoJbcdLink);
+					
 					break;
 				case UpdateResultBean.DELETE:
 					delList.add(bean);
