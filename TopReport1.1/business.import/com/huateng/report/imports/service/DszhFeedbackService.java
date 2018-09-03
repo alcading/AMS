@@ -103,8 +103,12 @@ public class DszhFeedbackService {
 				continue;
 			}
 			temp = line.split("\\|");
+			if(temp.length != 45) {
+				continue;
+			}
 			zh = temp[17];
 			result_code = temp[44];
+			System.out.println("i = " + i);
 			AmsDszhFeedback_data amsDszhFeedback_data = null;
 			if(result_code != null || result_code != "") {
 				amsDszhFeedback_data = new AmsDszhFeedback_data();

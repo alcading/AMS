@@ -18,7 +18,6 @@
 	</tr>
 	<tr>
 		<td>
-			
 		</td>
 	</tr>
 </table>

@@ -112,7 +112,7 @@ public class DszhQueryOutput extends HttpServlet {
 		
 		
 		
-		List<AmsDszh> list = session.createQuery(" from AmsDszh model where model.jlrq='" + jlrq + "'").list();
+		List<AmsDszh> list = session.createQuery(" from AmsDszh model where model.jlrq='" + jlrq + "' and (model.report_status='0' or model.report_status='3') ").list();
 		
 		StringBuilder bf=new StringBuilder();
 		bf.append(
@@ -143,6 +143,16 @@ public class DszhQueryOutput extends HttpServlet {
 		LMCKXXB lmckxxb = null;
 		Iterator iterator = null;
 		
+		
+		int min = 10000;
+		int max = 99999;
+		filename = "[" + headOfficeJrjgbm + "]" + "[cams00100101]" + "[" + workDate
+				+ (new Random().nextInt(max) % (max - min + 1) + min) + "]";
+		filePath = filePath + filename;
+		File txtFile = new File(filePath + ".txt");
+		bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(txtFile), "GB18030"));
+		
+		
 		for(AmsDszh amsDszh:list) {
 			
 			/*
@@ -166,10 +176,10 @@ public class DszhQueryOutput extends HttpServlet {
 			}
 			
 			jlrq = amsDszh.getJlrq();
-			String report_status = amsDszh.getReport_status();
-			if(!report_status.equals("0")&&(!report_status.equals("3"))){
-				continue;
-			}
+//			String report_status = amsDszh.getReport_status();
+//			if(!report_status.equals("0")&&(!report_status.equals("3"))){
+//				continue;
+//			}
 			try {
 				iterator = amsDszh.getKxxb().iterator();
 				while(iterator.hasNext()) {
@@ -227,6 +237,9 @@ public class DszhQueryOutput extends HttpServlet {
 						+ amsDszh.getReserve5());
 				bf.append("\r\n");
 				
+				bw.write(bf.toString());
+				bf.setLength(0);
+				
 				kxxb_kh.delete(0, kxxb_kh.length());
 				kxxb_kdqr.delete(0, kxxb_kdqr.length());
 				kxxb_zhjz.delete(0, kxxb_zhjz.length());
@@ -256,16 +269,8 @@ public class DszhQueryOutput extends HttpServlet {
 		rootDAO.executeSql("UPDATE AMS_DSZH SET REPORT_STATUS = '1' WHERE (REPORT_STATUS='0' OR REPORT_STATUS='3') AND JLRQ = '" + jlrq + "'");
 	
 		try {
-			int min = 10000;
-			int max = 99999;
-			filename = "[" + headOfficeJrjgbm + "]" + "[cams00100101]" + "[" + workDate
-					+ (new Random().nextInt(max) % (max - min + 1) + min) + "]";
-			filePath = filePath + filename;
-			File txtFile = new File(filePath + ".txt");
-			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(txtFile), "GB18030"));
-			bw.write(bf.toString());	
-	    bw.flush();
-	    bw.close();
+			bw.flush();
+			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

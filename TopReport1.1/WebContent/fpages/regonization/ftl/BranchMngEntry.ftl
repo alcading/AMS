@@ -92,6 +92,7 @@
 	}
 	
 	function btAdd_onClick(){
+		Management_branchManage_dataset.setFieldReadOnly("brno", false);
 		subwindow_signWindow.show();
 	}
 	

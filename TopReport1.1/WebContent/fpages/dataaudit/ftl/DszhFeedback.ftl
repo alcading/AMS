@@ -99,8 +99,6 @@ function initUpLoadify(dataset, s, u) {
 
 						}
 					});
-		
-		
 }
 
  function btBack_onClickCheck()
