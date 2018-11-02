@@ -29,8 +29,8 @@
 		<Field id="sPaymentType" desc="收入类型" edittype="select" translated="LIST:CRS502,利息" datatype="string" size="20" require="false" xpath="/sPaymentType" readonly="false" />
 		<Field id="iPaymentAmnt" desc="账户收入金额" edittype="text" datatype="string" size="20" require="false" xpath="/iPaymentAmnt" readonly="false" />
 		<Field id="sPaymentAmntCurr" desc="账户收入币种" edittype="select" translated="DATA_DIC.300036" datatype="string" size="20" require="false" xpath="/sPaymentAmntCurr" />
-		<Field id="sResCountryCode" desc="税收居民国（地区）代码" edittype="text"  datatype="string" size="20" require="false" xpath="/sResCountryCode" />
-		<Field id="sIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text"  datatype="string" size="20" require="false" xpath="/sIssuedBy" />
+		<Field id="sResCountryCode" desc="税收居民国（地区）代码" edittype="text"  datatype="string" size="3" require="false" xpath="/sResCountryCode" />
+		<Field id="sIssuedBy" desc="发放识别号的国家（地区）代码" edittype="text"  datatype="string" size="3" require="false" xpath="/sIssuedBy" />
 		<Field id="sinType" desc="sinType " edittype="select" translated="LIST:TIN,TIN" datatype="string" size="20" require="false" xpath="/sinType" />
 		<Field id="TIN" desc="纳税人识别号" edittype="text" datatype="string" size="20" require="false" xpath="/TIN" />
 		<Field id="report_status" desc="报送状态" edittype="select" translated="DATA_DIC.300029" datatype="string" size="20" require="false" xpath="/report_status" />

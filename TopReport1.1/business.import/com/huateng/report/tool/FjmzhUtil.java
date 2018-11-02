@@ -34,15 +34,6 @@ public class FjmzhUtil {
     public static final String SUBMITTED="1";
     public static final String NOTSUBMITTED ="0";
 	
-    public static void saveMessageInfo(String MessageName) throws CommonException{
-		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
-		AmsFjmzhMessageInfo messageinfo = new AmsFjmzhMessageInfo();
-		messageinfo.setMessageName(MessageName);
-		messageinfo.setMessageType(MESSAGETYPE);
-		messageinfo.setImportDate(getyymmdd(new Date()));
-		rootDAO.save(messageinfo);
-	}
-    
     public static void modifyState(List<AmsFjmzh> list) throws CommonException{
     	ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
     	if(list.size()>0){

@@ -21,6 +21,7 @@ import org.dom4j.Namespace;
 import org.dom4j.QName;
 import org.dom4j.io.OutputFormat;
 
+import com.huateng.ebank.framework.exceptions.CommonException;
 import com.huateng.report.imports.common.Constants;
 import com.huateng.report.tool.FjmzhUtil;
 import com.huateng.report.utils.ReportUtils;
@@ -29,6 +30,7 @@ import resource.bean.pub.Bctl;
 import resource.bean.pub.BrnoJbcdLink;
 import resource.report.dao.ROOTDAO;
 import resource.report.dao.ROOTDAOUtils;
+import resources.east.data.pub.AmsFjmzhMessageInfo;
 import resources.east.data.pub.AmsFjmzhRB;
 
 public class FjmzhQueryNoDataOutput extends HttpServlet{
@@ -90,8 +92,7 @@ public class FjmzhQueryNoDataOutput extends HttpServlet{
 		String returnInfo = null;
 		try{
 			//创建新文件
-			Document doc = DocumentHelper
-			.createDocument();
+			Document doc = DocumentHelper.createDocument();
 			Namespace namespaceS = new Namespace("stc","http://aeoi.chinatax.gov.cn/crs/stctypes/v1");
 			
 			Namespace namespace = new Namespace("cncrs",
@@ -112,6 +113,7 @@ public class FjmzhQueryNoDataOutput extends HttpServlet{
 			Element ReportingPeriod = MessageHeader.addElement(new QName("ReportingPeriod",namespace));
 			ReportingPeriod.addText(FjmzhUtil.getYearLast());
 			Element MessageTypeIndic = MessageHeader.addElement(new QName("MessageTypeIndic",namespace));
+			//暂且固定为701
 			MessageTypeIndic.addText(FjmzhUtil.MESSAGETYPEINDIC_3);
 			Element Tmstp = MessageHeader.addElement(new QName("Tmstp",namespace));
 			Tmstp.addText(FjmzhUtil.getTimeShort());
@@ -140,7 +142,7 @@ public class FjmzhQueryNoDataOutput extends HttpServlet{
 
 			xmlWriter.write(doc);
 			xmlWriter.close();
-			FjmzhUtil.saveMessageInfo(fileName + ".xml");
+			saveMessageInfo(fileName + ".xml");
 			returnInfo=FjmzhUtil.MESSAGEINFO+fileName+".xml";
 		}
 		catch(Exception e){
@@ -148,6 +150,15 @@ public class FjmzhQueryNoDataOutput extends HttpServlet{
 		}
 		response.setCharacterEncoding("GB18030");
 		response.getWriter().write("<script type='text/javascript'>alert('导出成功!"+returnInfo+"');</script>");
+	}
+	
+    public void saveMessageInfo(String MessageName) throws CommonException{
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		AmsFjmzhMessageInfo messageinfo = new AmsFjmzhMessageInfo();
+		messageinfo.setMessageName(MessageName);
+		messageinfo.setMessageType(FjmzhUtil.MESSAGETYPE);
+		messageinfo.setImportDate(FjmzhUtil.getyymmdd(new Date()));
+		rootDAO.save(messageinfo);
 	}
 	
 }

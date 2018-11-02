@@ -32,6 +32,19 @@ function datatable1_operation_onRefresh(cell,value,record) {
 	}		
 }
 
+window.onload=function(){
+	
+	var date = new Date();
+    date.setTime(date.getTime());
+    if(date.getDate() < 10) {
+    	today_date = "0" + date.getDate();
+    }else {
+    	today_date = date.getDate();
+    }
+    var currentDate = date.getFullYear()+"-" + (date.getMonth()+1) + "-" + today_date;
+    FjmzhMessageInfo_interface_dataset.setValue("importDate", currentDate);
+}
+
 function messageLoad(messageName){
 	document.getElementById("filedownloadfjmzh").src ="${contextPath}/FjmLoad?messageName="+messageName;	
 }	

@@ -59,7 +59,7 @@ public class FjmzhMessageInfoGetter extends BaseGetter {
 		int pageSize = this.getResult().getPage().getEveryPage();	
 		int pageIndex = this.getResult().getPage().getCurrentPage();	
 			
-		hql.append("from AmsFjmzhMessageInfo A where 1 = 1 ");	
+		hql.append("from AmsFjmzhMessageInfo A where 1 = 1  order by miid desc");	
 			
 		if(FjmzhUtil.isEmpty(messageName)){	
 			hql.append(" and A.messageName like '%"+messageName.trim()+"%' ");	

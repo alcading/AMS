@@ -760,7 +760,7 @@ public class FjmzhQueryOutput extends HttpServlet{
 
 			xmlWriter.write(doc);
 			xmlWriter.close();
-			FjmzhUtil.saveMessageInfo(fileName + ".xml");
+			saveMessageInfo(fileName + ".xml");
 			returnInfo=FjmzhUtil.MESSAGEINFO+fileName+".xml";
 			FjmzhUtil.modifyState(fjmzh);
 		}
@@ -770,6 +770,15 @@ public class FjmzhQueryOutput extends HttpServlet{
 		response.setCharacterEncoding("GB18030");
 		response.getWriter().write("<script type='text/javascript'>alert('导出成功!"+returnInfo+"');</script>");
 		
+	}
+	
+    public void saveMessageInfo(String MessageName) throws CommonException{
+		ROOTDAO rootDAO = ROOTDAOUtils.getROOTDAO();
+		AmsFjmzhMessageInfo messageinfo = new AmsFjmzhMessageInfo();
+		messageinfo.setMessageName(MessageName);
+		messageinfo.setMessageType(FjmzhUtil.MESSAGETYPE);
+		messageinfo.setImportDate(FjmzhUtil.getyymmdd(new Date()));
+		rootDAO.save(messageinfo);
 	}
 	
 }
