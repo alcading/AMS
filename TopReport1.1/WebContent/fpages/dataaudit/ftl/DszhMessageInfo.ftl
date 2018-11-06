@@ -14,17 +14,12 @@
 	
 	<tr>
 		<td>
-			<@CommonQueryMacro.DataTable id="datatable1" paginationbar=""  fieldStr="messagetype,messagename,datadate,borndate,messagestatus"  width="100%" hasFrame="true" height="300" readonly="true"/>
+			<@CommonQueryMacro.DataTable id="datatable1" paginationbar="btBack"  fieldStr="messagetype,messagename,borndate,messagestatus"  width="100%" hasFrame="true" height="300" readonly="true"/>
 		</td>
 	</tr>
 	<tr>
 		<td>
 			<br/>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<@CommonQueryMacro.Button id="btBack"/>
 		</td>
 	</tr>
 </table>

@@ -2,23 +2,18 @@ package com.huateng.report.imports.updater;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +46,6 @@ public class DszhQueryOutput extends HttpServlet {
      */
     public DszhQueryOutput() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -64,7 +58,7 @@ public class DszhQueryOutput extends HttpServlet {
 		session = dao.getHibernateTemplate().getSessionFactory().openSession();
 		
 		//先判断是否有可导出数据
-		List report_status_count = session.createSQLQuery("select count(*) from ams_dszh where (REPORT_STATUS='0' or REPORT_STATUS='3') and jlrq='"+ jlrq +"'").list();
+		List report_status_count = session.createSQLQuery("select count(*) from ams_dszh where REPORT_STATUS='0' or REPORT_STATUS='3' ").list();
 		if(report_status_count.get(0).toString().equals("0")){
 			System.out.println("没有可导出数据");
 			session.close();
@@ -73,7 +67,6 @@ public class DszhQueryOutput extends HttpServlet {
 				response.getWriter().write("没有可导出的数据!");
 				return;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -83,7 +76,6 @@ public class DszhQueryOutput extends HttpServlet {
 		/*
 		 * 导出文件名中的金融机构编码为总行的金融机构编码
 		 */
-		@SuppressWarnings("unchecked")
 		List Bctl_list = null;
 		String headOfficeJrjgbm = null;
 		try {
@@ -93,7 +85,6 @@ public class DszhQueryOutput extends HttpServlet {
 				 headOfficeJrjgbm = (String)object[1];
 			}
 		} catch (CommonException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		
@@ -112,7 +103,7 @@ public class DszhQueryOutput extends HttpServlet {
 		
 		
 		
-		List<AmsDszh> list = session.createQuery(" from AmsDszh model where model.jlrq='" + jlrq + "' and (model.report_status='0' or model.report_status='3') ").list();
+		List<AmsDszh> list = session.createQuery(" from AmsDszh model where model.report_status='0' or model.report_status='3' ").list();
 		
 		StringBuilder bf=new StringBuilder();
 		bf.append(
@@ -168,10 +159,8 @@ public class DszhQueryOutput extends HttpServlet {
 					nulltoNothinglmck(lmck);
 				}
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -266,7 +255,7 @@ public class DszhQueryOutput extends HttpServlet {
 		/*
 		 * 更新report_status
 		 */
-		rootDAO.executeSql("UPDATE AMS_DSZH SET REPORT_STATUS = '1' WHERE (REPORT_STATUS='0' OR REPORT_STATUS='3') AND JLRQ = '" + jlrq + "'");
+		rootDAO.executeSql("UPDATE AMS_DSZH SET REPORT_STATUS = '1' WHERE REPORT_STATUS='0' OR REPORT_STATUS='3'");
 	
 		try {
 			bw.flush();
@@ -279,14 +268,12 @@ public class DszhQueryOutput extends HttpServlet {
 //		try {
 //			saveMessageInfo(jlrq, workDate, filename);
 //		} catch (CommonException e) {
-//			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 		
 		try {
 			saveMessageInfo(jlrq, workDate, filename);
 		} catch (CommonException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		response.setCharacterEncoding("utf-8");
@@ -297,7 +284,6 @@ public class DszhQueryOutput extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	

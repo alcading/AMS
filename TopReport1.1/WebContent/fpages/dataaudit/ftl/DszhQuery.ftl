@@ -22,7 +22,7 @@
 	</tr>
 </table>
 <iframe id="filedownloadfrm"  style="display: none;"></iframe>
-<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" ><@bean.message key="DszhQuery.message" /></span></span>
+<span id="button-tools" style="padding-left:10px"><@CommonQueryMacro.Button id= "btSave"/>&nbsp;<span id="message" ></span></span>
 </@CommonQueryMacro.CommonQuery>
 
 <script language="javascript">
